@@ -16,14 +16,23 @@ body {
     display: inline-block;
     vertical-align: top;
 }
+
+.collapsible-body{
+    padding: 1.5rem 0 0.5rem 0;
+}
 .collapsible-body p {
     white-space: normal;
+    padding: 0rem 1.5rem 1.5rem 1.5rem;
+}
+.collapsible-body h5 {
+    font-weight: bold;
+    font-size: 140%;
 }
 
 body > nav ul li:hover {
-  background-color: rgba(0,0,0,0); 
+    background-color: rgba(0,0,0,0); 
 }
 
 body > nav ul li.active {
-  background-color: rgba(0,0,0,0.1); 
+    background-color: rgba(0,0,0,0.1); 
 }
