@@ -61,14 +61,23 @@
                         } else {
                             form.user = prompt("User", "");
                             form.pass = prompt("Password", "");
-                            //TODO onlyif validate
+                            //TODO only if validate
                             localStorage.user = form.user;
                             localStorage.pass = form.pass;
                         }
                         superchallenge_pass(form)
                         alert(JSON.stringify(form))
                         $.post(url, form, function (d) {
-                            parse_page(d);
+                            if ($(d).find("#user").length) {
+                                //Si on est authentifié on parse
+                                parse_page(d);
+                            } else {
+                                //TODO detect if not hotspot login page
+                                delete localStorage.user;
+                                delete localStorage.pass;
+                                window.location.reload();
+                                //Si on reset le localstorage est toujorus pas identifier on reload
+                            }
                         })
                     }
                 });
