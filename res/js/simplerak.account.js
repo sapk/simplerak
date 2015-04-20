@@ -32,17 +32,17 @@ S.account = {
     },
     reset: function () {
         $.get(S.account.urls.base, function (d) {
-            alert(d)
             if (S.account.isLogged(d)) {
                 //page contain logout form
-                alert(d)
                 var form = S.account.getForm(d);
-                alert(JSON.stringify(form))
                 $.post(S.account.urls.base, form, function (d) {
-                    alert(d)                     
+                    if (S.account.isLogged(d))
+                        Materialize.toast('It seem it doesn\'t work well!', 3000)
+                    else
+                        Materialize.toast('Reset done !', 3000)
+
                 })
             }
-            Materialize.toast('Reset done !', 3000)
         });
         localStorage.removeItem('pass');
         localStorage.removeItem('user');
@@ -97,7 +97,7 @@ S.account = {
         //alert(d);
         $('#container>.collapsible').show();
         $('#container>.fixed-action-btn').show();
-        
+
         $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
 
         $.get(S.account.urls.portemonnaie, function (d) {
