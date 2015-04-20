@@ -37,8 +37,8 @@ S.account = {
                 //page contain logout form
                 alert(d)
                 var form = S.account.getForm(d);
-                alert(JSON.stingify(form))
-                $.post(url, form, function (d) {
+                alert(JSON.stringify(form))
+                $.post(S.account.urls.base, form, function (d) {
                     alert(d)                     
                 })
             }
