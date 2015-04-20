@@ -88,8 +88,22 @@
                     $("#container").append('<h5>' + $(d).find('#user').html().replace(/Bonjour /g, '') + '</h5>')
                     $(".progress").hide()
                     $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/recharger-mes-porte-monnaie.html", function (d) {
-                        alert(d)
-                        $("#container").append('<p>' + $(d).find(".dernier_solde").html() + '</p>')
+//                        alert(d)
+                        $("#container").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
+                    });
+                    $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/mes-dernieres-operations.html?no_cache=1", function (d) {
+//                        alert(d)
+//                        $("#container").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
+
+                        $("#container").append('<p> Dernière transaction : </p>')
+                        $("#container").append($(d).find("#tx_ardrecharge>table").html())
+                        /*                 
+                         $("#container").append('<p> Dernière transaction : <ul id="transcations"></ul></p>')
+                         /*                
+                         $(d).find("#tx_ardrecharge>table>toby>tr").each(function (){
+                         $
+                         });
+                         */
                     });
                 }
                 /*
