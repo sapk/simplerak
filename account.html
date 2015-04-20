@@ -35,18 +35,34 @@
         <script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
 
-        <script type="text/javascript" src="lib/ical.js"></script>
+        <script type="text/javascript" src="lib/md5.js"></script>
 
         <script type="text/javascript" src="res/js/simplerak.js"></script>
 
         <script>
             $(function () {
-                $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst.html",function (d){
-                    d = $(d).find(".tx-newloginbox-pi1 form").serialize()
-                    alert(JSON.stringify(d)) 
+                $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst.html", function (d) {
+                    d = $(d).find(".tx-newloginbox-pi1 form").serializeArray()
+                    var form = {};
+                    $.map(d, function (n, i) {
+                        form[n['name']] = n['value'];
+                    });
+                    form.user = prompt("User", "P187236");
+                    form.pass = prompt("Password", "");
+                    alert(JSON.stringify(form))
                 });
+                function superchallenge_pass(form) {
+                    if (form.pass) {
+                        var enc_pass = MD5(form.pass);
+                        var str = form.user + ":" + enc_pass + ":" + form.challenge;
+                        form.pass = MD5(str);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
                 /*
-                */
+                 */
             });
         </script>
 
