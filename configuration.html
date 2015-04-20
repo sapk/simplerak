@@ -22,10 +22,10 @@
         </nav>
         <ul id="global-menu" class="side-nav fixed">
             <li><a href="index.html">Menu</a></li>
-            <li class="active"><a href="#" >Mon Compte</a></li>
-            <li><a href="configuration.html">Paramètres</a></li>
+            <li><a href="account.html" >Mon Compte</a></li>
+            <li class="active"><a href="#">Paramètres</a></li>
         </ul>
-        <div class="progress" style="margin-top: 0;">
+        <div class="progress" style="margin-top: 0;display: none;">
             <div class="indeterminate"></div>
         </div>  
         <div id="container">
@@ -38,15 +38,10 @@
         <script type="text/javascript" src="lib/ical.js"></script>
 
         <script type="text/javascript" src="res/js/simplerak.js"></script>
-
+        
         <script>
-            $(function () {
-                $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst.html",function (d){
-                    d = $(d).find(".tx-newloginbox-pi1 form").serialize()
-                    alert(JSON.stringify(d)) 
-                });
-                /*
-                */
+            $(function (){
+                
             });
         </script>
 
