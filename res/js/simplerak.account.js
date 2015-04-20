@@ -1,6 +1,7 @@
 if (typeof S === 'undefined') {
     var S = {};
 }
+
 S.account = {
     urls: {
         base: "https://services.ard.fr/fr/espaces-clients/etablissements/enst.html",
@@ -48,11 +49,7 @@ S.account = {
             if (S.account.isLogged(d)) {
                 S.account.parse_page(d)
             } else {
-                d = $(d).find(".tx-newloginbox-pi1 form").serializeArray()
-                var form = {};
-                $.map(d, function (n, i) {
-                    form[n['name']] = n['value'];
-                });
+                var form = S.account.getForm(d);
                 //TODO use enc_pass
                 if (localStorage.user && localStorage.pass) {
                     form.user = localStorage.user;
@@ -60,6 +57,11 @@ S.account = {
                 } else {
                     form.user = prompt("User", "");
                     form.pass = prompt("Password", "");
+                    if (form.user == null || form.pass == null) {
+                        //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
+                        $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+                        return;
+                    }
                     //TODO only if validate
                     localStorage.user = form.user;
                     localStorage.pass = form.pass;
@@ -85,17 +87,22 @@ S.account = {
     parse_page: function (d) {
         //TODO check if we are connectedd
         //alert(d);
-        $("#container").append('<h5>' + $(d).find('#user').html().replace(/Bonjour /g, '') + '</h5>')
+        $('#container>.collapsible').show();
+        $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
 
         $.get(S.account.urls.portemonnaie, function (d) {
-            $("#container").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
+            $("#portemonnaie>.collapsible-body").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
+            $("#portemonnaie>.collapsible-header").addClass("active")
+            $('.collapsible').collapsible({
+                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+            });
         });
         $.get(S.account.urls.operations, function (d) {
 //                        alert(d)
 //                        $("#container").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
 
-            $("#container").append('<p> Dernière transaction : </p>')
-            $("#container").append($(d).find("#tx_ardrecharge>table").html())
+//            $("#container").append('<p> Dernière transaction : </p>')
+            $("#operations>.collapsible-body").append($(d).find("#tx_ardrecharge>table").html())
             /*                 
              $("#container").append('<p> Dernière transaction : <ul id="transcations"></ul></p>')
              /*                
@@ -106,8 +113,8 @@ S.account = {
         });
 
         $.get(S.account.urls.rechargements, function (d) {
-            $("#container").append('<p> Derniers rechargements : </p>')
-            $("#container").append($(d).find("#tx_ardrecharge>table").html())
+            //$("#container").append('<p> Derniers rechargements : </p>')
+            $("#rechargements>.collapsible-body").append($(d).find("#tx_ardrecharge>table").html())
             /*                 
              $("#container").append('<p> Dernière transaction : <ul id="transcations"></ul></p>')
              /*                
