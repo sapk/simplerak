@@ -89,7 +89,7 @@
                     $(".progress").hide()
                     $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/recharger-mes-porte-monnaie.html", function (d) {
                         alert(d)
-                        $("#container").append('<p>' + $(d).find(".dernier_solde").innerHTML + '</p>')
+                        $("#container").append('<p>' + $(d).find(".dernier_solde").html() + '</p>')
                     });
                 }
                 /*
