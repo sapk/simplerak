@@ -56,8 +56,13 @@ S.account = {
                     form.pass = localStorage.pass;
                 } else {
                     form.user = prompt("User", "");
+                    if (form.user == null) {
+                        //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
+                        $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+                        return;
+                    }
                     form.pass = prompt("Password", "");
-                    if (form.user == null || form.pass == null) {
+                    if (form.pass == null) {
                         //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
                         $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
                         return;
