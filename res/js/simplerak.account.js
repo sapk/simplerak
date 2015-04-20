@@ -32,11 +32,14 @@ S.account = {
     },
     reset: function () {
         $.get(S.account.urls.base, function (d) {
+            alert(d)
             if (S.account.isLogged(d)) {
                 //page contain logout form
+                alert(d)
                 var form = S.account.getForm(d);
+                alert(JSON.stingify(form))
                 $.post(url, form, function (d) {
-                    //On se délogue                        
+                    alert(d)                     
                 })
             }
             Materialize.toast('Reset done !', 3000)
