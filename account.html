@@ -49,7 +49,11 @@
                     });
                     form.user = prompt("User", "P187236");
                     form.pass = prompt("Password", "");
+                    superchallenge_pass(form)
                     alert(JSON.stringify(form))
+                    $.post("https://services.ard.fr/fr/espaces-clients/etablissements/enst/accueil.html",form,function (d){
+                        alert(d);
+                    })
                 });
                 function superchallenge_pass(form) {
                     if (form.pass) {
