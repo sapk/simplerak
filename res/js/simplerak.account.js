@@ -93,6 +93,8 @@ S.account = {
         //TODO check if we are connectedd
         //alert(d);
         $('#container>.collapsible').show();
+        $('#container>.fixed-action-btn').show();
+        
         $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
 
         $.get(S.account.urls.portemonnaie, function (d) {
