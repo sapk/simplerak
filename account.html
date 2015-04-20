@@ -43,7 +43,7 @@
             $(function () {
                 var url = "https://services.ard.fr/fr/espaces-clients/etablissements/enst.html"
                 $.get(url, function (d) {
-                    if ($("#user").html()) {
+                    if ($(d).find("#user").length) {
                         //We are already connected
                         //alert('we are already connected')
                         //alert(d);
@@ -84,7 +84,7 @@
                 }
                 function parse_page(d) {
                     alert(d);
-                    $("#container").append('<h5>' + $(d).find('#user').html() + '</h5>')
+                    $("#container").append('<h5>' + $(d).find('#user').html().substring(8) + '</h5>')
                     $(".progress").hide()
                 }
                 /*
