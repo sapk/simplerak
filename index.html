@@ -11,7 +11,7 @@
     <body>
     
   <nav>
-    <div class="nav-wrapper">
+    <div class="nav-wrapper light-green">
       <a href="#" class="brand-logo center">SimpleRAK</a>
       <ul id="nav-mobile" class="left">
         <li><a id="show_menu" data-activates="global-menu"  href="#"><i class="mdi-navigation-menu"></i></a></li>
@@ -36,33 +36,67 @@
       
       <script type="text/javascript">
        $("nav #show_menu").sideNav();
-       /*
-       $("#container").on("click",function(){
-       		console.log(($(document).width()))
-       		console.log(($(this).scrollLeft()))
-		  $('#container').animate( { scrollLeft: ($(this).scrollLeft()+$(document).width())+"px" }, 300 );
+
+	   var page_index = 0;
+	   var pages = {};
+	   
+	   $("#container").hammer()
+		
+       $("#container").on("swipeleft",function(){
+       	   page_index=(++page_index>pages.length)?pages.length:page_index
+		 	$('#container').animate( { scrollLeft: (page_index*$(document).width())+"px" }, 150 );
+	   });
+       $("#container").on("swiperight",function(){
+       	   page_index=(--page_index<0)?0:page_index
+		   $('#container').animate( { scrollLeft: (page_index*$(document).width())+"px" }, 150 );
 		});
-		*/
-       $("#container").on("swipe",function(){
-		 	$('#container').animate( { scrollLeft: ($(this).scrollLeft()+$(document).width())+"px" }, 300 );
-		});
-       $("#container").on("swipe",function(){
-		    $('#container').animate( { scrollLeft: ($(this).scrollLeft()-$(document).width())+"px" }, 300 );
-		});
-       //var ics_url = "http://resel.fr/services/rak/menu.ics";
-       var ics_url = "menu.ics";
+       //
+      
+       var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+		if ( app ) {
+			var ics_url = "http://resel.fr/services/rak/menu.ics";
+		} else {
+			var ics_url = "menu.ics";
+		} 
        $.get(ics_url, function(d){
        	//console.log(d);
        	ics = ICAL.parse(d)
        	for(i=1; i<ics[2].length; i++){
        		if(ics[2][i][0]=="vevent"){
        			//console.log(ics[2][i])
-       			console.log([ics[2][i][1][0][3],ics[2][i][1][3][3],ics[2][i][1][4][3]])
-       			$(".progress").hide()
-       			$("#container").append(jour(i,ics[2][i][1][4][3],ics[2][i][1][3][3],ics[2][i][1][3][3]))
+       			//console.log([ics[2][i][1][0][3],ics[2][i][1][3][3],ics[2][i][1][4][3]])
+       			var daytime = ics[2][i][1][4][3].split("T");
+       			if (!pages.hasOwnProperty(daytime[0])) 
+       				pages[daytime[0]] = {};
+       				
+       			pages[daytime[0]][daytime[1]] = ics[2][i][1][3][3];
+       			//$(".progress").hide()
+       			//$("#container").append(jour(i,ics[2][i][1][4][3],ics[2][i][1][3][3],ics[2][i][1][3][3]))
        		}
        	}
-       	 $('.collapsible').collapsible();	
+       	console.log(pages)
+       	i = 0
+       	for(var index in pages) { 
+				var menu = pages[index]; 
+       			$("#container").append(jour(i++,index,menu["12:00:00"],menu["19:15:00"]))	
+		}
+		
+		
+		if((new Date()).getHours()<13)
+			$('.collapsible>li:first-child>.collapsible-header').addClass('active')
+		else
+			$('.collapsible>li:last-child>.collapsible-header').addClass('active')
+			
+       	$(".progress").hide()
+       	$('.collapsible').collapsible();
+       	
+       	
+		var day = (new Date()).toJSON().split("T")[0]
+		console.log(day)
+		page_index = parseInt($(".page>h5:contains('"+day+"')" ).parent().attr('id'))
+		$('#container').animate( { scrollLeft: page_index*$(document).width()+"px" }, 150 );
+		//$("#container").scrollLeft(parseInt($(".page>h5:contains('"+day+"')" ).parent().attr('id'))*$(document).width()+"px")
+			
        	 /*	
        	 $('.page').click( function() { // Au clic sur un élément
 			//var page = $(this).attr('href'); // Page cible
@@ -79,13 +113,13 @@
          }
          function accordion(matin, soir){
          return 	'<ul class="collapsible" data-collapsible="accordion">'+
-            '<li><div class="collapsible-header active"><i class="mdi-device-brightness-low"></i>Midi</div>'+
+            '<li><div class="collapsible-header"><i class="mdi-device-brightness-low"></i>Midi</div>'+
 			  '<div class="collapsible-body"><p>'+matin.replace(/\n/g, "<br />")+'</p></div>'+
 			'</li>'+
 			'<li>'+
 			  '<div class="collapsible-header"><i class="mdi-image-brightness-3"></i>Soir</div>'+
 			  '<div class="collapsible-body"><p>'+soir.replace(/\n/g, "<br />")+'</p></div>'+
-			'<li>'+
+			'</li>'+
 					'</ul>'
 		};
       </script>
@@ -106,18 +140,8 @@
 		height: 100%;
 		width: 100%;
   		display: inline-block;
+  		vertical-align: top;
 	}
-.page:before,
-.page:after {
-  content:"";
-  display:table;
-}
-.page:after {
-  clear:both;
-}
-.page {
-  zoom:1; /* For IE 6/7 (trigger hasLayout) */
-}
 	</style>		       
     </body>
   </html>
