@@ -19,6 +19,7 @@ var S = {
     attach_event: {
         global: function () {
             $("nav #show_menu").sideNav({closeOnClick: true});
+            document.addEventListener("menubutton",  $("nav #show_menu").show(), false);
         },
         menu: function () {
             $("#container").hammer()
