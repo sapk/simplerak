@@ -19,3 +19,11 @@ body {
 .collapsible-body p {
     white-space: normal;
 }
+
+body > nav ul li:hover {
+  background-color: rgba(0,0,0,0); 
+}
+
+body > nav ul li.active {
+  background-color: rgba(0,0,0,0.1); 
+}
