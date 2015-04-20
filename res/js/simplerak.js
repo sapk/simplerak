@@ -2,24 +2,29 @@ var S = {
     config: {
         ics_url: "http://resel.fr/services/rak/menu.ics"
     },
-    start: function () {
-        
+    init: function () {
+        S.attach_event.global();
+
+    },
+    start_menu: function () {
         var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
         if (!app) {
             S.config.ics_url = "menu.ics";
         }
-        S.attach_event();
-        
+
+        S.attach_event.menu();
         $.get(S.config.ics_url, S.parse_cal)
-
     },
-    attach_event: function () {
-        $("nav #show_menu").sideNav({closeOnClick: true});
+    attach_event: {
+        global: function () {
+            $("nav #show_menu").sideNav({closeOnClick: true});
+        },
+        menu: function () {
+            $("#container").hammer()
 
-        $("#container").hammer()
-
-        $("#container").on("swipeleft", S.page.goRight);
-        $("#container").on("swiperight", S.page.goLeft);
+            $("#container").on("swipeleft", S.page.goRight);
+            $("#container").on("swiperight", S.page.goLeft);
+        }
     },
     parse_cal: function (d) {
         //console.log(d);
@@ -52,8 +57,8 @@ var S = {
 
         var day = (new Date()).toJSON().split("T")[0]
         S.page.today = parseInt($(".page>h5:contains('" + day + "')").css("color", "#f44336").parent().attr('id'))
-        S.page.goTo(S.page.today,0);
+        S.page.goTo(S.page.today, 0);
     }
 };
 
-$(S.start)
+$(S.init)
