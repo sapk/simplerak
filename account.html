@@ -61,6 +61,9 @@
                         } else {
                             form.user = prompt("User", "P187236");
                             form.pass = prompt("Password", "");
+                            //TODO onlyif validate
+                            localStorage.user = form.user;
+                            localStorage.pass = form.pass;
                         }
                         superchallenge_pass(form)
                         alert(JSON.stringify(form))
@@ -81,7 +84,7 @@
                 }
                 function parse_page(d) {
                     alert(d);
-                    $("#container").append('<h5>'+$(d).find('#user').text()+'</h5>')
+                    $("#container").append('<h5>' + $(d).find('#user').html() + '</h5>')
                 }
                 /*
                  */
