@@ -1,0 +1,21 @@
+body {
+    height:100%;
+    width:100%;
+    margin:0;padding:0;
+}
+#container {
+    position:absolute;
+    top:60px;left:0;bottom:0;right:0;
+    /*background-color:#DDD;*/
+    white-space: nowrap;
+    overflow: hidden;
+}
+.page{
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+}
+.collapsible-body p {
+    white-space: normal;
+}
