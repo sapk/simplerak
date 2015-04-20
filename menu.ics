@@ -1,0 +1,247 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ResEl (Alexandre Levavasseur)//RakiCal/1.05//FR
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:Europe/Paris
+X-LIC-LOCATION:Europe/Paris
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:RakiCal_2015-04-13#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\, Pizza aux anchois\n\n  Plat : \nEstouffade de bœuf à la provençale\, Pâtes\nEscalope de dinde à la crème\, Petits pois carottes\nQuinoa au saumon et légumes\n\n  Dessert : \nDESSERT CHAUD\, Bananes chocolat
+DTSTART;TZID=Europe/Paris:20150413T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-13#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nHamburger\, Fishburger\, Frites
+DTSTART;TZID=Europe/Paris:20150413T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-14#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\, Salade chèvre chaud\n\n  Plat : \nHachis Parmentier de canard\, Salade verte\nQuiche Lorraine\, Salade verte\nThon catalane\, Riz safrané\n\n  Dessert : \nDESSERT CHAUD\, Creusois
+DTSTART;TZID=Europe/Paris:20150414T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-14#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nBrochette de dinde aux pruneaux\, Purée Brocolis\nLasagnes au saumon\, Salade verte
+DTSTART;TZID=Europe/Paris:20150414T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-15#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\, Cassolette d'escargots\n\n  Plat : \nSteak haché béarnaise\, Frites\, Duo de courgettes\nFilet de faisan pommes poires\, Frites\nOmelette forestière\, Epinards à la crème\n\n  Dessert : \nDESSERT CHAUD\, Crème brûlée
+DTSTART;TZID=Europe/Paris:20150415T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-15#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nPoulet à la banane\, Riz Madras\nCappellettis au bœuf sauce tomate
+DTSTART;TZID=Europe/Paris:20150415T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-16#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\, Baguette campagnarde\n\n  Plat : \nCouscous aux 3 viandes (agneau poulet merguez)\nFilet de poisson meunière citron\, Tagliatelles\, Julienne de légumes\n\n  Dessert : \nDESSERT CHAUD\, Tatin de poires
+DTSTART;TZID=Europe/Paris:20150416T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-16#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nPizza kebab\, Salade verte\nRissolette de veau\, Flageolets à la tomate
+DTSTART;TZID=Europe/Paris:20150416T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-17#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\, Feuilleté oignons tomates\n\n  Plat : \nPennes bio aux crevettes et pétoncles\nTourte des vallées\, Salade verte\nFilet de poisson à l'oseille\, Pommes vapeur\, Poireaux carottes\n\n  Dessert : \nDESSERT CHAUD\, Gâteau ananas
+DTSTART;TZID=Europe/Paris:20150417T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-17#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nSpaghettis carbonara\nTortilla\, Pain tomaté\, Salade verte
+DTSTART;TZID=Europe/Paris:20150417T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-18#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nPoulet grillé à l'américaine sauce diable\, Frites tomate provençale\n\n  Dessert : \n
+DTSTART;TZID=Europe/Paris:20150418T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-18#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nPoisson bordelaise\, Riz Fenouil
+DTSTART;TZID=Europe/Paris:20150418T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-19#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nGoulash\, Pâtes\n\n  Dessert : \n
+DTSTART;TZID=Europe/Paris:20150419T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-19#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nEmincé de dinde\, Tunisienne\, Blé à la tomate
+DTSTART;TZID=Europe/Paris:20150419T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-20#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nRôti de dinde au curry\, Purée\nSpaghettis bio forestiers\, Poêlée bretonne\n\n  Dessert : \nDESSERT CHAUD\, Moêlleux poire chocolat
+DTSTART;TZID=Europe/Paris:20150420T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-20#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nBoul'bœuf aux épices sauce tomate\, Riz\, CRUDITES\, CAROTTES\, ENDIVES\, POMME GRANY\, CRUDITE SIMPLE\, BETTERAVES ROUGES\, CIBOULETTE\, CHARCUTERIE\, POMELOS\, AVOCATS (parts)\, ŒUFS MAYO\, MELONS\, JAMBON BLANC\, SALADE
+DTSTART;TZID=Europe/Paris:20150420T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-21#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nTravers de porc sauce barbecue\, Pommes boulangères\, Choux de Bruxelles\nAile de raie aux câpres\, Riz Carottes\n\n  Dessert : \nDESSERT CHAUD\, Crumbles
+DTSTART;TZID=Europe/Paris:20150421T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-21#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nEscalope de dinde forestière\, Printanière de légumes
+DTSTART;TZID=Europe/Paris:20150421T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-22#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nFilet de pigeon\, Gratin dauphinois\nFeuilleté tomates et mozarella\, Salade verte\n\n  Dessert : \nDESSERT CHAUD\, Sabayon citron
+DTSTART;TZID=Europe/Paris:20150422T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-22#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nPavé de poisson aux amandes\, Gratin de courgettes
+DTSTART;TZID=Europe/Paris:20150422T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-23#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nPaêlla au poulet\nPaêlla aux fruits de mer\nQuiche au saumon et épinards\, Salade verte\n\n  Dessert : \nDESSERT CHAUD\, Pain d'épices perdu
+DTSTART;TZID=Europe/Paris:20150423T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-23#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nPintade laquée au miel\, Pommes au four\, Gratin de courgettes
+DTSTART;TZID=Europe/Paris:20150423T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-24#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nNavarin d'agneau printanier\nBlanquette de poisson lait de coco et citron\, Riz Poireaux\n\n  Dessert : \nDESSERT CHAUD\, Fondant au chocolat
+DTSTART;TZID=Europe/Paris:20150424T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-24#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \nENTREE CHAUDE\n\n  Plat : \nSauté de bœuf aux olives\, Spaghettis\, Salsifis
+DTSTART;TZID=Europe/Paris:20150424T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-25#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nLamelles de kebab sauce blanche\, Frites\n\n  Dessert : \n
+DTSTART;TZID=Europe/Paris:20150425T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-25#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nManchon de canard confit\, Pommes boulangères\, Brocolis
+DTSTART;TZID=Europe/Paris:20150425T191500
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-26#0
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nCalamars à l'américaine\, Riz\n\n  Dessert : \n
+DTSTART;TZID=Europe/Paris:20150426T120000
+DURATION:PT45M
+END:VEVENT
+BEGIN:VEVENT
+UID:RakiCal_2015-04-26#1
+DTSTAMP:20150419T022003Z
+SUMMARY:Repas au RAK
+DESCRIPTION:  Entrée : \n\n\n  Plat : \nPaupiette de veau sauce forestière\, Pâtes
+DTSTART;TZID=Europe/Paris:20150426T191500
+DURATION:PT45M
+END:VEVENT
+END:VCALENDAR
