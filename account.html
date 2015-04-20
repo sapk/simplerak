@@ -41,19 +41,33 @@
 
         <script>
             $(function () {
-                $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst.html", function (d) {
-                    d = $(d).find(".tx-newloginbox-pi1 form").serializeArray()
-                    var form = {};
-                    $.map(d, function (n, i) {
-                        form[n['name']] = n['value'];
-                    });
-                    form.user = prompt("User", "P187236");
-                    form.pass = prompt("Password", "");
-                    superchallenge_pass(form)
-                    alert(JSON.stringify(form))
-                    $.post("https://services.ard.fr/fr/espaces-clients/etablissements/enst/accueil.html",form,function (d){
-                        alert(d);
-                    })
+                var url = "https://services.ard.fr/fr/espaces-clients/etablissements/enst.html"
+                $.get(url, function (d) {
+                    if ($("#user").length == 1) {
+                        //We are already connected
+                        //alert('we are already connected')
+                        //alert(d);
+                        parse_page(d)
+                    } else {
+                        d = $(d).find(".tx-newloginbox-pi1 form").serializeArray()
+                        var form = {};
+                        $.map(d, function (n, i) {
+                            form[n['name']] = n['value'];
+                        });
+                        //TODO use enc_pass
+                        if (localStorage.user && localStorage.pass) {
+                            form.user = localStorage.user;
+                            form.pass = localStorage.pass;
+                        } else {
+                            form.user = prompt("User", "P187236");
+                            form.pass = prompt("Password", "");
+                        }
+                        superchallenge_pass(form)
+                        alert(JSON.stringify(form))
+                        $.post(url, form, function (d) {
+                            parse_page(d);
+                        })
+                    }
                 });
                 function superchallenge_pass(form) {
                     if (form.pass) {
@@ -64,6 +78,10 @@
                     } else {
                         return false;
                     }
+                }
+                function parse_page(d) {
+                    alert(d);
+                    $("#container").append('<h5>'+$(d).find('#user').text()+'</h5>')
                 }
                 /*
                  */

@@ -1,4 +1,5 @@
 var S = {
+    //TODO pass to json file http://resel.fr/services/rak/menu.json
     config: {
         ics_url: "http://resel.fr/services/rak/menu.ics"
     },
@@ -13,7 +14,7 @@ var S = {
         }
 
         S.attach_event.menu();
-        $.get(S.config.ics_url, S.parse_cal)
+        $.get(S.config.ics_url, S.parse_cal);
     },
     attach_event: {
         global: function () {
