@@ -17,7 +17,7 @@
     <icon src="img/logo.png" />
     
     <preference name="orienation" value="portrait" />
-    <preference name="SplashScreenDelay" value="0" />
+    <preference name="SplashScreenDelay" value="50" />
 	<preference name="permissions" value="none"/>
 
     <access origin="*" />

@@ -93,7 +93,7 @@
        	
 		var day = (new Date()).toJSON().split("T")[0]
 		console.log(day)
-		page_index = parseInt($(".page>h5:contains('"+day+"')" ).parent().attr('id'))
+		page_index = parseInt($(".page>h5:contains('"+day+"')" ).css("color", "#f44336").parent().attr('id'))
 		$('#container').animate( { scrollLeft: page_index*$(document).width()+"px" }, 150 );
 		//$("#container").scrollLeft(parseInt($(".page>h5:contains('"+day+"')" ).parent().attr('id'))*$(document).width()+"px")
 			
