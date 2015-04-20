@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-    <widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "fr.sapk.rak"
-        version     = "0.1.2" >
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+            xmlns:gap   = "http://phonegap.com/ns/1.0"
+            id          = "fr.sapk.rak"
+            version     = "0.1.2" >
 
     <name>SimpleRAK</name>
 
     <description>
-       Simplement affiche le menu du rak du jour et des suivants.
+        Simplement affiche le menu du rak du jour et des suivants.
     </description>
 
     <author href="https://sapk.fr" email="antoine.girard@sapk.fr">
@@ -18,8 +18,8 @@
     
     <preference name="orienation" value="portrait" />
     <preference name="SplashScreenDelay" value="50" />
-	<preference name="permissions" value="none"/>
+    <preference name="permissions" value="none"/>
 
-	<access origin="http://resel.fr" subdomains="true" />
-
+    <access origin="http://resel.fr" subdomains="true" />
+    <access origin="https://services.ard.fr" />
 </widget>
