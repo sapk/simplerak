@@ -84,11 +84,12 @@
                 }
                 function parse_page(d) {
                     //TODO check if we are connectedd
-                    alert(d);
+                    //alert(d);
                     $("#container").append('<h5>' + $(d).find('#user').html().replace(/Bonjour /g, '') + '</h5>')
                     $(".progress").hide()
                     $.get("https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/recharger-mes-porte-monnaie.html", function (d) {
-                        $("#container").append('<h5>' + $(d).find(".dernier_solde").innerHTML + '</h5>')
+                        alert(d)
+                        $("#container").append('<p>' + $(d).find(".dernier_solde").innerHTML + '</p>')
                     });
                 }
                 /*
