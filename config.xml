@@ -14,7 +14,7 @@
         Antoine GIRARD 
     </author>
 
-    <icon src="img/logo.png" />
+    <icon src="res/img/logo.png" />
     
     <preference name="orienation" value="portrait" />
     <preference name="SplashScreenDelay" value="50" />
