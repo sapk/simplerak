@@ -98,7 +98,7 @@ S.account = {
         $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
 
         $.get(S.account.urls.portemonnaie, function (d) {
-            $("#portemonnaie>.collapsible-body").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
+            $("#portemonnaie>.collapsible-body").append('<p> Solde : <b>' + $(d).find(".dernier_solde").html() + '</b></p>')
             $("#portemonnaie>.collapsible-header").addClass("active")
             $('.collapsible').collapsible({
                 accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
