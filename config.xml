@@ -20,6 +20,6 @@
     <preference name="SplashScreenDelay" value="50" />
 	<preference name="permissions" value="none"/>
 
-    <access origin="*" />
+	<access origin="http://resel.fr" subdomains="true" />
 
 </widget>
