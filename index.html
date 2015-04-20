@@ -20,7 +20,7 @@
   </nav>
   <ul id="global-menu" class="side-nav fixed">
         <li><a href="#">Menu</a></li>
-        <li><a href="#">Mon Compte</a></li>
+        <li><a href="#" onclick="window.open('https://services.ard.fr/fr/espaces-clients/etablissements/enst.html', '_system');">Mon Compte</a></li>
   </ul>
   <div class="progress" style="margin-top: 0;">
       <div class="indeterminate"></div>
@@ -35,7 +35,7 @@
       <script type="text/javascript" src="lib/ical.js"></script>
       
       <script type="text/javascript">
-       $("nav #show_menu").sideNav();
+       $("nav #show_menu").sideNav({closeOnClick: true});
 
 	   var page_index = 0;
 	   var pages = {};
