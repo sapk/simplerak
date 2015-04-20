@@ -7,7 +7,7 @@
     <name>SimpleRAK</name>
 
     <description>
-        ...
+       Simplement affiche le menu du rak du jour et des suivants.
     </description>
 
     <author href="https://sapk.fr" email="antoine.girard@sapk.fr">
