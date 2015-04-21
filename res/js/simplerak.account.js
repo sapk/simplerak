@@ -28,8 +28,29 @@ S.account = {
     isLogged: function (d) {
         return $(d).find("#user").length;
     },
-    getForm: function (d) {
-        d = $(d).find(".tx-newloginbox-pi1 form").serializeArray()
+    rechargeOf: function (num) {
+        if (!isInteger(num) || num < 50)
+            return alert("Montant non numérique ou inférieur à 50")
+
+        console.log("Rechargement de : " + num + "€")
+        $.get(S.account.urls.portemonnaie, function (d) {
+            form = S.account.getForm(d, "form");
+            //console.log(form)
+            //form[Object.keys(form)[0]] = num
+            $.post(S.account.urls.portemonnaie, {
+                xajax : "_paypreviewAction",
+                xajaxr : new Date().getTime(),
+                "xajaxargs[]" : "<xjxquery><q>" + Object.keys(form)[0] + "=" + num + ".00&pdav0=0.00%20%E2%82%AC&pdav1=50.00%20%E2%82%AC%20&pdav2=60.00%20%E2%82%AC%20&pdav3=70.00%20%E2%82%AC%20&pdav4=80.00%20%E2%82%AC%20&pdav5=90.00%20%E2%82%AC%20&pdav6=100.00%20%E2%82%AC%20</q></xjxquery>"
+            }, function (d) {
+                alert(JSON.stringify(S.account.getForm(d, "form")))
+            })
+        })
+    },
+    getForm: function (d, selector) {
+        if (!selector)
+            selector = ".tx-newloginbox-pi1 form"
+
+        d = $(d).find(selector).serializeArray()
         var form = {};
         $.map(d, function (n, i) {
             form[n['name']] = n['value'];
