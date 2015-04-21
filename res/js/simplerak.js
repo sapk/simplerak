@@ -9,7 +9,8 @@ var S = {
     },
     attach_event: {
         global: function () {
-            $("nav #show_menu").sideNav({closeOnClick: true});
+            //Le menu se ferme au clic lorsque l'on est sur  mobile mais pas sur tablette
+            $("nav #show_menu").sideNav({closeOnClick: !($(document).width() > 992)});
             document.addEventListener("menubutton", function () {
                 $("nav #show_menu").sideNav('show')
             }, false);
