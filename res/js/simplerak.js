@@ -1,6 +1,8 @@
 var S = {
     init: function () {
         S.attach_event.global();
+        if(localStorage.theme)
+            $("body").addClass("theme-"+localStorage.theme);
     },
     app: {
         isWebBrowser: function () {

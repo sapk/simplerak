@@ -85,3 +85,33 @@ body > nav ul li.active {
         display: none;
     }  
 }
+
+
+
+/* Thème sombre */
+
+body.theme-sombre {
+    background: #212121;
+    color: white !important;
+}
+
+
+body.theme-sombre input,body.theme-sombre .input-field{
+    background: #616161 ;
+}
+.theme-sombre .side-nav{
+    background: #bdbdbd;
+}
+.theme-sombre .collapsible-header {
+    background: #616161 ;
+}
+
+.theme-sombre tbody>tr {
+    filter: brightness(0.80);
+    -webkit-filter: brightness(0.80);
+    color: #333;
+}
+
+.theme-sombre table.striped tbody tr:nth-child(even){
+    background: #bdbdbd
+}

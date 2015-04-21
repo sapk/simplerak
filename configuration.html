@@ -28,9 +28,21 @@
         <div class="progress" style="margin-top: 0;display: none;">
             <div class="indeterminate"></div>
         </div>  
-        <div id="container">
+        <div id="container" style="width: 90%;margin: 0 5%;">
             <br>
-            <a onclick="S.account.reset()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-action-settings left"></i>Reset Account</a>
+            <a onclick="S.account.reset()" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-action-settings left"></i>Reset Account</a>
+            <br><br>
+            <div class="row">
+                <div class="input-field col s12">
+                    <select onchange="localStorage.theme = $(this).val();
+                            window.location.reload();">
+                        <option value="" disabled selected>Thème</option>
+                        <option value="blanc">Blanc</option> <!-- par défaut -->
+                        <option value="sombre">Sombre</option>
+                    </select>
+                </div>
+            </div>
+
         </div>  
 
         <script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
@@ -40,6 +52,10 @@
 
         <script type="text/javascript" src="res/js/simplerak.js"></script>
         <script type="text/javascript" src="res/js/simplerak.account.js"></script>
-
+        <script>
+            $(function (){
+                    $('select').material_select();
+            })
+        </script>
     </body>
 </html>
