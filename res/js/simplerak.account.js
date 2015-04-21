@@ -56,7 +56,7 @@ S.account = {
                     $('#modal-payement').openModal();
                 })
             } else {
-                $.post(S.account.urls.portemonnaie, data, function (d) {
+                $.post(S.account.urls.portemonnaie+"?type=110124", data, function (d) {
                     alert(d)
                     $("#modal-payement .modal-content").html(
                             '<FORM METHOD=POST ACTION="https://scellius.lapostefinance.fr/cgis-payment-scellius/prod/callpayment" target="_top">' +
