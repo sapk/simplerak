@@ -34,10 +34,19 @@ body {
 #operations .collapsible-body,#rechargements .collapsible-body{
     padding: 0;
 }
+/*
 #rechargements table.striped tbody tr:nth-child(odd) {
     filter: brightness(0.97);
     -webkit-filter: brightness(0.97);
 }
+*/
+#rechargements table.striped tbody tr:nth-child(odd).red {
+   background-color: #ffcdd2 !important;
+}
+#rechargements table.striped tbody tr:nth-child(odd).green {
+   background-color: #c8e6c9  !important;
+}
+ 
 table.striped td,table.striped  th {
     border-radius: 0px;
 }
