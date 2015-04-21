@@ -9,6 +9,12 @@ S.account = {
         operations: "https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/mes-dernieres-operations.html?no_cache=1",
         rechargements: "https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/mes-derniers-rechargements-en-ligne.html?no_cache=1"
     },
+    urls_test: {
+        base: "test/file/enst-logged.html",
+        portemonnaie: "test/file/recharger-mes-porte-monnaie.html",
+        operations: "test/file/mes-dernieres-operations.html",
+        rechargements: "test/file/mes-derniers-rechargements-en-ligne.html"
+    },
     hash: function (form) {
         if (form.pass) {
             var enc_pass = MD5(form.pass);
@@ -48,6 +54,14 @@ S.account = {
         localStorage.removeItem('user');
     },
     start: function () {
+        if (S.app.isWebBrowser()) {
+            //Testing envirronement
+            /*
+             localStorage.user = "test";
+             localStorage.pass = "test";
+             */
+            S.account.urls = S.account.urls_test;
+        }
         $.get(S.account.urls.base, function (d) {
             if (S.account.isLogged(d)) {
                 S.account.parse_page(d)
@@ -108,30 +122,32 @@ S.account = {
             });
         });
         $.get(S.account.urls.operations, function (d) {
-//                        alert(d)
-//                        $("#container").append('<p> Solde : ' + $(d).find(".dernier_solde").html() + '</p>')
+            $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
+            $("#operations>.collapsible-body thead").remove()
+            $("#operations>.collapsible-body tfoot").remove()
+            $("#operations>.collapsible-body tbody tr:first-child").remove()
+            $("#operations>.collapsible-body tbody tr td:first-child").remove()
 
-//            $("#container").append('<p> Dernière transaction : </p>')
-            $("#operations>.collapsible-body").append($(d).find("#tx_ardrecharge>table").html())
-            /*                 
-             $("#container").append('<p> Dernière transaction : <ul id="transcations"></ul></p>')
-             /*                
-             $(d).find("#tx_ardrecharge>table>toby>tr").each(function (){
-             $
-             });
-             */
         });
 
         $.get(S.account.urls.rechargements, function (d) {
-            //$("#container").append('<p> Derniers rechargements : </p>')
-            $("#rechargements>.collapsible-body").append($(d).find("#tx_ardrecharge>table").html())
-            /*                 
-             $("#container").append('<p> Dernière transaction : <ul id="transcations"></ul></p>')
-             /*                
-             $(d).find("#tx_ardrecharge>table>toby>tr").each(function (){
-             $
-             });
-             */
+            $("#rechargements>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
+            $("#rechargements>.collapsible-body thead").remove()
+            $("#rechargements>.collapsible-body tfoot").remove()
+            $("#rechargements>.collapsible-body tbody tr td:nth-child(2)").remove()
+            $("#rechargements>.collapsible-body tbody tr td:nth-child(4)").each(function () {
+                if ($(this).text().toLowerCase().indexOf("accepté") >= 0) {
+                    $(this).parent().addClass("green lighten-5");
+                } else if ($(this).text().toLowerCase().indexOf("refusé") >= 0) {
+                    $(this).parent().addClass("red lighten-5");
+                }
+            }).remove()
+            //$("#rechargements>.collapsible-body tbody tr:first-child").remove()
+            $("#rechargements>.collapsible-body table").prepend("<thead>" + $("#rechargements>.collapsible-body tbody tr:first-child").remove().html() + "</thead>")
+            $("#rechargements>.collapsible-body table thead td").each(function () {
+                $(this).replaceWith($('<th>' + this.innerHTML + '</th>'));
+            })
+
         });
 
         $(".progress").hide()

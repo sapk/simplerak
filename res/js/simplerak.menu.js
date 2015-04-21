@@ -9,9 +9,8 @@ S.menu = {
     },
     start: function () {
 
-        var app = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
-        if (!app) {
-            S.menu.config.json_url = "menu.json";
+        if (S.app.isWebBrowser()) {
+            S.menu.config.json_url = "test/file/menu.json";
         }
         //TODO
         S.attach_event.menu();

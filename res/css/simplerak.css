@@ -16,7 +16,9 @@ body {
     display: inline-block;
     vertical-align: top;
 }
-
+.collapsible-header {
+    font-weight: bold;
+}
 .collapsible-body{
     padding: 1.5rem 0 0.5rem 0;
 }
@@ -29,6 +31,10 @@ body {
     font-size: 140%;
 }
 
+#operations .collapsible-body,#rechargements .collapsible-body{
+    padding: 0;
+}
+
 body > nav ul li:hover {
     background-color: rgba(0,0,0,0); 
 }
@@ -36,7 +42,13 @@ body > nav ul li:hover {
 body > nav ul li.active {
     background-color: rgba(0,0,0,0.1); 
 }
-
+table.striped tbody tr:nth-child(odd) {
+    filter: brightness(0.97);
+    -webkit-filter: brightness(0.97);
+}
+table.striped td,table.striped  th {
+    border-radius: 0px;
+}
 
 /* tablet */
 @media only screen and (min-width: 992px) {
