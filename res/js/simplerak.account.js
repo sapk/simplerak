@@ -29,7 +29,7 @@ S.account = {
         return $(d).find("#user").length;
     },
     rechargeOf: function (num) {
-        if (!isInteger(num) || num < 50)
+        if (!(Number.isInteger(num)) || num < 50)
             return alert("Montant non numérique ou inférieur à 50")
 
         console.log("Rechargement de : " + num + "€")
