@@ -37,22 +37,47 @@ S.account = {
             form = S.account.getForm(d, "form");
             //console.log(form)
             //form[Object.keys(form)[0]] = num
-            $.post(S.account.urls.portemonnaie, {
+            data = {
                 xajax : "_paypreviewAction",
                 xajaxr : new Date().getTime(),
                 "xajaxargs[]" : "<xjxquery><q>" + Object.keys(form)[0] + "=" + num + ".00&pdav0=0.00%20%E2%82%AC&pdav1=50.00%20%E2%82%AC%20&pdav2=60.00%20%E2%82%AC%20&pdav3=70.00%20%E2%82%AC%20&pdav4=80.00%20%E2%82%AC%20&pdav5=90.00%20%E2%82%AC%20&pdav6=100.00%20%E2%82%AC%20</q></xjxquery>"
-            }, function (d) {
-                alert(JSON.stringify(S.account.getForm(d, "form")))
-            })
+            }
+            alert(JSON.stringify(S.account.getForm(d, "form")))
+            //TODO 
+            if (S.app.isWebBrowser()) {
+                $.get("test/file/portemonnaie-rechargement-reponse.html", function (d) {
+                    $("#modal-payement .modal-content").html(
+                            '<FORM METHOD=POST ACTION="https://scellius.lapostefinance.fr/cgis-payment-scellius/prod/callpayment" target="_top">' +
+                            $(d).find("form[action*='lapostefinance']").html() +
+                            '</FORM>');
+                    $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
+                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
+                    })
+                    $('#modal-payement').openModal();
+                })
+            } else {
+                $.post(S.account.urls.portemonnaie, data, function (d) {
+                    alert(d)
+                    $("#modal-payement .modal-content").html(
+                            '<FORM METHOD=POST ACTION="https://scellius.lapostefinance.fr/cgis-payment-scellius/prod/callpayment" target="_top">' +
+                            $(d).find("form[action*='lapostefinance']").html() +
+                            '</FORM>');
+                    alert($("#modal-payement .modal-content").html())
+                    $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
+                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
+                    })
+                    $('#modal-payement').openModal();
+                })
+            }
         })
     },
     getForm: function (d, selector) {
         if (!selector)
             selector = ".tx-newloginbox-pi1 form"
 
-        d = $(d).find(selector).serializeArray()
+        data = $(d).find(selector).serializeArray()
         var form = {};
-        $.map(d, function (n, i) {
+        $.map(data, function (n, i) {
             form[n['name']] = n['value'];
         });
         return form;

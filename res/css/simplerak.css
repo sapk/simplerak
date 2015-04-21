@@ -115,3 +115,7 @@ body.theme-sombre input,body.theme-sombre .input-field{
 .theme-sombre table.striped tbody tr:nth-child(even){
     background: #bdbdbd
 }
+
+.theme-sombre .modal {
+    background: #616161 ;
+}

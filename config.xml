@@ -23,4 +23,6 @@
 
     <access origin="http://resel.fr" subdomains="true" />
     <access origin="https://services.ard.fr" />
+    <access origin="https://scellius.lapostefinance.fr" />
+    
 </widget>
