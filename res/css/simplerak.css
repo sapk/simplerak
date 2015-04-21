@@ -34,6 +34,13 @@ body {
 #operations .collapsible-body,#rechargements .collapsible-body{
     padding: 0;
 }
+#rechargements table.striped tbody tr:nth-child(odd) {
+    filter: brightness(0.97);
+    -webkit-filter: brightness(0.97);
+}
+table.striped td,table.striped  th {
+    border-radius: 0px;
+}
 
 body > nav ul li:hover {
     background-color: rgba(0,0,0,0); 
@@ -41,13 +48,6 @@ body > nav ul li:hover {
 
 body > nav ul li.active {
     background-color: rgba(0,0,0,0.1); 
-}
-table.striped tbody tr:nth-child(odd) {
-    filter: brightness(0.97);
-    -webkit-filter: brightness(0.97);
-}
-table.striped td,table.striped  th {
-    border-radius: 0px;
 }
 
 /* tablet */
