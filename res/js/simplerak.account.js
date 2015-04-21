@@ -46,7 +46,7 @@ S.account = {
             alert(JSON.stringify(data))
             //TODO 
             if (S.app.isWebBrowser()) {
-                $.post("test/file/portemonnaie-rechargement-reponse.html",data, function (d) {
+                $.get("test/file/portemonnaie-rechargement-reponse.html", function (d) {
                     $("#modal-payement .modal-content").html(
                             '<FORM METHOD=POST ACTION="https://scellius.lapostefinance.fr/cgis-payment-scellius/prod/callpayment" target="_top">' +
                             $(d).find("form[action*='lapostefinance']").html() +
@@ -55,7 +55,7 @@ S.account = {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
                     $('#modal-payement').openModal();
-                })
+                },"html")
             } else {
                 $.post(S.account.urls.portemonnaie+"?type=110124", data, function (d) {
                     alert(d)
@@ -68,7 +68,7 @@ S.account = {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
                     $('#modal-payement').openModal();
-                })
+                },"html")
             }
         })
     },
