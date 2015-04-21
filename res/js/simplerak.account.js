@@ -32,7 +32,7 @@ S.account = {
         if (!(Number.isInteger(num)) || num < 50)
             return alert("Montant non numérique ou inférieur à 50")
 
-        console.log("Rechargement de : " + num + "€")
+        //console.log("Rechargement de : " + num + "€")
         $.get(S.account.urls.portemonnaie, function (d) {
             form = S.account.getForm(d, "form");
             //console.log(form)
@@ -42,8 +42,8 @@ S.account = {
                 xajaxr : new Date().getTime(),
                 "xajaxargs[]" : ("<xjxquery><q>" + Object.keys(form)[0] + "=" + num + ".00&pdav0=0.00%20%E2%82%AC&pdav1=50.00%20%E2%82%AC%20&pdav2=60.00%20%E2%82%AC%20&pdav3=70.00%20%E2%82%AC%20&pdav4=80.00%20%E2%82%AC%20&pdav5=90.00%20%E2%82%AC%20&pdav6=100.00%20%E2%82%AC%20</q></xjxquery>")
             }
-            alert(JSON.stringify(S.account.getForm(d, "form")))
-            alert(JSON.stringify(data))
+            //alert(JSON.stringify(S.account.getForm(d, "form")))
+            //alert(JSON.stringify(data))
             //TODO 
             if (S.app.isWebBrowser()) {
                 $.get("test/file/portemonnaie-rechargement-reponse.html", function (d) {
@@ -58,12 +58,12 @@ S.account = {
                 },"html")
             } else {
                 $.post(S.account.urls.portemonnaie+"?type=110124", data, function (d) {
-                    alert(d)
+                    //alert(d)
                     $("#modal-payement .modal-content").html(
                             '<FORM METHOD=POST ACTION="https://scellius.lapostefinance.fr/cgis-payment-scellius/prod/callpayment" target="_top">' +
                             $(d).find("form[action*='lapostefinance']").html() +
                             '</FORM>');
-                    alert($("#modal-payement .modal-content").html())
+                    //alert($("#modal-payement .modal-content").html())
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
