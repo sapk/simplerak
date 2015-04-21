@@ -33,7 +33,7 @@ S.menu = {
         $('.collapsible').collapsible();
 
         var day = (new Date()).toJSON().split("T")[0]
-        S.page.today = parseInt($(".page>h5:contains('" + day + "')").css("color", "#f44336").parent().attr('id'))
+        S.page.today = parseInt($(".page[data-date='" + day + "']>h5").css("color", "#ef5350").css("font-weight", "bold").parent().attr('id'))
         S.page.goTo(S.page.today, 0);
     }
 }

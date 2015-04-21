@@ -21,6 +21,10 @@ S.template = {
                 "<h5 class='center-align'>- Dessert -</h5>" + ((repas.hasOwnProperty("dessert")) ? "<p>" + repas.dessert.replace(/\n/g, "<br>") + "</p>" : "<center>- - -</center>");
     },
     jour: function (id, date, midi, soir) {
-        return '<div class="page" id="' + id + '"><h5 class="center-align">' + date + '</h5>' + S.template.accordion(midi, soir) + '</div>';
+        return '<div class="page" id="' + id + '" data-date="'+date+'"><div class="center-align date">'+date+'</div><h5 class="center-align">' + S.template.numtoday((new Date(date)).getDay()) + '</h5>' + S.template.accordion(midi, soir) + '</div>';
+    },
+    numtoday: function(n){
+        days = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"]
+        return days[n];
     }
 }

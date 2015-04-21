@@ -16,6 +16,12 @@ body {
     display: inline-block;
     vertical-align: top;
 }
+.page>.center-align.date {
+    position: relative;
+    top: 95%;
+    margin-bottom: -21px;
+    color: #BBB;
+}
 .collapsible-header {
     font-weight: bold;
 }
@@ -41,12 +47,12 @@ body {
 }
 */
 #rechargements table.striped tbody tr:nth-child(odd).red {
-   background-color: #ffcdd2 !important;
+    background-color: #ffcdd2 !important;
 }
 #rechargements table.striped tbody tr:nth-child(odd).green {
-   background-color: #c8e6c9  !important;
+    background-color: #c8e6c9  !important;
 }
- 
+
 table.striped td,table.striped  th {
     border-radius: 0px;
 }
