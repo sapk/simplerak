@@ -36,3 +36,20 @@ body > nav ul li:hover {
 body > nav ul li.active {
     background-color: rgba(0,0,0,0.1); 
 }
+
+
+/* tablet */
+@media only screen and (min-width: 992px) {
+    #container {
+        left: 240px;
+    }
+    body>nav {
+        left: 240px;
+        position: absolute;
+        width: auto;
+        right: 0px;
+    }
+    body>nav #show_menu{
+        display: none;
+    }  
+}

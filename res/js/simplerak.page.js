@@ -9,7 +9,7 @@ S.page = {
     list: {},
     goTo: function (n, duration) {
         S.page.pos = n;
-        $('#container').animate({scrollLeft: n * $(document).width() + "px"}, duration);
+        $('#container').animate({scrollLeft: n * $('#container').width() + "px"}, duration);
         //console.log([S.page.pos ,S.page.today])
         if (S.page.pos == S.page.today)
             $("#go_today").parent().addClass('active');

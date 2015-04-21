@@ -13,6 +13,9 @@ var S = {
             $("#container").hammer()
             $("#container").on("swipeleft", S.page.goRight);
             $("#container").on("swiperight", S.page.goLeft);
+            window.addEventListener("orientationchange", function (){
+                window.setTimeout("S.page.goTo(S.page.pos,300)",100);
+            }, true);
         }
     }
 };
