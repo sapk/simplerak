@@ -57,6 +57,11 @@ table.striped td,table.striped  th {
     border-radius: 0px;
 }
 
+/* Fix for add btuton staying clickable */
+.fixed-action-btn>ul a.btn-floating[style$="opacity: 0;"],.fixed-action-btn>ul a.btn-floating:not([style]) {
+    display: none;
+}
+
 body > nav ul li:hover {
     background-color: rgba(0,0,0,0); 
 }
