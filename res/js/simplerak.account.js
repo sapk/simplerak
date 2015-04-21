@@ -29,6 +29,7 @@ S.account = {
         return $(d).find("#user").length;
     },
     rechargeOf: function (num) {
+        num = parseInt(num)
         if (!(Number.isInteger(num)) || num < 50)
             return alert("Montant non numérique ou inférieur à 50")
 
