@@ -19,8 +19,8 @@ var S = {
         if (localStorage.theme)
             $("body").addClass("theme-" + localStorage.theme);
 
-        console.log(cordova.plugins)
-        console.log(cordova)
+        alert(JSON.stringify(cordova.plugins))
+        alert(JSON.stringify(cordova))
         //Register notification
         /*
         cordova.plugins.notification.local.schedule({
