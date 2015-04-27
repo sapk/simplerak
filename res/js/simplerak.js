@@ -1,14 +1,16 @@
 var S = {
-    default_language: "en",
+    config: {
+        default_language: "en"
+    },
     init: function () {
 
-        var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.default_language;
+        var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.config.default_language;
         //TEST 
         //language = "en-US"
         language = language.split("-")[0]
-        if ($.inArray(language, ["en","fr"]) === -1)
-            language = S.default_language;
-        
+        if ($.inArray(language, ["en", "fr"]) === -1)
+            language = S.config.default_language;
+
         console.log(language);
         html10n.localize(language);
 

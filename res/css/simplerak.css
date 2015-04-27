@@ -78,11 +78,18 @@ body > nav ul li.active {
 .fixed-action-btn a.btn-floating.disabled i {
     color: #9e9e9e;
 }
-
+body#page-configuration>#container {
+    width: 90%;
+    margin: 0 5%;
+}
 /* tablet */
 @media only screen and (min-width: 992px) {
-    #container {
+    body>#container {
         left: 240px;
+    }
+    body#page-configuration>#container {
+        width: 70%;
+        margin: 0 auto;
     }
     body>nav {
         left: 240px;
