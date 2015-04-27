@@ -2,8 +2,8 @@
 <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "fr.sapk.rak"
-        versionCode = "26" 
-        version     = "0.1.7" >
+        versionCode = "27" 
+        version     = "0.1.8" >
 
     <name>SimpleRAK</name>
 
