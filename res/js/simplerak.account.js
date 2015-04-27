@@ -2,6 +2,13 @@ if (typeof S === 'undefined') {
     var S = {};
 }
 
+//Polyfill
+Number.isInteger = Number.isInteger || function (value) {
+    return typeof value === "number" &&
+            isFinite(value) &&
+            Math.floor(value) === value;
+};
+
 S.account = {
     urls: {
         base: "https://services.ard.fr/fr/espaces-clients/etablissements/enst.html",
@@ -29,10 +36,15 @@ S.account = {
         return $(d).find("#user").length;
     },
     rechargeOf: function (num) {
-        num = parseInt(num)
+        num = parseInt(num);
         if (!(Number.isInteger(num)) || num < 50)
             return alert("Montant non numérique ou inférieur à 50")
 
+        $(".fixed-action-btn").mouseleave();
+        $(".fixed-action-btn>a.btn-floating.btn-large").removeClass('red').removeClass('waves-effect').addClass('grey').addClass('disabled');
+        $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").addClass('active').css("top", "-50px");
+
+        //return;
         //console.log("Rechargement de : " + num + "€")
         $.get(S.account.urls.portemonnaie, function (d) {
             form = S.account.getForm(d, "form");
@@ -56,9 +68,11 @@ S.account = {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
                     $('#modal-payement').openModal();
-                },"html")
+                    $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
+                    $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
+                }, "html")
             } else {
-                $.post(S.account.urls.portemonnaie+"?type=110124", data, function (d) {
+                $.post(S.account.urls.portemonnaie + "?type=110124", data, function (d) {
                     //alert(d)
                     $("#modal-payement .modal-content").html(
                             '<FORM METHOD=POST ACTION="https://scellius.lapostefinance.fr/cgis-payment-scellius/prod/callpayment" target="_top">' +
@@ -69,7 +83,9 @@ S.account = {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
                     $('#modal-payement').openModal();
-                },"html")
+                    $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
+                    $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
+                }, "html")
             }
         })
     },
