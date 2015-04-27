@@ -1,5 +1,5 @@
 var S = {
-    default_language: "fr",
+    default_language: "en",
     init: function () {
 
         var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.default_language;
