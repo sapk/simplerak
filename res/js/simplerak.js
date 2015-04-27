@@ -18,6 +18,26 @@ var S = {
 
         if (localStorage.theme)
             $("body").addClass("theme-" + localStorage.theme);
+
+        //Register notification
+        cordova.plugins.notification.local.schedule({
+            id: 1,
+            title: "Midi !",
+            text: "...",
+            icon: "rew/img/logo.png",
+            firstAt: today_at_11_40_am,
+            every: "day" // "minute", "hour", "week", "month", "year"
+        });
+        //Register notification
+        cordova.plugins.notification.local.schedule({
+            id: 2,
+            title: "Soir !",
+            text: "...",
+            icon: "rew/img/logo.png",
+//            firstAt: today_at_7_05_pm,
+            firstAt: today_at_6_50_pm,
+            every: "day" // "minute", "hour", "week", "month", "year"
+        });
     },
     app: {
         isWebBrowser: function () {
