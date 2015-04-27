@@ -9,6 +9,9 @@
 
         <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <!--Internationalization-->
+        <script type="text/javascript" src="lib/l10n.js"></script>
+        <link rel="localizations" href="i18n.json" type="application/l10n+json"/>
     </head>
 
     <body>
@@ -21,9 +24,15 @@
             </div>
         </nav>
         <ul id="global-menu" class="side-nav fixed">
-            <li><a href="index.html">Menu</a></li>
-            <li class="active"><a href="#" >Mon Compte</a></li>
-            <li><a href="configuration.html">Paramètres</a></li>
+            <li>
+                <a href="index.html" data-l10n-id="nav-menu">Menu</a>
+            </li>
+            <li class="active">
+                <a href="#" data-l10n-id="nav-my-account">Mon Compte</a>
+            </li>
+            <li>
+                <a href="configuration.html" data-l10n-id="nav-configuration">Paramètres</a>
+            </li>
         </ul>
         <div class="progress" style="margin-top: 0;">
             <div class="indeterminate"></div>
@@ -32,15 +41,15 @@
             <h5 class="center-align"></h5>
             <ul class="collapsible" data-collapsible="expandable"  style="display: none">
                 <li id="portemonnaie">
-                    <div class="collapsible-header"><i class="mdi-action-account-balance"></i>Porte-Monnaie</div>
+                    <div class="collapsible-header"><i class="mdi-action-account-balance"></i><span data-l10n-id="wallet">Porte-Monnaie</span></div>
                     <div class="collapsible-body"></div>
                 </li>
                 <li id="operations">
-                    <div class="collapsible-header"><i class="mdi-action-history"></i>Vos dernières opérations</div>
+                    <div class="collapsible-header"><i class="mdi-action-history"></i><span data-l10n-id="last-operations">Vos dernières opérations</span></div>
                     <div class="collapsible-body"></div>
                 </li>
                 <li id="rechargements">
-                    <div class="collapsible-header"><i class="mdi-action-list"></i>Historique de vos rechargements en ligne</div>
+                    <div class="collapsible-header"><i class="mdi-action-list"></i><span data-l10n-id="last-transactions">Historique de vos rechargements en ligne</span></div>
                     <div class="collapsible-body"></div>
                 </li>
             </ul>

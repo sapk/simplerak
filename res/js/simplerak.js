@@ -1,8 +1,18 @@
 var S = {
+    default_language: "fr",
     init: function () {
+        
+        var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || S.default_language;
+        //TEST 
+        //language = "en-US"
+        language = language.split("-")[0]
+        console.log(language);
+        html10n.localize(language);
+        
         S.attach_event.global();
-        if(localStorage.theme)
-            $("body").addClass("theme-"+localStorage.theme);
+
+        if (localStorage.theme)
+            $("body").addClass("theme-" + localStorage.theme);
     },
     app: {
         isWebBrowser: function () {

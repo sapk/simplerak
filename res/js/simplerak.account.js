@@ -67,6 +67,7 @@ S.account = {
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
+                    $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
                     $('#modal-payement').openModal();
                     $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
                     $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
@@ -82,6 +83,7 @@ S.account = {
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
                         $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                     })
+                    $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
                     $('#modal-payement').openModal();
                     $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
                     $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
@@ -179,7 +181,7 @@ S.account = {
         $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
 
         $.get(S.account.urls.portemonnaie, function (d) {
-            $("#portemonnaie>.collapsible-body").append('<p> Solde : <b>' + $(d).find(".dernier_solde").html() + '</b></p>')
+            $("#portemonnaie>.collapsible-body").append('<p> ' + _('Balance') + ' : <b>' + $(d).find(".dernier_solde").html() + '</b></p>')
             $("#portemonnaie>.collapsible-header").addClass("active")
             $('.collapsible').collapsible({
                 accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
