@@ -2,7 +2,7 @@ var S = {
     default_language: "fr",
     init: function () {
         
-        var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || S.default_language;
+        var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.default_language;
         //TEST 
         //language = "en-US"
         language = language.split("-")[0]
