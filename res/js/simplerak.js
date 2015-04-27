@@ -1,14 +1,17 @@
 var S = {
     default_language: "fr",
     init: function () {
-        
+
         var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.default_language;
         //TEST 
         //language = "en-US"
         language = language.split("-")[0]
+        if ($.inArray(language, ["en","fr"]) === -1)
+            language = S.default_language;
+        
         console.log(language);
         html10n.localize(language);
-        
+
         S.attach_event.global();
 
         if (localStorage.theme)
