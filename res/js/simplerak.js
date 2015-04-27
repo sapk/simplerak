@@ -19,7 +19,10 @@ var S = {
         if (localStorage.theme)
             $("body").addClass("theme-" + localStorage.theme);
 
+        console.log(cordova.plugins)
+        console.log(cordova)
         //Register notification
+        /*
         cordova.plugins.notification.local.schedule({
             id: 1,
             title: "Midi !",
@@ -38,6 +41,7 @@ var S = {
             firstAt: today_at_6_50_pm,
             every: "day" // "minute", "hour", "week", "month", "year"
         });
+        */
     },
     app: {
         isWebBrowser: function () {
