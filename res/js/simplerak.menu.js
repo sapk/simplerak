@@ -17,7 +17,14 @@ S.menu = {
         $.get(S.menu.config.json_url, S.menu.parse, "json");
     },
     parse: function (d) {
-        S.page.list = d;
+        //console.log(d);
+        // ON ajoute à S.page.list de manière ordonné
+        $(Object.keys(d).sort()).each(function (i,key) {
+            //console.log(key);
+            S.page.list[key] = d[key];
+        });
+        //S.page.list = d.sort();
+        //console.log(S.page.list);
         i = 0
         for (var index in S.page.list) {
             var menu = S.page.list[index];
