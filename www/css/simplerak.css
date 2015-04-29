@@ -28,6 +28,7 @@ body {
 }
 .collapsible-header {
     font-weight: bold;
+    white-space: nowrap;
 }
 .collapsible-body{
     padding: 1.5rem 0 0.5rem 0;

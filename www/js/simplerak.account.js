@@ -109,13 +109,13 @@ S.account = {
                 var form = S.account.getForm(d);
                 $.post(S.account.urls.base, form, function (d) {
                     if (S.account.isLogged(d))
-                        Materialize.toast('It seem it doesn\'t work well!', 3000)
+                        Materialize.toast('It seem it doesn\'t work well!', 3000);
                     else
-                        Materialize.toast('Reset done !', 3000)
-
-                })
+                        Materialize.toast('Reset done !', 3000);
+                });
             }
         });
+        S.cache.reset();
         localStorage.removeItem('pass');
         localStorage.removeItem('user');
     },
@@ -128,49 +128,68 @@ S.account = {
              */
             S.account.urls = S.account.urls_test;
         }
-        $.get(S.account.urls.base, function (d) {
+        //on cache 5 minute histoire d'éviter trop d'appel à chaque ouverture de page
+        S.cache.get(S.account.urls.base, 5 * 60, function (d, from_cache) {
             if (S.account.isLogged(d)) {
-                S.account.parse_page(d)
+                S.account.parse_page(d);
             } else {
-                var form = S.account.getForm(d);
-                //TODO use enc_pass
-                if (localStorage.user && localStorage.pass) {
-                    form.user = localStorage.user;
-                    form.pass = localStorage.pass;
+                console.log("We are not logged!");
+                if (from_cache) {
+                    console.log("Came from cache");
+                    $(S.account.urls.base, function (d) {
+                        if (S.account.isLogged(d)) {
+                            S.account.parse_page(d);
+                        } else {
+                            S.account.login(d);
+                        }
+                    });
                 } else {
-                    form.user = prompt("User", "");
-                    if (form.user == null) {
-                        //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
-                        $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
-                        return;
-                    }
-                    form.pass = prompt("Password", "");
-                    if (form.pass == null) {
-                        //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
-                        $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
-                        return;
-                    }
-                    //TODO only if validate
-                    localStorage.user = form.user;
-                    localStorage.pass = form.pass;
+                    console.log("Didn't came from cache");
+                    S.account.login(d);
                 }
-                S.account.hash(form)
-                //alert(JSON.stringify(form))
-                $.post(S.account.urls.base, form, function (d) {
-                    if (S.account.isLogged(d)) {
-                        //Si on est authentifié on parse
-                        S.account.parse_page(d);
-                    } else {
-                        //We are not loggued so the credential are bad
-                        //TODO detect if not hotspot login page
-                        localStorage.removeItem('pass');
-                        localStorage.removeItem('user');
-                        window.location.reload();
-                    }
-                })
             }
         });
 
+    },
+    login: function (d) {
+        var form = S.account.getForm(d);
+        //TODO use enc_pass
+        if (localStorage.user && localStorage.pass) {
+            form.user = localStorage.user;
+            form.pass = localStorage.pass;
+        } else {
+            form.user = prompt("User", "");
+            if (form.user == null) {
+                //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
+                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+                return;
+            }
+            form.pass = prompt("Password", "");
+            if (form.pass == null) {
+                //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
+                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+                return;
+            }
+            //TODO only if validate
+            localStorage.user = form.user;
+            localStorage.pass = form.pass;
+        }
+        S.account.hash(form);
+        //alert(JSON.stringify(form))
+        $.post(S.account.urls.base, form, function (d) {
+            if (S.account.isLogged(d)) {
+                //Si on est authentifié on parse
+                S.account.parse_page(d);
+                S.cache.reset();
+            } else {
+                //We are not loggued so the credential are bad
+                //TODO detect if not hotspot login page
+                localStorage.removeItem('pass');
+                localStorage.removeItem('user');
+                S.cache.reset();
+                window.location.reload();
+            }
+        });
     },
     parse_page: function (d) {
         //TODO check if we are connectedd
@@ -180,14 +199,15 @@ S.account = {
 
         $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
 
-        $.get(S.account.urls.portemonnaie, function (d) {
+        //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
+        S.cache.get(S.account.urls.portemonnaie, 5 * 60, function (d) {
             $("#portemonnaie>.collapsible-body").append('<p> ' + _('Balance') + ' : <b>' + $(d).find(".dernier_solde").html() + '</b></p>')
             $("#portemonnaie>.collapsible-header").addClass("active")
             $('.collapsible').collapsible({
                 accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
         });
-        $.get(S.account.urls.operations, function (d) {
+        S.cache.get(S.account.urls.operations, 5 * 60, function (d) {
             $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
             $("#operations>.collapsible-body thead").remove()
             $("#operations>.collapsible-body tfoot").remove()
@@ -196,7 +216,7 @@ S.account = {
 
         });
 
-        $.get(S.account.urls.rechargements, function (d) {
+        S.cache.get(S.account.urls.rechargements, 5 * 60, function (d) {
             $("#rechargements>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
             $("#rechargements>.collapsible-body thead").remove()
             $("#rechargements>.collapsible-body tfoot").remove()
@@ -207,15 +227,15 @@ S.account = {
                 } else if ($(this).text().toLowerCase().indexOf("refusé") >= 0) {
                     $(this).parent().addClass("red lighten-5");
                 }
-            }).remove()
+            }).remove();
             //$("#rechargements>.collapsible-body tbody tr:first-child").remove()
-            $("#rechargements>.collapsible-body table").prepend("<thead>" + $("#rechargements>.collapsible-body tbody tr:first-child").remove().html() + "</thead>")
+            $("#rechargements>.collapsible-body table").prepend("<thead>" + $("#rechargements>.collapsible-body tbody tr:first-child").remove().html() + "</thead>");
             $("#rechargements>.collapsible-body table thead td").each(function () {
                 $(this).replaceWith($('<th>' + this.innerHTML + '</th>'));
-            })
+            });
 
         });
 
-        $(".progress").hide()
+        $(".progress").hide();
     }
-}
+};
