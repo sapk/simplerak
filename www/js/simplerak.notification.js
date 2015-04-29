@@ -16,16 +16,13 @@ S.notification = {
                 }, {
                     id: 2,
                     title: "Updated Soir Notification"
-                }, {
-                    id: 3,
-                    title: "Updated Test Notification"
                 }]);
         });
         cordova.plugins.notification.local.on("update", function(notification) {
-            alert("updated: " + JSON.stringify(notification));
+            //alert("updated: " + JSON.stringify(notification));
         });
         cordova.plugins.notification.local.on("click", function (notification) {
-            alert("clicked: " + JSON.stringify(notification));
+            //alert("clicked: " + JSON.stringify(notification));
         });
         now = new Date().getTime();
         //alert(now);
@@ -35,6 +32,7 @@ S.notification = {
         //alert(start);
 
         midi = new Date(start + (11 * 60 * 60 + 40 * 60) * 1000);
+        midi = new Date(now + 10 * 1000);
         //alert(midi);
         cordova.plugins.notification.local.schedule({
             id: 1,
@@ -46,6 +44,7 @@ S.notification = {
         });
 
         soir = new Date(start + (19 * 60 * 60 + 5 * 60) * 1000);
+        soir = new Date(now + 30 * 1000);
         //alert(soir);
         cordova.plugins.notification.local.schedule({
             id: 2,
@@ -55,7 +54,7 @@ S.notification = {
             every: "day",
             led: "1111FF"
         });
-        //*
+        /*
         test = new Date(now + 10 * 1000);
         alert(test);
         cordova.plugins.notification.local.schedule({
@@ -83,4 +82,4 @@ S.notification = {
     }
 };
 
-document.addEventListener('deviceready', S.notification.init, false);
+//document.addEventListener('deviceready', S.notification.init, false);
