@@ -1,10 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version='1.0' encoding='utf-8'?>
 <widget xmlns   = "http://www.w3.org/ns/widgets"
         xmlns:gap   = "http://phonegap.com/ns/1.0"
         id          = "fr.sapk.rak"
         versionCode = "43" 
         version     = "1.0.1" >
-
     <name>SimpleRAK</name>
 
     <description>
@@ -15,16 +14,25 @@
         Antoine GIRARD 
     </author>
 
-    <icon src="res/img/logo.png" />
+    <icon src="www/img/logo.png" />
     
-    <preference name="orienation" value="portrait" />
-    <preference name="SplashScreenDelay" value="50" />
-    <preference name="permissions" value="none"/>
-
-    <access origin="http://resel.fr" subdomains="true" />
-    <access origin="https://services.ard.fr" />
-    <access origin="https://scellius.lapostefinance.fr" />
+    <content src="index.html" />
     
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" />
+    <plugin name="de.appplant.cordova.plugin.local-notification" />
     
+    <plugin name="cordova-plugin-whitelist" version="1" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
 </widget>

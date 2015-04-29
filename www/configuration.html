@@ -2,16 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>SimpleRAK</title>
+        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css"  media="screen,projection"/>
-        <link type="text/css" rel="stylesheet" href="res/css/simplerak.css"/>
-
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <!--Import simplerak theme file-->
+        <link rel="stylesheet" type="text/css" href="css/simplerak.css">
         <!--Internationalization-->
         <script type="text/javascript" src="lib/l10n.js"></script>
         <link rel="localizations" href="i18n.json" type="application/l10n+json"/>
+        <title>SimpleRAK</title>
     </head>
 
     <body id="page-configuration">
@@ -64,18 +66,20 @@
             </div>
         </div>  
 
+        <script type="text/javascript" src="cordova.js"></script>
+
         <script type="text/javascript" src="lib/jquery-2.1.3.min.js"></script>
         <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
 
-        <script type="text/javascript" src="res/js/simplerak.js"></script>
-        <script type="text/javascript" src="res/js/simplerak.account.js"></script>
+        <script type="text/javascript" src="js/simplerak.js"></script>
+        <script type="text/javascript" src="js/simplerak.account.js"></script>
         <script>
                         $(function () {
                             html10n.bind("localized", function () {
                                 console.log("Localized!");
                                 $('select').material_select();
                             });
-                        })
+                        });
         </script>
     </body>
 </html>
