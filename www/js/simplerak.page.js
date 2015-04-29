@@ -17,11 +17,20 @@ S.page = {
             $("#go_today").parent().removeClass('active');
     },
     goRight: function () {
-        S.page.pos = (++S.page.pos > S.page.list.length) ? S.page.list.length : S.page.pos
+        S.page.pos = (++S.page.pos > S.page.list.length) ? S.page.list.length : S.page.pos;
         S.page.goTo(S.page.pos, 150)
     },
     goLeft: function () {
-        S.page.pos = (--S.page.pos < 0) ? 0 : S.page.pos
+        S.page.pos = (--S.page.pos < 0) ? 0 : S.page.pos;
         S.page.goTo(S.page.pos, 150)
+    },
+    attach_event: function () {
+        S.page.attached = true;
+        $("#container").hammer();
+        $("#container").on("swipeleft", S.page.goRight);
+        $("#container").on("swiperight", S.page.goLeft);
+        window.addEventListener("orientationchange", function () {
+            window.setTimeout("S.page.goTo(S.page.pos,300)", 100);
+        }, true);
     }
-}
+};

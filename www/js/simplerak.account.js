@@ -148,6 +148,9 @@ S.account = {
                     S.account.login(d);
                 }
             }
+        }, null, function () {
+            //OnFail
+            $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
         });
 
     },

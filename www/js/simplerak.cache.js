@@ -14,7 +14,7 @@ S.cache = {
         S.cache.data = {};
         localStorage.cache = JSON.stringify(S.cache.data);
     },
-    get: function (url, duration, callback, format) {
+    get: function (url, duration, callback, format, callback_onerror) {
         //duration in second
         if (typeof S.cache.data[url] !== 'undefined' && S.cache.data[url].at + duration * 1000 > (new Date().getTime())) {
             //We get from cache
@@ -36,7 +36,7 @@ S.cache = {
                 S.cache.data[url] = {data: d, at: (new Date().getTime())};
                 localStorage.cache = JSON.stringify(S.cache.data);
                 callback(d, false);
-            }, format);
+            }, format).fail(callback_onerror);
         }
     }
 };

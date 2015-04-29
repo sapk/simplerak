@@ -1,85 +1,63 @@
+/* global cordova */
+
 if (typeof S === 'undefined') {
     var S = {};
 }
 
 S.notification = {
+    config: {
+        smallIcon: "res://ic_dialog_info"
+                //smallIcon : "res://ic_input_get"
+    },
     init: function () {
+        //si le plugin est pas chargé on ne continue pas (sauf si browser : test) 
+        if (!S.app.isWebBrowser() && !cordova.plugins.notification)
+            return;
+        //si le module menu n'est pas chargé on arrete car dépendant
+        if (!S.menu)
+            return;
 
-        cordova.plugins.notification.local.on("schedule", function (notification) {
-            //alert("scheduled: " + JSON.stringify(notification));
-        });
-        cordova.plugins.notification.local.on("trigger", function (notification) {
-            alert("triggered: " + JSON.stringify(notification));
-            cordova.plugins.notification.local.update([{
-                    id: 1,
-                    title: "Updated Midi Notification"
-                }, {
-                    id: 2,
-                    title: "Updated Soir Notification"
-                }]);
-        });
-        cordova.plugins.notification.local.on("update", function(notification) {
-            //alert("updated: " + JSON.stringify(notification));
-        });
-        cordova.plugins.notification.local.on("click", function (notification) {
-            //alert("clicked: " + JSON.stringify(notification));
-        });
-        now = new Date().getTime();
-        //alert(now);
-        var start = new Date();
-        start.setHours(0, 0, 0, 0);
-        start = start.getTime();
-        //alert(start);
+        S.menu.get(function (e, list, today) {
+            for (var day in list) {
+                if (day < today)
+                    continue;
+                var menu = list[day];
+                console.log([day, menu]);
 
-        midi = new Date(start + (11 * 60 * 60 + 40 * 60) * 1000);
-        midi = new Date(now + 10 * 1000);
-        //alert(midi);
-        cordova.plugins.notification.local.schedule({
-            id: 1,
-            title: "Midi !",
-            text: "...",
-            at: midi,
-            every: "day",
-            led: "11FF11"
+                soir = new Date(day + " 19:00");
+                //Si cela fait plus d'une heure que le repas à commencé on n'affiche pas
+                if (soir.getTime() < (new Date()).getTime() - 60 * 60 * 1000)
+                    continue;
+                cordova.plugins.notification.local.schedule({
+                    id: parseInt(day.replace("-", "") + 1),
+                    title: day + " - Repas du soir",
+                    text: menu.dinner.main,
+                    at: soir,
+                    icon: "file://img/logo.png",
+                    smallIcon: "res://ic_dialog_info",
+                    led: "11FF11"
+                });
+
+
+                midi = new Date(day + " 11:45");
+                //Si cela fait plus d'une heure que le repas à commencé on n'affiche pas
+                if (midi.getTime() < (new Date()).getTime() - 60 * 60 * 1000)
+                    continue;
+                cordova.plugins.notification.local.schedule({
+                    id: parseInt(day.replace("-", "") + 2),
+                    title: day + " - Repas du midi",
+                    text: menu.lunch.main,
+                    at: midi,
+                    icon: "file://img/logo.png",
+                    smallIcon: "res://ic_dialog_info",
+                    led: "11FF11"
+                });
+
+            }
         });
 
-        soir = new Date(start + (19 * 60 * 60 + 5 * 60) * 1000);
-        soir = new Date(now + 30 * 1000);
-        //alert(soir);
-        cordova.plugins.notification.local.schedule({
-            id: 2,
-            title: "Soir !",
-            text: "...",
-            at: soir,
-            every: "day",
-            led: "1111FF"
-        });
-        /*
-        test = new Date(now + 10 * 1000);
-        alert(test);
-        cordova.plugins.notification.local.schedule({
-            id: 3,
-            title: "Test !",
-            text: "...",
-            at: test,
-            every: "day",
-            led: "FF1111"
-        });
-        //*/
-        //*/
-        /*
-         cordova.plugins.notification.local.schedule({
-         id: 1,
-         title: "Midi !",
-         message: "...",
-         icon: "img/logo.png",
-         sound: null,
-         data: {}
-         }, function () {
-         }, function () {
-         });
-         */
     }
 };
-
-//document.addEventListener('deviceready', S.notification.init, false);
+document.addEventListener('deviceready', S.notification.init, false);
+if (S.app.isWebBrowser())
+    $(S.notification.init);
