@@ -1,3 +1,5 @@
+/* global Materialize */
+
 if (typeof S === 'undefined') {
     var S = {};
 }
@@ -38,7 +40,7 @@ S.account = {
     rechargeOf: function (num) {
         num = parseInt(num);
         if (!(Number.isInteger(num)) || num < 50)
-            return alert("Montant non numérique ou inférieur à 50")
+            return alert("Montant non numérique ou inférieur à 50");
 
         $(".fixed-action-btn").mouseleave();
         $(".fixed-action-btn>a.btn-floating.btn-large").removeClass('red').removeClass('waves-effect').addClass('grey').addClass('disabled');
@@ -54,7 +56,7 @@ S.account = {
                 xajax : "_paypreviewAction",
                 xajaxr : new Date().getTime(),
                 "xajaxargs[]" : ("<xjxquery><q>" + Object.keys(form)[0] + "=" + num + ".00&pdav0=0.00%20%E2%82%AC&pdav1=50.00%20%E2%82%AC%20&pdav2=60.00%20%E2%82%AC%20&pdav3=70.00%20%E2%82%AC%20&pdav4=80.00%20%E2%82%AC%20&pdav5=90.00%20%E2%82%AC%20&pdav6=100.00%20%E2%82%AC%20</q></xjxquery>")
-            }
+            };
             //alert(JSON.stringify(S.account.getForm(d, "form")))
             //alert(JSON.stringify(data))
             //TODO 
@@ -72,7 +74,7 @@ S.account = {
                         $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                         //e.preventDefault();
                     });
-                    $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
+                    $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>");
                     $('#modal-payement').openModal();
                     $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
                     $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
@@ -93,19 +95,19 @@ S.account = {
                         $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                         //e.preventDefault();
                     });
-                    $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
+                    $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>");
                     $('#modal-payement').openModal();
                     $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
                     $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
-                }, "html")
+                }, "html");
             }
-        })
+        });
     },
     getForm: function (d, selector) {
         if (!selector)
-            selector = ".tx-newloginbox-pi1 form"
+            selector = ".tx-newloginbox-pi1 form";
 
-        data = $(d).find(selector).serializeArray()
+        data = $(d).find(selector).serializeArray();
         var form = {};
         $.map(data, function (n, i) {
             form[n['name']] = n['value'];
@@ -160,7 +162,7 @@ S.account = {
             }
         }, null, function () {
             //OnFail
-            $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+            $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
         });
 
     },
@@ -172,15 +174,15 @@ S.account = {
             form.pass = localStorage.pass;
         } else {
             form.user = prompt("User", "");
-            if (form.user == null) {
+            if (form.user === null) {
                 //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
-                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
                 return;
             }
             form.pass = prompt("Password", "");
-            if (form.pass == null) {
+            if (form.pass === null) {
                 //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
-                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>')
+                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
                 return;
             }
             //TODO only if validate
@@ -210,18 +212,18 @@ S.account = {
         $('#container>.collapsible').show();
         $('#container>.fixed-action-btn').show();
 
-        $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''))
+        $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''));
 
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
         S.cache.get(S.account.urls.portemonnaie, 5 * 60, function (d) {
-            $("#portemonnaie>.collapsible-body").append('<p> ' + _('Balance') + ' : <b>' + $(d).find(".dernier_solde").html() + '</b></p>')
+            $("#portemonnaie>.collapsible-body").append('<p> ' + _('Balance') + ' : <b>' + $(d).find(".dernier_solde").html() + '</b></p>');
             $("#portemonnaie>.collapsible-header").addClass("active");
             $('.collapsible').collapsible({
                 accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
         });
         S.cache.get(S.account.urls.operations, 5 * 60, function (d) {
-            $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
+            $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>");
             $("#operations>.collapsible-body thead").remove();
             $("#operations>.collapsible-body tfoot").remove();
             $("#operations>.collapsible-body tbody tr:first-child").remove();
@@ -230,7 +232,7 @@ S.account = {
         });
 
         S.cache.get(S.account.urls.rechargements, 5 * 60, function (d) {
-            $("#rechargements>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
+            $("#rechargements>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>");
             $("#rechargements>.collapsible-body thead").remove();
             $("#rechargements>.collapsible-body tfoot").remove();
             $("#rechargements>.collapsible-body tbody tr td:nth-child(2)").remove();
