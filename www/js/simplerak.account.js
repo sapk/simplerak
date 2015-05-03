@@ -70,7 +70,8 @@ S.account = {
 //                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                         $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
                     }).on("click",function (e){
-                        console.log($(this).parent().html($(".fixed-action-btn .preloader-wrapper")[0].outerHTML));
+                        $(this).parent().hide();
+                        $("#modal-payement .modal-content").append("<div class='center'>"+$(".fixed-action-btn .preloader-wrapper")[0].outerHTML+"</div>");
                         $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                         //e.preventDefault();
                     });
@@ -91,7 +92,8 @@ S.account = {
                         //$(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                         $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
                     }).on("click",function (e){
-                        console.log($(this).parent().html($(".fixed-action-btn .preloader-wrapper")[0].outerHTML));
+                        $(this).parent().hide();
+                        $("#modal-payement .modal-content").append("<div class='center'>"+$(".fixed-action-btn .preloader-wrapper")[0].outerHTML+"</div>");
                         $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                         //e.preventDefault();
                     });
