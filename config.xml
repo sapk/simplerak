@@ -14,7 +14,7 @@
         Antoine GIRARD 
     </author>
 
-    <icon src="/www/img/logo.png" />
+    <icon src="img/logo.png" />
     
     <content src="index.html" />
     

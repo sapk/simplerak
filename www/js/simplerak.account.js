@@ -67,12 +67,16 @@ S.account = {
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
 //                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                         $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
-                    })
+                    }).on("click",function (e){
+                        console.log($(this).parent().html($(".fixed-action-btn .preloader-wrapper")[0].outerHTML));
+                        $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
+                        //e.preventDefault();
+                    });
                     $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
                     $('#modal-payement').openModal();
                     $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
                     $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
-                }, "html")
+                }, "html");
             } else {
                 $.post(S.account.urls.portemonnaie + "?type=110124", data, function (d) {
                     //alert(d)
