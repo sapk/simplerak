@@ -1002,7 +1002,7 @@ window.html10n = (function (window, document, undefined) {
         }
         this.loader = new Loader(resources, function () {
             //Trigger a little time after getting (time to parse)
-            window.setTimeout("html10n.trigger('indexed')",25);
+            window.setTimeout("html10n.trigger('indexed')",100);
         });
     }
 
