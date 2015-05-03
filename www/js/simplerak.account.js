@@ -65,7 +65,8 @@ S.account = {
                             $(d).find("form[action*='lapostefinance']").html() +
                             '</FORM>');
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
-                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
+//                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
+                        $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
                     })
                     $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
                     $('#modal-payement').openModal();
@@ -81,7 +82,8 @@ S.account = {
                             '</FORM>');
                     //alert($("#modal-payement .modal-content").html())
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
-                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
+                        //$(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
+                        $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
                     })
                     $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(_('paiement-choice') + " :<br><br>")
                     $('#modal-payement').openModal();
@@ -205,25 +207,25 @@ S.account = {
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
         S.cache.get(S.account.urls.portemonnaie, 5 * 60, function (d) {
             $("#portemonnaie>.collapsible-body").append('<p> ' + _('Balance') + ' : <b>' + $(d).find(".dernier_solde").html() + '</b></p>')
-            $("#portemonnaie>.collapsible-header").addClass("active")
+            $("#portemonnaie>.collapsible-header").addClass("active");
             $('.collapsible').collapsible({
-                accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+                accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
         });
         S.cache.get(S.account.urls.operations, 5 * 60, function (d) {
             $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
-            $("#operations>.collapsible-body thead").remove()
-            $("#operations>.collapsible-body tfoot").remove()
-            $("#operations>.collapsible-body tbody tr:first-child").remove()
-            $("#operations>.collapsible-body tbody tr td:first-child").remove()
+            $("#operations>.collapsible-body thead").remove();
+            $("#operations>.collapsible-body tfoot").remove();
+            $("#operations>.collapsible-body tbody tr:first-child").remove();
+            $("#operations>.collapsible-body tbody tr td:first-child").remove();
 
         });
 
         S.cache.get(S.account.urls.rechargements, 5 * 60, function (d) {
             $("#rechargements>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>")
-            $("#rechargements>.collapsible-body thead").remove()
-            $("#rechargements>.collapsible-body tfoot").remove()
-            $("#rechargements>.collapsible-body tbody tr td:nth-child(2)").remove()
+            $("#rechargements>.collapsible-body thead").remove();
+            $("#rechargements>.collapsible-body tfoot").remove();
+            $("#rechargements>.collapsible-body tbody tr td:nth-child(2)").remove();
             $("#rechargements>.collapsible-body tbody tr td:nth-child(4)").each(function () {
                 if ($(this).text().toLowerCase().indexOf("accepté") >= 0) {
                     $(this).parent().addClass("green lighten-5");
