@@ -19,8 +19,10 @@
     <content src="index.html" />
     
     <plugin name="de.appplant.cordova.plugin.local-notification" />
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" />
     
     <plugin name="cordova-plugin-whitelist" version="1" />
+    <gap:plugin name="cordova-plugin-whitelist" version="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -35,4 +37,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    
+    
+    <preference name="permissions" value="none"/>
+    <feature name="http://api.phonegap.com/1.0/notification"/>
 </widget>
