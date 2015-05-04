@@ -183,7 +183,7 @@ S.account = {
             }
             form.pass = prompt("Password", "");
             if (form.pass === null) {
-                //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
+                //L'utilisateur n'as pas voulu saisir ces identifiants on affiche un bouton pour reload et on quitte
                 $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
                 return;
             }
@@ -223,6 +223,7 @@ S.account = {
             $('.collapsible').collapsible({
                 accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
+            $(".progress").hide();
         });
         S.cache.get(S.account.urls.operations, 5 * 60, function (d) {
             $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>");
@@ -230,7 +231,6 @@ S.account = {
             $("#operations>.collapsible-body tfoot").remove();
             $("#operations>.collapsible-body tbody tr:first-child").remove();
             $("#operations>.collapsible-body tbody tr td:first-child").remove();
-
         });
 
         S.cache.get(S.account.urls.rechargements, 5 * 60, function (d) {
@@ -253,6 +253,5 @@ S.account = {
 
         });
 
-        $(".progress").hide();
     }
 };
