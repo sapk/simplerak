@@ -33,7 +33,7 @@ S.notification = {
                     title: day + " - Repas du soir",
                     text: menu.dinner.main,
                     at: soir,
-                    icon: "file://img/logo.png",
+                    icon: "file://www/img/logo.png",
                     smallIcon: "res://ic_dialog_info",
                     led: "11FF11"
                 });
@@ -48,7 +48,7 @@ S.notification = {
                     title: day + " - Repas du midi",
                     text: menu.lunch.main,
                     at: midi,
-                    icon: "file://img/logo.png",
+                    icon: "file://www/img/logo.png",
                     smallIcon: "res://ic_dialog_info",
                     led: "11FF11"
                 });
