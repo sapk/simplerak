@@ -18,15 +18,6 @@ S.notification = {
         if (!S.menu)
             return;
 
-        cordova.plugins.notification.local.schedule({
-            id: 1,
-            title: "Test",
-            text: "Notification de test",
-            at: (new Date().getTime())+15*1000,
-            icon: S.notification.config.icon,
-            smallIcon: S.notification.config.smallIcon,
-            led: "11FF11"
-        });
         S.menu.get(function (e, list, today) {
             for (var day in list) {
                 if (day < today)
