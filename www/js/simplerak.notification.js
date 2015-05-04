@@ -6,6 +6,7 @@ if (typeof S === 'undefined') {
 
 S.notification = {
     config: {
+        icon: "res://icon",
         smallIcon: "res://ic_dialog_info"
                 //smallIcon : "res://ic_input_get"
     },
@@ -17,6 +18,15 @@ S.notification = {
         if (!S.menu)
             return;
 
+        cordova.plugins.notification.local.schedule({
+            id: 1,
+            title: "Test",
+            text: "Notification de test",
+            at: (new Date().getTime())+15*1000,
+            icon: S.notification.config.icon,
+            smallIcon: S.notification.config.smallIcon,
+            led: "11FF11"
+        });
         S.menu.get(function (e, list, today) {
             for (var day in list) {
                 if (day < today)
@@ -33,8 +43,8 @@ S.notification = {
                     title: day + " - Repas du soir",
                     text: menu.dinner.main,
                     at: soir,
-                    icon: "res://icon",
-                    smallIcon: "res://ic_dialog_info",
+                    icon: S.notification.config.icon,
+                    smallIcon: S.notification.config.smallIcon,
                     led: "11FF11"
                 });
 
@@ -48,8 +58,8 @@ S.notification = {
                     title: day + " - Repas du midi",
                     text: menu.lunch.main,
                     at: midi,
-                    icon: "res://icon",
-                    smallIcon: "res://ic_dialog_info",
+                    icon: S.notification.config.icon,
+                    smallIcon: S.notification.config.smallIcon,
                     led: "11FF11"
                 });
 
