@@ -10,7 +10,7 @@ S.menu = {
     list: {},
     get: function (callback) {
         if (S.menu.today) {
-            callback(null, S.menu.list, S.menu.today);
+            callback(null, S.menu.list, S.menu.today, S.menu.from_cache);
         } else {
             S.menu.start();
             $(S.menu).on("menu_parsed", callback);
@@ -34,9 +34,10 @@ S.menu = {
         //On cache le menu 48h
         S.cache.get(S.menu.config.json_url, 48 * 60 * 60, S.menu.parse, "json");
     },
-    parse: function (d) {
+    parse: function (d, from_cache) {
         //On initialise le menu
         S.menu.list = {};
+        S.menu.from_cache = from_cache;
 //console.log(d);
 // ON ajoute à S.page.list de manière ordonné
         $(Object.keys(d).sort()).each(function (i, key) {
@@ -79,6 +80,6 @@ S.menu = {
             S.page.goTo(S.page.today, 0);
         }
 
-        $(S.menu).trigger("menu_parsed", [S.menu.list, S.menu.today]);
+        $(S.menu).trigger("menu_parsed", [S.menu.list, S.menu.today, S.menu.from_cache]);
     }
 };
