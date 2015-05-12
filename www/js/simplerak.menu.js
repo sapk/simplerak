@@ -53,14 +53,24 @@ S.menu = {
                 $("#container").append(S.template.jour(i++, index, menu["lunch"], menu["dinner"]));
             }
         }
+        $(".progress").hide();
 
-        if ((new Date()).getHours() < 13)
-            $('.collapsible>li:first-child>.collapsible-header').addClass('active')
-        else
-            $('.collapsible>li:last-child>.collapsible-header').addClass('active')
+        if (localStorage.expandallmenu && localStorage.expandallmenu == "true") {
+            $('ul.collapsible').attr('data-collapsible', "expandable")
+            $('.collapsible>li>.collapsible-header').addClass('active')
 
-        $(".progress").hide()
-        $('.collapsible').collapsible();
+            $('.collapsible').collapsible();
+
+        } else {
+            $('ul.collapsible').attr('data-collapsible', "accordion")
+            if ((new Date()).getHours() < 13)
+                $('.collapsible>li:first-child>.collapsible-header').addClass('active')
+            else
+                $('.collapsible>li:last-child>.collapsible-header').addClass('active')
+
+            $('.collapsible').collapsible();
+        }
+
 
         S.menu.today = (new Date()).toJSON().split("T")[0];
 

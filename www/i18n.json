@@ -25,6 +25,7 @@
         "Dark": "Dark",
         "reset-account": "Reset Account",
         "clear-cache": "Clear Cache",
+        "Expand-all-menu" : "Expand all menu by default",
         "Language": "Language"
     },
     "fr": {
@@ -53,6 +54,7 @@
         "Dark": "Sombre",
         "reset-account": "Réinitialiser mon compte",
         "clear-cache": "Vider Cache",
+        "Expand-all-menu" : "Etendre tous les menus par défaut",
         "Language": "Langue"
     }
 }

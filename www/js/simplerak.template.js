@@ -5,7 +5,7 @@ if (typeof S === 'undefined') {
 
 S.template = {
     accordion: function (midi, soir) {
-        return 	'<ul class="collapsible" data-collapsible="accordion">' +
+        return 	'<ul class="collapsible">' +
                 '<li><div class="collapsible-header"><i class="mdi-device-brightness-low"></i>'+_('Lunch')+'</div>' +
                 '<div class="collapsible-body">' + S.template.repas(midi) + '</div>' +
                 '</li>' +
