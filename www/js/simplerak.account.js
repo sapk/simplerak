@@ -69,9 +69,9 @@ S.account = {
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
 //                        $(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                         $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
-                    }).on("click", function (e) {
+                    }).on("click",function (e){
                         $(this).parent().hide();
-                        $("#modal-payement .modal-content").append("<div class='center'>" + $(".fixed-action-btn .preloader-wrapper")[0].outerHTML + "</div>");
+                        $("#modal-payement .modal-content").append("<div class='center'>"+$(".fixed-action-btn .preloader-wrapper")[0].outerHTML+"</div>");
                         $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                         //e.preventDefault();
                     });
@@ -91,9 +91,9 @@ S.account = {
                     $("#modal-payement .modal-content img,#modal-payement .modal-content input[type='IMAGE']").each(function () {
                         //$(this).attr("src", "https://services.ard.fr/" + $(this).attr("src"));
                         $(this).attr("src", "img/card/" + $(this).attr("src").split('\\').pop().split('/').pop());
-                    }).on("click", function (e) {
+                    }).on("click",function (e){
                         $(this).parent().hide();
-                        $("#modal-payement .modal-content").append("<div class='center'>" + $(".fixed-action-btn .preloader-wrapper")[0].outerHTML + "</div>");
+                        $("#modal-payement .modal-content").append("<div class='center'>"+$(".fixed-action-btn .preloader-wrapper")[0].outerHTML+"</div>");
                         $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                         //e.preventDefault();
                     });
@@ -154,30 +154,16 @@ S.account = {
                         if (S.account.isLogged(d)) {
                             S.account.parse_page(d);
                         } else {
-                            d = S.account.login(d);
-                            if (d === false) {
-                                $(".progress").hide();
-                                $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
-                            } else {
-                                S.account.parse_page(d);
-                            }
+                            S.account.login(d);
                         }
                     });
                 } else {
                     console.log("Didn't came from cache");
                     S.account.login(d);
-                    d = S.account.login(d);
-                    if (d === false) {
-                        $(".progress").hide();
-                        $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
-                    } else {
-                        S.account.parse_page(d);
-                    }
                 }
             }
         }, null, function () {
             //OnFail
-            $(".progress").hide();
             $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
         });
 
@@ -193,13 +179,13 @@ S.account = {
             if (form.user === null) {
                 //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
                 $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
-                return false;
+                return;
             }
             form.pass = prompt("Password", "");
             if (form.pass === null) {
                 //L'utilisateur n'as pas voulu saisir ces identifiants on affiche un bouton pour reload et on quitte
                 $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
-                return false;
+                return;
             }
             //TODO only if validate
             localStorage.user = form.user;
@@ -210,7 +196,7 @@ S.account = {
         $.post(S.account.urls.base, form, function (d) {
             if (S.account.isLogged(d)) {
                 //Si on est authentifié on parse
-                return d;
+                S.account.parse_page(d);
                 S.cache.reset();
             } else {
                 //We are not loggued so the credential are bad
