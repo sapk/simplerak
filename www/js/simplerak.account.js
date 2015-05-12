@@ -220,7 +220,7 @@ S.account = {
             $('.collapsible').collapsible({
                 accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
             });
-            $(".progress").hide();
+            window.setTimeout('$(".progress").hide();', 300);
         });
         S.cache.get(S.account.urls.operations, 5 * 60, function (d) {
             $("#operations>.collapsible-body").append("<table class='striped'>" + $(d).find("#tx_ardrecharge>table").html() + "</table>");
