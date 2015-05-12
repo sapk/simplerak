@@ -87,6 +87,22 @@ body#page-configuration>#container {
     width: 90%;
     margin: 0 5%;
 }
+body#page-configuration .days.row .col.s1 {
+    width: 11.2857%;
+    padding: 10px 5px 10px 5px;
+    margin: 0 1.5% -10px 1.5%;
+    text-align: center;
+    border-bottom: 1px solid;
+}
+
+body#page-configuration .days.row .col.s1.active {
+    border-color: #2bbbad;
+}
+body#page-configuration .input-field{
+    margin-top: 0;
+}
+
+
 .right {
     float: right !important;
 }

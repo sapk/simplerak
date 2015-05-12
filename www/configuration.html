@@ -51,7 +51,11 @@
                         Materialize.toast('Cache cleared !', 3000);" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-navigation-refresh left"></i><span data-l10n-id="clear-cache">Clear Cache</span></a>
             </div>
             <div class="row">
-                <a onclick="localStorage.removeItem('userLanguage');localStorage.removeItem('theme');localStorage.removeItem('expandallmenu');window.setTimeout('window.location.reload();', 750);
+                <a onclick="localStorage.removeItem('userLanguage');
+                        localStorage.removeItem('theme');
+                        localStorage.removeItem('expandallmenu');
+                        localStorage.removeItem('days');
+                        window.setTimeout('window.location.reload();', 750);
                         Materialize.toast('Config cleared !', 3000);" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-content-clear left"></i><span data-l10n-id="reset-config">Reset Configuration</span></a>
             </div>
             <div class="row">
@@ -79,10 +83,24 @@
                 <div class="input-field col s12">
                     <div class="switch">
                         <label style="width: 100%;">
-                            <span selected data-l10n-id="Expand-all-menu">Expand all menu by default</span>
+                            <span data-l10n-id="Expand-all-menu">Expand all menu by default</span>
                             <input type="checkbox" onchange="localStorage.expandallmenu = $(this).is(':checked');">
                             <span class="lever right"></span>
                         </label>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="row">
+                <div class="input-field col s12">
+                    <div class="row days">
+                        <div class="col s1" data-l10n-id="Mo">Lu</div>
+                        <div class="col s1" data-l10n-id="Tu">Ma</div>
+                        <div class="col s1" data-l10n-id="We">Me</div>
+                        <div class="col s1" data-l10n-id="Th">Je</div>
+                        <div class="col s1" data-l10n-id="Fr">Ve</div>
+                        <div class="col s1" data-l10n-id="Sa">Sa</div>
+                        <div class="col s1" data-l10n-id="Su">Di</div>
                     </div>
                 </div>
             </div>
@@ -101,16 +119,33 @@
 
         <script type="text/javascript" src="js/simplerak.account.js"></script>
         <script>
-                        $(function () {
-                            html10n.bind("localized", function () {
-                                console.log("Localized!");
-                                $('select').material_select();
-                            });
-                            
-                            if (localStorage.expandallmenu && localStorage.expandallmenu == "true") {
-                                $('input[type=checkbox]').attr('checked', 'checked');
-                            }
-                        });
+                                $(function () {
+                                    html10n.bind("localized", function () {
+                                        console.log("Localized!");
+                                        $('select').material_select();
+                                    });
+
+                                    if (localStorage.expandallmenu && localStorage.expandallmenu == "true") {
+                                        $('input[type=checkbox]').attr('checked', 'checked');
+                                    }
+
+                                    var days = localStorage.days ? JSON.parse(localStorage.days) : {};
+                                    $.each(["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"], function (id, day) {
+                                        if (typeof days[day] === "undefined" || days[day] === true)
+                                            $(".row.days .col[data-l10n-id='" + day + "']").addClass("active");
+                                    });
+                                    $(".row.days .col").on("click", function () {
+                                        $(this).toggleClass("active");
+                                        var days = localStorage.days ? JSON.parse(localStorage.days) : {};
+                                        days[$(this).attr("data-l10n-id")] = $(this).is(".active");
+                                        localStorage.days = JSON.stringify(days);
+                                        console.log(localStorage.days);
+                                        //$(".row.days .col").each(function (){
+
+                                        //});
+                                        //TODO save to localstorage
+                                    });
+                                });
         </script>
     </body>
 </html>
