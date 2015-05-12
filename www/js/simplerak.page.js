@@ -30,7 +30,7 @@ S.page = {
         $("#container").on("swipeleft", S.page.goRight);
         $("#container").on("swiperight", S.page.goLeft);
         window.addEventListener("orientationchange", function () {
-            window.setTimeout("S.page.goTo(S.page.pos,300)", 100);
+            window.setTimeout("S.page.goTo(S.page.pos,300)", 300);
         }, true);
     }
 };
