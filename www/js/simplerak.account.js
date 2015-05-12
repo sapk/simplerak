@@ -136,10 +136,6 @@ S.account = {
     start: function () {
         if (S.app.isWebBrowser()) {
             //Testing envirronement
-            /*
-             localStorage.user = "test";
-             localStorage.pass = "test";
-             */
             S.account.urls = S.account.urls_test;
         }
         //on cache 5 minute histoire d'éviter trop d'appel à chaque ouverture de page
@@ -153,15 +149,18 @@ S.account = {
                     S.cache.reset();
                     window.location.reload();
                 } else {
-                    if (S.account.login(d)) {
-                        //On est authentifié on reset le cache et on restart
-                        S.cache.reset();
-                        window.location.reload();
-                    } else {
-                        //Sinon on demande à recommencer
-                        $(".progress").hide();
-                        $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
-                    }
+                    $(S.account).on("logged", function (e, isLogged) {
+                        if (isLogged) {
+                            //On est authentifié on reset le cache et on restart
+                            S.cache.reset();
+                            window.location.reload();
+                        } else {
+                            //Sinon on demande à recommencer
+                            $(".progress").hide();
+                            $("#container").html('<br><a onclick="window.location.reload()" class="waves-effect waves-light btn-large" style="width: 90%;margin: 0 5%;"><i class="mdi-navigation-refresh left"></i>Réessayer</a>');
+                        }
+                    });
+                    S.account.login(d);
                 }
             }
         }, null, function () {
@@ -180,12 +179,12 @@ S.account = {
             form.user = prompt("User", "");
             if (form.user === null) {
                 //L'utilisateur n'as pas voulu sisir ces identifiants on affiche un bouton pour reload et on quitte
-                return false;
+                return $(S.account).trigger("logged", [false]);
             }
             form.pass = prompt("Password", "");
             if (form.pass === null) {
                 //L'utilisateur n'as pas voulu saisir ces identifiants on affiche un bouton pour reload et on quitte
-                return false;
+                return $(S.account).trigger("logged", [false]);
             }
             //TODO only if validate
             localStorage.user = form.user;
@@ -196,13 +195,13 @@ S.account = {
         $.post(S.account.urls.base, form, function (d) {
             if (S.account.isLogged(d)) {
                 //On est auth donc on nettoie le cache
-                return true;
+                return $(S.account).trigger("logged", [true]);
             } else {
                 //We are not loggued so the credential are bad
                 //TODO detect if not hotspot login page
                 localStorage.removeItem('pass');
                 localStorage.removeItem('user');
-                return false;
+                return $(S.account).trigger("logged", [false]);
             }
         });
     },
