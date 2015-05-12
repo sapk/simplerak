@@ -37,7 +37,7 @@ S.notification = {
 
             var days = localStorage.days ? JSON.parse(localStorage.days) : {};
             var day = S.template.numtoshortday((new Date(day)).getDay());
-            if (!(typeof days[day] === "undefined" || days[day] === true))
+            if (typeof days[day] !== "undefined" && days[day] === false)
                 continue;
 
             var menu = list[day];
