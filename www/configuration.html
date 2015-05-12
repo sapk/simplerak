@@ -43,8 +43,12 @@
         </div>  
         <div id="container">
             <br>
-            <a onclick="S.account.reset()" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-action-settings left"></i><span data-l10n-id="reset-account">Reset Account</span></a>
-            <br><br>
+            <div class="row">
+                <a onclick="S.account.reset()" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-action-settings left"></i><span data-l10n-id="reset-account">Reset Account</span></a>
+            </div>
+            <div class="row">
+                <a onclick="S.cache.reset();Materialize.toast('Cache cleared !', 3000);" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-navigation-refresh left"></i><span data-l10n-id="clear-cache">Clear Cache</span></a>
+            </div>
             <div class="row">
                 <div class="input-field col s12">
                     <select onchange="localStorage.theme = $(this).val();
@@ -73,11 +77,11 @@
         <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
 
         <script type="text/javascript" src="js/simplerak.js"></script>
-        
+
         <script type="text/javascript" src="js/simplerak.cache.js"></script>
         <script type="text/javascript" src="js/simplerak.menu.js"></script>
         <script type="text/javascript" src="js/simplerak.notification.js"></script>
-        
+
         <script type="text/javascript" src="js/simplerak.account.js"></script>
         <script>
                         $(function () {

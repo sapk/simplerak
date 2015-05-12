@@ -11,19 +11,20 @@ S.notification = {
                 //smallIcon : "res://ic_input_get"
     },
     init: function () {
-        //si le plugin est pas chargé on ne continue pas (sauf si browser : test) 
-        if (!S.app.isWebBrowser() && !cordova.plugins.notification)
+        //si le plugin est pas chargé on ne continue pas ou que c'est le navigateur 
+        if (S.app.isWebBrowser() || !cordova.plugins.notification)
             return;
         //si le module menu n'est pas chargé on arrete car dépendant
         if (!S.menu)
             return;
 
         //We clear all
+        //TODO only clear if from cache
         cordova.plugins.notification.local.clearAll(function () {
             S.notification.parseMenu();
         }, this);
     },
-    parseMenu : function () {
+    parseMenu: function () {
         //TODO only 3 next day and take configuration in account
         S.menu.get(function (e, list, today) {
             for (var day in list) {

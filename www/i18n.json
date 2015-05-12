@@ -24,6 +24,7 @@
         "White": "White",
         "Dark": "Dark",
         "reset-account": "Reset Account",
+        "clear-cache": "Clear Cache",
         "Language": "Language"
     },
     "fr": {
@@ -51,6 +52,7 @@
         "White": "Blanc",
         "Dark": "Sombre",
         "reset-account": "Réinitialiser mon compte",
+        "clear-cache": "Vider Cache",
         "Language": "Langue"
     }
 }
