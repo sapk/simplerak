@@ -115,8 +115,9 @@ body.theme-sombre {
     background: #212121;
     color: white !important;
 }
-
-
+body.theme-sombre .collapsible{
+    margin: 0.5rem 1px 1rem 1px;
+}
 body.theme-sombre input,body.theme-sombre .input-field{
     background: #616161 ;
 }
