@@ -18,6 +18,13 @@ S.notification = {
         if (!S.menu)
             return;
 
+        //We clear all
+        cordova.plugins.notification.local.clearAll(function () {
+            S.notification.parseMenu();
+        }, this);
+    },
+    parseMenu : function () {
+        //TODO only 3 next day and take configuration in account
         S.menu.get(function (e, list, today) {
             for (var day in list) {
                 if (day < today)
@@ -56,7 +63,6 @@ S.notification = {
 
             }
         });
-
     }
 };
 document.addEventListener('deviceready', S.notification.init, false);
