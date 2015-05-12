@@ -25,6 +25,7 @@
         "Dark": "Dark",
         "reset-account": "Reset Account",
         "clear-cache": "Clear Cache",
+        "reset-config": "Reset Configuration",
         "Expand-all-menu" : "Expand all menu by default",
         "Language": "Language"
     },
@@ -54,6 +55,7 @@
         "Dark": "Sombre",
         "reset-account": "Réinitialiser mon compte",
         "clear-cache": "Vider Cache",
+        "reset-config": "Réinitiliser Configuration",
         "Expand-all-menu" : "Etendre tous les menus par défaut",
         "Language": "Langue"
     }

@@ -51,6 +51,10 @@
                         Materialize.toast('Cache cleared !', 3000);" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-navigation-refresh left"></i><span data-l10n-id="clear-cache">Clear Cache</span></a>
             </div>
             <div class="row">
+                <a onclick="localStorage.removeItem('userLanguage');localStorage.removeItem('theme');localStorage.removeItem('expandallmenu');window.setTimeout('window.location.reload();', 750);
+                        Materialize.toast('Config cleared !', 3000);" class="waves-effect waves-light btn-large" style="width: 100%;"><i class="mdi-content-clear left"></i><span data-l10n-id="reset-config">Reset Configuration</span></a>
+            </div>
+            <div class="row">
                 <div class="input-field col s12">
                     <select onchange="localStorage.theme = $(this).val();
                             window.location.reload();">
