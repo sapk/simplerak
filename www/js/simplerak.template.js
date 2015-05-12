@@ -24,7 +24,11 @@ S.template = {
         return '<div class="page" id="' + id + '" data-date="'+date+'"><div class="center-align date">'+date+'</div><h5 class="center-align">' + S.template.numtoday((new Date(date)).getDay()) + '</h5>' + S.template.accordion(midi, soir) + '</div>';
     },
     numtoday: function(n){
-        days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+        days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         return _(days[n]);
+    },
+    numtoshortday: function(n){
+        days = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+        return days[n];
     }
-}
+};

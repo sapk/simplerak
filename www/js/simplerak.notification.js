@@ -10,7 +10,9 @@ S.notification = {
         smallIcon: "res://ic_dialog_info"
                 //smallIcon : "res://ic_input_get"
     },
-    init: function () {
+    init: function (force) {
+
+        force = force === true ? true : false;
         //si le plugin est pas chargé on ne continue pas ou que c'est le navigateur 
         if (S.app.isWebBrowser() || !cordova.plugins.notification)
             return;
@@ -20,7 +22,7 @@ S.notification = {
 
         //We clear all if we have updated data
         S.menu.get(function (e, list, today, from_cache) {
-            if (!from_cache) {
+            if (!from_cache || force) {
                 cordova.plugins.notification.local.clearAll(function () {
                     S.notification.parseMenu(list, today);
                 }, this);
@@ -32,6 +34,12 @@ S.notification = {
         for (var day in list) {
             if (day < today)
                 continue;
+
+            var days = localStorage.days ? JSON.parse(localStorage.days) : {};
+            var day = S.template.numtoshortday((new Date(day)).getDay());
+            if (!(typeof days[day] === "undefined" || days[day] === true))
+                continue;
+
             var menu = list[day];
             console.log([day, menu]);
 

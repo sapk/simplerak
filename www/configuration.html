@@ -116,6 +116,7 @@
         <script type="text/javascript" src="js/simplerak.cache.js"></script>
         <script type="text/javascript" src="js/simplerak.menu.js"></script>
         <script type="text/javascript" src="js/simplerak.notification.js"></script>
+        <script type="text/javascript" src="js/simplerak.template.js"></script>
 
         <script type="text/javascript" src="js/simplerak.account.js"></script>
         <script>
@@ -139,7 +140,9 @@
                                         var days = localStorage.days ? JSON.parse(localStorage.days) : {};
                                         days[$(this).attr("data-l10n-id")] = $(this).is(".active");
                                         localStorage.days = JSON.stringify(days);
-                                        console.log(localStorage.days);
+                                        S.notification.init(true);
+                                        //We reset since we need to updte notification
+                                        //console.log(localStorage.days);
                                         //$(".row.days .col").each(function (){
 
                                         //});
