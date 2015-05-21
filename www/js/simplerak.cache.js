@@ -32,7 +32,7 @@ S.cache = {
         } else {
             //We get from web
             console.log("Getting " + url + " from web");
-            $.get(url, function (d) {
+            $.get(url,{"u" : new Date().getTime()}, function (d) {
                 S.cache.data[url] = {data: d, at: (new Date().getTime())};
                 localStorage.cache = JSON.stringify(S.cache.data);
                 callback(d, false);
