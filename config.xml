@@ -15,7 +15,7 @@
     <content src="index.html"/>
     
     <plugin name="de.appplant.cordova.plugin.local-notification"/>
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1"/>
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification"/>
     
     <access origin="*"/>
     
