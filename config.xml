@@ -19,7 +19,7 @@
     --> 
     
     <plugin name="cordova-plugin-whitelist"/>
-    <gap:plugin name="cordova-plugin-whitelist"/>
+    <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     
     
     <access origin="*" />
