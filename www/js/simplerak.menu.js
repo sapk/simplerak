@@ -32,7 +32,15 @@ S.menu = {
 
         //TODO check if connectivity and update every 24h with connection and 5 days retention without
         //On cache le menu 48h
-        S.cache.get(S.menu.config.json_url, 48 * 60 * 60, S.menu.parse, "json");
+
+        S.cache.get(S.menu.config.json_url, 48 * 60 * 60, S.menu.parse, "json", function (jqXHR, textStatus, errorThrown) {
+            //onError
+            if (textStatus == 'timeout')
+                console.log('The server is not responding');
+
+            if (textStatus == 'error')
+                console.log("Error getting url : " + errorThrown);
+        });
     },
     parse: function (d, from_cache) {
         //On initialise le menu

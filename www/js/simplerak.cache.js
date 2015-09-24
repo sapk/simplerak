@@ -1,3 +1,5 @@
+/* global html10n */
+
 if (typeof S === 'undefined') {
     var S = {};
 }
@@ -6,7 +8,7 @@ S.cache = {
     data: {},
     init: function () {
         if (typeof localStorage.cache !== 'undefined') {
-            console.log("Restoring cache from localstorage")
+            console.log("Restoring cache from localstorage");
             S.cache.data = JSON.parse(localStorage.cache);
         }
     },
@@ -33,6 +35,7 @@ S.cache = {
             //We get from web
             console.log("Getting " + url + " from web");
             $.get(url,{"u" : new Date().getTime()}, function (d) {
+                console.log("Receive " + d + " from web");
                 S.cache.data[url] = {data: d, at: (new Date().getTime())};
                 localStorage.cache = JSON.stringify(S.cache.data);
                 callback(d, false);

@@ -1,3 +1,5 @@
+/* global html10n */
+
 var S = {
     config: {
         default_language: "en"
