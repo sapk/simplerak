@@ -210,8 +210,8 @@ S.account = {
         //alert(d);
         $('#container>.collapsible').show();
         $('#container>.fixed-action-btn').show();
-        $(d).find("h1.home>span").remove();
-        $("#container>h5").append($(d).find("h1.home").text().replace(/Bonjour /g, ''));
+        //$(d).find("h1.home>span").remove();
+        $("#container>h5").append($(d).find("h1.home").text().replace(/Bonjour /g, '').replace(/Choisissez .*/g, ''));
 
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
         S.cache.get(S.account.urls.portemonnaie, 5 * 60, function (d) {
