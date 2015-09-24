@@ -75,6 +75,8 @@ S.notification = {
         }
     }
 };
+/*
 document.addEventListener('deviceready', S.notification.init, false);
 if (S.app.isWebBrowser())
     $(S.notification.init);
+*/
