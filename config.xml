@@ -1,27 +1,23 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget xmlns   = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "fr.sapk.rak"
-        versionCode = "52" 
-        version     = "1.0.4" >
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="fr.sapk.rak" version="1.0.4" versionCode="52">
     <name>SimpleRAK</name>
 
     <description>
         Simplement affiche le menu du rak du jour et des suivants.
     </description>
 
-    <author href="https://sapk.fr" email="antoine.girard@sapk.fr">
+    <author email="antoine.girard@sapk.fr" href="https://sapk.fr">
         Antoine GIRARD 
     </author>
 
-    <icon src="img/logo.png" />
+    <icon src="img/logo.png"/>
     
-    <content src="index.html" />
+    <content src="index.html"/>
     
-    <plugin name="de.appplant.cordova.plugin.local-notification" />
-    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" />
+    <plugin name="de.appplant.cordova.plugin.local-notification"/>
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1"/>
     
-    <access origin="*" />
+    <access origin="*"/>
     
     <preference name="permissions" value="none"/>
     <feature name="http://api.phonegap.com/1.0/notification"/>

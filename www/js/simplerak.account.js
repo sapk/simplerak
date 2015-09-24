@@ -35,7 +35,7 @@ S.account = {
         }
     },
     isLogged: function (d) {
-        return $(d).find("#user").length;
+        return $(d).find("h1.home").length;
     },
     rechargeOf: function (num) {
         num = parseInt(num);
@@ -210,8 +210,8 @@ S.account = {
         //alert(d);
         $('#container>.collapsible').show();
         $('#container>.fixed-action-btn').show();
-
-        $("#container>h5").append($(d).find('#user').html().replace(/Bonjour /g, ''));
+        $(d).find("h1.home>span").remove();
+        $("#container>h5").append($(d).find("h1.home").text().replace(/Bonjour /g, ''));
 
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
         S.cache.get(S.account.urls.portemonnaie, 5 * 60, function (d) {
