@@ -5,7 +5,7 @@ if (typeof S === 'undefined') {
 
 S.menu = {
     config: {
-        json_url: "http://resel.fr/services/rak/menu.json"
+        json_url: "https://resel.fr/services/rak/menu.json"
     },
     list: {},
     get: function (callback) {
