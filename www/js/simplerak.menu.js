@@ -64,13 +64,16 @@ S.menu = {
         //S.page.list = d.sort();
         console.log(S.menu.list.length, S.menu.list);
         i = 0;
+        var html="";
         if (S.page) {
             S.page.list = S.menu.list;
             for (var index in S.menu.list) {
                 var menu = S.menu.list[index];
-                $("#container").append(S.template.jour(i++, index, menu["lunch"], menu["dinner"]));
+                html += S.template.jour(i++, index, menu["lunch"], menu["dinner"]);
             }
         }
+        $("#container").append(html);
+
         $(".progress").hide();
 
         if (localStorage.expandallmenu && localStorage.expandallmenu == "true") {

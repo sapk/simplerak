@@ -28,7 +28,9 @@
             {"bower_components/materialize/dist/js/materialize.min.js": "js/materialize.min.js"},
             {"bower_components/materialize/dist/css/materialize.min.css": "css/materialize.min.css"},
             {"bower_components/materialize/dist/font/material-design-icons": "font/material-design-icons"},
-            {"bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2": "font/material-design-icons/Material-Design-Icons.woff2"}
+            {"bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2": "font/material-design-icons/Material-Design-Icons.woff2"},
+            {"bower_components/materialize/dist/font/roboto/Roboto-Regular.woff2": "font/roboto/Roboto-Regular.woff2"},
+            {"bower_components/materialize/dist/font/roboto/Roboto-Bold.woff2": "font/roboto/Roboto-Bold.woff2"}
           ]
       },
       "html10n.js": "bower_components/html10n.js/l10n.js"
