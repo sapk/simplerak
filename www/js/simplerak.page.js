@@ -15,6 +15,8 @@ S.page = {
             $("#go_today").parent().addClass('active');
         else
             $("#go_today").parent().removeClass('active');
+
+        $("#go_today").blur(); //Remove the :hover state on touchscreen devices
     },
     goRight: function () {
         S.page.pos = (++S.page.pos > S.page.list.length) ? S.page.list.length : S.page.pos;
