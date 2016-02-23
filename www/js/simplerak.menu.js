@@ -36,18 +36,33 @@ S.menu = {
         });
     },
     parse: function (d, from_cache) {
-        console.log(d,from_cache);
+        console.log(d.length,d,from_cache);
         //On initialise le menu
         S.menu.list = {};
         S.menu.from_cache = from_cache;
+        //TODO reset old cache from previous version maybe in cache
         //On ajoute à S.page.list de manière ordonné
-        $(Object.keys(d).sort()).each(function (i, key) {
-            //console.log(key);
-            S.menu.list[key] = d[key];
-        });
-
+        var minDate = new Date();var maxDate = new Date();
+        minDate.setDate(minDate.getDate() - 3);
+        maxDate.setDate(maxDate.getDate() + 10);
+        if(!from_cache || d.length > 20){ // On verifie seulement si cela est refresh
+          //d.length > 20 -> We have a old version with a lot in cache
+          $(Object.keys(d).sort()).each(function (i, key) {
+              //console.log(key);
+              //We recall past after 3 day and only next 10 days max.
+              var date = new Date(key);
+              if(minDate < date && date < maxDate){
+                S.menu.list[key] = d[key];
+              }
+          });
+          //We backup the clean version
+          S.cache.data[S.menu.config.json_url] = {data: S.menu.list, at: (new Date().getTime())};
+          localStorage.cache = JSON.stringify(S.cache.data);
+        }else{
+          S.menu.list = d;
+        }
         //S.page.list = d.sort();
-        console.log(S.menu.list);
+        console.log(S.menu.list.length, S.menu.list);
         i = 0;
         if (S.page) {
             S.page.list = S.menu.list;
