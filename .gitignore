@@ -4,3 +4,11 @@ nbproject/
 # cordova
 platforms/
 plugins/
+hooks/
+
+# npm
+node_modules/
+npm-debug.log
+
+# Deps (get with bower-installer)
+#www/lib/

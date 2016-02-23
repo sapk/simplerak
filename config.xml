@@ -21,9 +21,7 @@
     <plugin name="cordova-plugin-whitelist"/>
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     
-    
-    <access origin="*" />
-    
+    <access origin="*" />    
     
     <preference name="permissions" value="none"/>
     <!-- <feature name="http://api.phonegap.com/1.0/notification"/>--> 

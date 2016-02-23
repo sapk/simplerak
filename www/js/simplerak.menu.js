@@ -2,7 +2,6 @@ if (typeof S === 'undefined') {
     var S = {};
 }
 
-
 S.menu = {
     config: {
         json_url: "https://resel.fr/services/rak/menu.json"
@@ -22,17 +21,11 @@ S.menu = {
             console.log("menu parsed !");
         });
 
-        if (S.app.isWebBrowser()) {
-            S.menu.config.json_url = "test/file/menu.json";
-        }
-
         //Si on a des pages et que l'on a pas déjà analysé
         if (S.page && !S.page.attached)
             S.page.attach_event();
 
-        //TODO check if connectivity and update every 24h with connection and 5 days retention without
         //On cache le menu 48h
-
         S.cache.get(S.menu.config.json_url, 48 * 60 * 60, S.menu.parse, "json", function (jqXHR, textStatus, errorThrown) {
             //onError
             if (textStatus == 'timeout')
@@ -43,15 +36,16 @@ S.menu = {
         });
     },
     parse: function (d, from_cache) {
+        console.log(d,from_cache);
         //On initialise le menu
         S.menu.list = {};
         S.menu.from_cache = from_cache;
-//console.log(d);
-// ON ajoute à S.page.list de manière ordonné
+        //On ajoute à S.page.list de manière ordonné
         $(Object.keys(d).sort()).each(function (i, key) {
             //console.log(key);
             S.menu.list[key] = d[key];
         });
+
         //S.page.list = d.sort();
         console.log(S.menu.list);
         i = 0;

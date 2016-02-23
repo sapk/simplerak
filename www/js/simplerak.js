@@ -7,7 +7,7 @@ var S = {
     init: function () {
 
         var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.config.default_language;
-        //TEST 
+        //TEST
         //language = "en-US"
         language = language.split("-")[0];
         if ($.inArray(language, ["en", "fr"]) === -1)
@@ -23,9 +23,14 @@ var S = {
 
     },
     app: {
+        isTesting : function(){
+          return cordova.platformId === "browser";
+        }
+      /* Not used anymore
         isWebBrowser: function () {
             return !(document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1);
         }
+      */
     },
     attach_event: function () {
         //Le menu de navigation se ferme au clic lorsque l'on est sur  mobile mais pas sur tablette

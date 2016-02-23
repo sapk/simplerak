@@ -1,0 +1,37 @@
+{
+  "name": "SimpleRAK",
+  "description": "Simplement affiche le menu du rak du jour et des suivants.",
+  "version": "1.0.6",
+  "private": true,
+  "authors": [
+    {
+      "name": "Antoine GIRARD",
+      "email": "antoine.girard@sapk.fr",
+      "homepage": "https://sapk.fr"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sapk/simplerak.git"
+  },
+  "dependencies": {
+    "jquery": "latest",
+    "materialize": "latest",
+    "html10n.js": "https://github.com/marcelklehr/html10n.js.git"
+  },
+  "install": {
+    "path": "www/lib",
+    "sources": {
+      "jquery": "bower_components/jquery/dist/jquery.min.js",
+      "materialize": {
+          "mapping": [
+            {"bower_components/materialize/dist/js/materialize.min.js": "js/materialize.min.js"},
+            {"bower_components/materialize/dist/css/materialize.min.css": "css/materialize.min.css"},
+            {"bower_components/materialize/dist/font/material-design-icons": "font/material-design-icons"},
+            {"bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2": "font/material-design-icons/Material-Design-Icons.woff2"}
+          ]
+      },
+      "html10n.js": "bower_components/html10n.js/l10n.js"
+    }
+  }
+}

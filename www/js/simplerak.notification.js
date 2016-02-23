@@ -13,8 +13,8 @@ S.notification = {
     init: function (force) {
 
         force = force === true ? true : false;
-        //si le plugin est pas chargé on ne continue pas ou que c'est le navigateur 
-        if (S.app.isWebBrowser() || !cordova.plugins.notification)
+        //si le plugin est pas chargé on ne continue pas ou que c'est le navigateur
+        if (S.app.isTesting() || !cordova.plugins.notification)
             return;
         //si le module menu n'est pas chargé on arrete car dépendant
         if (!S.menu)
@@ -77,6 +77,6 @@ S.notification = {
 };
 /*
 document.addEventListener('deviceready', S.notification.init, false);
-if (S.app.isWebBrowser())
+if (S.app.isTesting())
     $(S.notification.init);
 */

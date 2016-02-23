@@ -1,0 +1,33 @@
+{
+  "name": "SimpleRAK",
+  "description": "Simplement affiche le menu du rak du jour et des suivants.",
+  "version": "1.0.6",
+  "private": true,
+  "authors": [
+    {
+      "name": "Antoine GIRARD",
+      "email": "antoine.girard@sapk.fr",
+      "homepage": "https://sapk.fr"
+    }
+  ],
+  "scripts": {
+    "clean": "cordova clean",
+    "build": "cordova build",
+    "bower": "rm -Rf www/lib && bower-installer",
+    "start-browser": "cordova run browser",
+    "start-android": "cordova start android",
+    "start": "npm run start-browser",
+    "postinstall": "npm run bower && cordova prepare",
+    "preversion": "npm run bower",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sapk/simplerak.git"
+  },
+  "devDependencies": {
+    "bower-installer": "~1.2.0",
+    "cordova": "~6.0.0"
+  },
+  "license": "MIT"
+}

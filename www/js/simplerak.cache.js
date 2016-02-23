@@ -24,7 +24,7 @@ S.cache = {
             if (typeof _("nav-menu") === 'undefined') {
                 //Tant que la traduction est pas chargé on attends
                 console.log("Waiting for traduction to be ready !");
-                html10n.bind("indexed", function () {
+                html10n.bind("localized", function () {
                     console.log("Traduction ready !");
                     callback(S.cache.data[url].data, true);
                 });
