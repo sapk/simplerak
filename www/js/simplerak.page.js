@@ -16,7 +16,7 @@ S.page = {
         else
             $("#go_today").parent().removeClass('active');
 
-        window.setTimeout("$('body').focus()",500); //Remove the :hover state on touchscreen devices
+        //TODO window.setTimeout("$('body').focus()",500); //Remove the :hover state on touchscreen devices
     },
     goRight: function () {
         S.page.pos = (++S.page.pos > S.page.list.length) ? S.page.list.length : S.page.pos;
