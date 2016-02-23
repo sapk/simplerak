@@ -10,5 +10,8 @@ hooks/
 node_modules/
 npm-debug.log
 
+#bower
+bower_components/
+
 # Deps (get with bower-installer)
 #www/lib/
