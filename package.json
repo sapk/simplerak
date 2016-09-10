@@ -1,8 +1,24 @@
 {
-  "name": "SimpleRAK",
+  "name": "simplerak",
+  "version": "2.0.0",
   "description": "Simplement affiche le menu du rak du jour et des suivants.",
-  "version": "1.0.7",
   "private": true,
+  "scripts": {
+    "install": "cordova platform add android",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "android": "cordova run android",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sapk/simplerak.git"
+  },
+  "keywords": [
+    "rak",
+    "telecom bretagne",
+    "tb"
+  ],
   "authors": [
     {
       "name": "Antoine GIRARD",
@@ -10,24 +26,24 @@
       "homepage": "https://sapk.fr"
     }
   ],
-  "scripts": {
-    "clean": "cordova clean",
-    "build": "cordova build",
-    "bower": "rm -Rf www/lib && bower-installer",
-    "start-browser": "cordova run browser",
-    "start-android": "cordova start android",
-    "start": "npm run start-browser",
-    "postinstall": "npm run bower && cordova prepare",
-    "preversion": "npm run bower",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sapk/simplerak/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/sapk/simplerak.git"
+  "homepage": "https://github.com/sapk/simplerak#readme",
+  "dependencies": {
+    "vue": "^1.0.26",
+    "vue-router": "^0.7.13"
   },
   "devDependencies": {
-    "bower-installer": "~1.2.0",
-    "cordova": "~6.0.0"
-  },
-  "license": "MIT"
+    "cordova": "^6.3.1",
+    "rollup": "^0.34.13",
+    "rollup-plugin-buble": "^0.13.0",
+    "rollup-plugin-commonjs": "^4.1.0",
+    "rollup-plugin-json": "^2.0.1",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-uglify": "^1.0.1",
+    "rollup-plugin-vue": "2.1.0",
+    "rollup-watch": "^2.5.0"
+  }
 }

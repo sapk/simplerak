@@ -1,65 +1,28 @@
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src *; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <!--Import materialize.css-->
-        <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css"  media="screen,projection"/>
-        <!--Import simplerak theme file-->
-        <link rel="stylesheet" type="text/css" href="css/simplerak.css">
-        <!--Internationalization-->
-        <script type="text/javascript" src="lib/html10n.js/l10n.js"></script>
-        <link rel="localizations" href="i18n.json" type="application/l10n+json"/>
-        <title>SimpleRAK</title>
-    </head>
-    <body id="page-menu">
-        <nav>
-            <div class="nav-wrapper light-green">
-                <a href="#" class="brand-logo center">SimpleRAK</a>
-                <ul id="nav-mobile" class="left">
-                    <li><a id="show_menu" data-activates="global-menu"  href="#"><i class="mdi-navigation-menu"></i></a></li>
-                </ul>
-                <ul id="nav-mobile" class="right">
-                    <li><a id="go_today" onclick="S.page.goTo(S.page.today, 300);"  href="#"><i class="mdi-action-today"></i></a></li>
-                </ul>
+  <head>
+    <meta charset="utf-8">
+    <title>SimpleRAK</title>
 
-            </div>
-        </nav>
-        <ul id="global-menu" class="side-nav fixed">
-            <li class="active">
-                <a href="#" data-l10n-id="nav-menu">Menu</a>
-            </li>
-            <li>
-                <a href="account.html" data-l10n-id="nav-my-account">Mon Compte</a>
-            </li>
-            <li>
-                <a href="configuration.html" data-l10n-id="nav-configuration">Paramètres</a>
-            </li>
-        </ul>
-        <div class="progress" style="margin-top: 0;">
-            <div class="indeterminate"></div>
-        </div>
-        <div id="container">
+    <!--Mobile and security specs -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline';script-src 'self' 'unsafe-inline' 'unsafe-eval';connect-src *; media-src *"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
-        </div>
+    <!-- Load theme -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"  media="screen,projection"/> <!-- TODO bundle -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> <!-- TODO bundle -->
+    <link rel="stylesheet" type="text/css" href="bundle.css">
 
-        <script type="text/javascript" src="cordova.js"></script>
+  </head>
+  <body>
+    <app></app>
+    <!-- Load app -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> <!-- TODO bundle -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script> <!-- TODO bundle -->
 
-        <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="lib/materialize/js/materialize.min.js"></script>
-
-        <script type="text/javascript" src="js/simplerak.js"></script>
-
-        <script type="text/javascript" src="js/simplerak.cache.js"></script>
-        <script type="text/javascript" src="js/simplerak.menu.js"></script>
-        <script type="text/javascript" src="js/simplerak.notification.js"></script>
-
-        <script type="text/javascript" src="js/simplerak.page.js"></script>
-        <script type="text/javascript" src="js/simplerak.template.js"></script>
-        <script>$(S.menu.start);</script>
-    </body>
+    <script src="bundle.js"></script>
+  </body>
 </html>
