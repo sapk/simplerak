@@ -4,6 +4,26 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+/* Fix for add btuton staying clickable */
+/* TODO
+#account-container  .fixed-action-btn>ul a.btn-floating[style$="opacity: 0;"],#account-container  .fixed-action-btn>ul a.btn-floating:not([style]) {
+    display: none;
+}
+*/
+/*
+#rechargements table.striped tbody tr:nth-child(odd) {
+    filter: brightness(0.97);
+    -webkit-filter: brightness(0.97);
+}
+*/
+#account-container #rechargements table.striped tbody tr:nth-child(odd).red {
+    background-color: #ffcdd2 !important;
+}
+#account-container #rechargements table.striped tbody tr:nth-child(odd).green {
+    background-color: #c8e6c9  !important;
+}
+
 </style>
 
 <template>
@@ -73,7 +93,7 @@
               <li><a v-on:click="rechargeOf(100)" class="btn-floating yellow darken-1">100</a></li>
               <li><a v-on:click="rechargeOf(70)" class="btn-floating green">70</a></li>
               <li><a v-on:click="rechargeOf(50)" class="btn-floating blue">50</a></li>
-              <li><a v-on:click="rechargeOf(prompt('Somme :', '50'))" class="btn-floating grey lighten-1"><i class="material-icons">mode_edit</i></a></li>
+              <li><a v-on:click="rechargeOf()" class="btn-floating grey lighten-1"><i class="material-icons">mode_edit</i></a></li>
           </ul>
       </div>
       <div id="modal-payement" class="modal bottom-sheet">
@@ -88,7 +108,9 @@
   import store from '../../modules/store'
   import cache from '../../modules/cache'
   import router from '../../modules/router'
-
+  import { isLogged, getForm } from '../../modules/tools'
+  //TODO loading bar like menu
+  //TODO remove img balise in wbepage loaded to not background load them
 
   /* MD5 definition */ /* TODO use a lib in bower like crypto-js */
   /*
@@ -121,21 +143,22 @@
             return false;
         }
       },
-      isLogged: function (d) {
-          return $(d).find("h1.home").length;
-      },
       rechargeOf: function (num) { //TODO refactor
           var vue = this;
+          if(num == null){
+            num = window.prompt('Somme :', 50);
+          }
           num = parseInt(num);
-          if (!(Number.isInteger(num)) || num < 50)
-              return alert("Montant non numérique ou inférieur à 50");
+          if (!(Number.isInteger(num)) || num < 50){
+            return alert("Montant non numérique ou inférieur à 50");
+          }
 
           $(".fixed-action-btn").mouseleave();
           $(".fixed-action-btn>a.btn-floating.btn-large").removeClass('red').removeClass('waves-effect').addClass('grey').addClass('disabled');
           $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").addClass('active').css("top", "-50px");
 
           $.get(store.config.account_urls.portemonnaie, function (d) {
-              form = vue.getForm(d, "form");
+              form = getForm(d, "form");
               var data = {
                   xajax : "_paypreviewAction",
                   xajaxr : new Date().getTime(),
@@ -163,35 +186,25 @@
 
           });
       },
-      getForm: function (d, selector) {
-          if (!selector)
-              selector = ".tx-newloginbox-pi1 form";
-
-          data = $(d).find(selector).serializeArray();
-          var form = {};
-          $.map(data, function (n, i) {
-              form[n['name']] = n['value'];
-          });
-          return form;
-      },
       reset: function () {
           var vue = this;
           $.get(store.config.account_urls.base, function (d) {
-              if (vue.isLogged(d)) {
+              if (isLogged(d)) {
                   //page contain logout form
-                  var form = vue.getForm(d);
+                  var form = getForm(d);
                   $.post(store.config.account_urls.base, form, function (d) {
-                      if (vue.isLogged(d))
+                      if (isLogged(d))
                           Materialize.toast('It seem it doesn\'t work well!', 3000); //TODO i18n
                       else
                           Materialize.toast('Reset done !', 3000); //TODO i18n
                   });
               }
           });
-          S.cache.reset();
+          cache.reset();
           localStorage.removeItem('pass');
           localStorage.removeItem('user');
-      },parse_page: function (d) {
+      },
+      parse_page: function (d) {
         //TODO check if we are connected
         $('#account-container>.collapsible').show();
         $('#account-container>.fixed-action-btn').show();
@@ -236,7 +249,7 @@
       },
       login: function (d) {
           var vue = this;
-          var form = vue.getForm(d);
+          var form = getForm(d);
 
           if (localStorage.user && localStorage.pass) {
               form.user = localStorage.user;
@@ -259,7 +272,7 @@
           vue.hash(form);
           //alert(JSON.stringify(form))
           $.post(store.config.account_urls.base, form, function (d) {
-              if (vue.isLogged(d)) {
+              if (isLogged(d)) {
                   //On est auth donc on nettoie le cache
                   return $(vue).trigger("logged", [true]);
               } else {
@@ -275,7 +288,7 @@
         var vue = this;      //On cache 5 minute histoire d'éviter trop d'appel à chaque ouverture de page
         cache.get(store.config.account_urls.base, 5 * 60).then(function(obj){
            console.log(obj);
-           if (vue.isLogged(obj.data)) {
+           if (isLogged(obj.data)) {
                vue.parse_page(obj.data);
            } else {
                console.log("We are not logged!");

@@ -33,3 +33,17 @@ export function parseMeal (textMeal) {
 export function App () {
   return window.router.app.$children[0];
 }
+export function isLogged (d) {
+    return $(d).find("h1.home").length;
+}
+export function getForm (d, selector) {
+    if (!selector)
+        selector = ".tx-newloginbox-pi1 form";
+
+    data = $(d).find(selector).serializeArray();
+    var form = {};
+    $.map(data, function (n, i) {
+        form[n['name']] = n['value'];
+    });
+    return form;
+}

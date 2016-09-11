@@ -10,7 +10,7 @@ if (typeof window.cache === 'undefined') {
 var cache = window.cache;
 
 cache.reset = function () {
-  console.log("Resetinng cache ...");
+  console.log("Reseting cache ...");
   cache.data = {};
   localStorage.cache = JSON.stringify(cache.data);
 };

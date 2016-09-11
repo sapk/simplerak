@@ -4,6 +4,7 @@ www/bundle.css
 
 #develop
 www/test/
+src/config.dev.json
 
 # cordova
 platforms/

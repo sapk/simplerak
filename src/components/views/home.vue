@@ -17,7 +17,7 @@
 </div>
 <div id="menu-container" class="carousel carousel-slider" data-indicators="true">
     <template v-for="date in days">
-        <day :id="$index" :date="date" :menu="list[date]"></day>
+        <day :id="$index" :date="date" :expandAllMenu="expandAllMenu" :menu="list[date]"></day>
     </template>
 </div>
 
@@ -38,7 +38,8 @@ export default {
             days: [],
             list: store.menu.list,
             today: (new Date()).toJSON().split("T")[0], //TODO use local not UTC
-            today_id: -1
+            today_id: -1,
+            expandAllMenu: store.config.expandallmenu
         }
     },
     components: {
@@ -82,7 +83,7 @@ export default {
             //Init carrousel
             $('#menu-container').carousel({
                     full_width: true
-            }).css('height', $(document).height() - 60);
+            }).css('height', $(document).height() - 64);
             vue.setToday();
 
             $("#menu-container").on("touchend mouseup mouseleave click", debounce(function(evt, id) {
@@ -91,6 +92,19 @@ export default {
             }, 500))
 
             $("#menu-container>.page#" + vue.today_id + ">h5").css("color", "#ef5350").css("font-weight", "bold") //TODO setup in day.vue
+
+            //TODO exploit Vue
+            if (localStorage.expandallmenu && localStorage.expandallmenu === "true") {
+                $('#menu-container ul.collapsible').attr('data-collapsible', "expandable")
+                $('#menu-container .collapsible>li>.collapsible-header').addClass('active')
+            } else {
+                $('#menu-container ul.collapsible').attr('data-collapsible', "accordion")
+                if ((new Date()).getHours() < 13)
+                    $('#menu-container .collapsible>li:first-child>.collapsible-header').addClass('active')
+                else
+                    $('#menu-container .collapsible>li:last-child>.collapsible-header').addClass('active')
+            }
+            $('#menu-container .collapsible').collapsible();
         });
     }
 }

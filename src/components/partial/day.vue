@@ -44,7 +44,7 @@
 
 <script>
 export default {
-  props: ['id','date', 'menu'],
+  props: ['id','date', 'menu', 'expandAllMenu'],
   methods : {
     dayofweek : function(){
       days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];

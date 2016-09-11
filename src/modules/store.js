@@ -1,31 +1,10 @@
 import cache from './cache'
 import {remove, parseData, parseMeal} from './tools'
+import config from '../config.dev.json';
 
 if (typeof window.store === 'undefined') {
     window.store = {
-      config: {
-        //source: "https://resel.fr/services/rak/menu.json", //old
-        //source: "menu.json",
-        //source_format: "json",
-        source: "http://services.telecom-bretagne.eu/rak/rss/menus.xml",
-        //source: "test/menus.xml",
-        source_format: "xml",
-        timeout: 48 * 60 * 60,
-        account_urls : //*
-        {
-          base: "https://services.ard.fr/fr/espaces-clients/etablissements/enst/accueil.html?no_cache=1",
-          portemonnaie: "https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/recharger-mes-porte-monnaie.html",
-          operations: "https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/mes-dernieres-operations.html?no_cache=1",
-          rechargements: "https://services.ard.fr/fr/espaces-clients/etablissements/enst/menu-utilisateur/mes-derniers-rechargements-en-ligne.html?no_cache=1"
-        }//*/
-        /*
-        {
-              base: "test/accueil-logged.html",
-              portemonnaie: "test/recharger-mes-porte-monnaie.html",
-              operations: "test/mes-dernieres-operations.html",
-              rechargements: "test/mes-derniers-rechargements-en-ligne.html"
-        }//*/
-      },
+      config: config,
       menu : {
         list : {},
         format : function(obj){
@@ -81,5 +60,14 @@ if (typeof window.store === 'undefined') {
       }
     };
 }
+
+/* Load language */
+var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.config.default_language;
+language = language.split("-")[0];
+if ($.inArray(language, ["en", "fr"]) > -1)
+    window.store.config.language = language;
+console.log(window.store.config.language);
+
+window.store.config.expandallmenu = localStorage.expandallmenu === "true";
 
 export default window.store

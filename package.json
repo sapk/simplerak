@@ -4,9 +4,11 @@
   "description": "Simplement affiche le menu du rak du jour et des suivants.",
   "private": true,
   "scripts": {
-    "install": "cordova platform add android",
+    "install": "cordova platform add android browser | npm run install-lib",
+    "install-lib": "rm -R www/lib/materialize-css www/lib/jquery.min.js && cp -R node_modules/materialize-css/dist/ www/lib/materialize-css/ && cp node_modules/jquery/dist/jquery.min.js www/lib/jquery.min.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "browser": "cordova run browser",
     "android": "cordova run android",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,6 +34,8 @@
   },
   "homepage": "https://github.com/sapk/simplerak#readme",
   "dependencies": {
+    "jquery": "^3.1.0",
+    "materialize-css": "^0.97.7",
     "vue": "^1.0.26",
     "vue-router": "^0.7.13"
   },
