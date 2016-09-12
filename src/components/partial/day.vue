@@ -26,10 +26,10 @@
 <template>
 <div class="page carousel-item" id="{{id}}">
   <div class="center date">{{date}}</div>
-  <h5 class="center-align">{{dayofweek()}}</h5>
+  <h5 class="center-align">{{ $t(dayofweek()) }}</h5>
   <ul class="collapsible">
     <li>
-      <div class="collapsible-header"><i class="material-icons">brightness_low</i> Lunch </div>
+      <div class="collapsible-header"><i class="material-icons">brightness_low</i> {{ $t("Lunch") }} </div>
       <div class="collapsible-body">
         <ul class="collection">
             <template v-for="meal in menu.lunch">
@@ -39,7 +39,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons">brightness_3</i> Dinner </div>
+      <div class="collapsible-header"><i class="material-icons">brightness_3</i> {{ $t("Dinner") }} </div>
       <div class="collapsible-body">
         <ul class="collection">
           <template v-for="meal in menu.dinner">
@@ -83,7 +83,7 @@ export default {
           return //Don't do anything (keep old one)
         }
         vue.$set('menu.lunch['+i+']', mealFull)
-        console.log(meal.id,vue.menu.lunch[i].type,vue.menu.lunch[i]);
+        //console.log(meal.id,vue.menu.lunch[i].type,vue.menu.lunch[i]);
       })
     });
 
@@ -94,7 +94,7 @@ export default {
           return //Don't do anything (keep old one)
         }
         vue.$set('menu.dinner['+i+']', mealFull)
-        console.log(meal.id,vue.menu.dinner[i].type,vue.menu.dinner[i]);
+        //console.log(meal.id,vue.menu.dinner[i].type,vue.menu.dinner[i]);
       })
     });
   }

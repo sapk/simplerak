@@ -11,9 +11,9 @@
         <li class="{{config.activeTodayIcon?'active':''}}"><a v-on:click="showToday"><i class="material-icons">today</i></a></li>
       </ul>
       <ul class="side-nav fixed" id="menu">
-        <li v-link-active><a v-link="{ path: '/home', activeClass: 'active'}" >Menu</a></li>
-        <li v-link-active><a v-link="{ path: '/account', activeClass: 'active'}">Mon Compte</a></li>
-        <li v-link-active><a v-link="{ path: '/settings', activeClass: 'active'}">Paramètres</a></li>
+        <li v-link-active><a v-link="{ path: '/home', activeClass: 'active'}" >{{ $t("nav-menu") }}</a></li>
+        <li v-link-active><a v-link="{ path: '/account', activeClass: 'active'}">{{ $t("nav-my-account") }}</a></li>
+        <li v-link-active><a v-link="{ path: '/settings', activeClass: 'active'}">{{ $t("nav-configuration") }}</a></li>
       </ul>
     </div>
   </nav>

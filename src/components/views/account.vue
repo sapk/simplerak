@@ -31,15 +31,15 @@
       <h5 class="center-align"></h5>
       <ul class="collapsible" data-collapsible="expandable"  style="display: none">
           <li id="portemonnaie">
-              <div class="collapsible-header"><i class="material-icons">account_balance_wallet</i><span data-l10n-id="wallet">Porte-Monnaie</span></div>
+              <div class="collapsible-header"><i class="material-icons">account_balance_wallet</i><span>{{ $t("wallet") }}</span></div>
               <div class="collapsible-body"></div>
           </li>
           <li id="operations">
-              <div class="collapsible-header"><i class="material-icons">history</i><span data-l10n-id="last-operations">Vos dernières opérations</span></div>
+              <div class="collapsible-header"><i class="material-icons">history</i><span>{{ $t("last-operations") }}</span></div>
               <div class="collapsible-body"></div>
           </li>
           <li id="rechargements">
-              <div class="collapsible-header"><i class="material-icons">list</i><span data-l10n-id="last-transactions">Historique de vos rechargements en ligne</span></div>
+              <div class="collapsible-header"><i class="material-icons">list</i><span>{{ $t("last-transactions") }}</span></div>
               <div class="collapsible-body"></div>
           </li>
       </ul>
@@ -178,7 +178,7 @@
                       $("#modal-payement .modal-content").append("<div class='center'>" + $(".fixed-action-btn .preloader-wrapper")[0].outerHTML + "</div>");
                       $("#modal-payement .modal-content .preloader-wrapper").removeClass("small").attr("style", "height: 56px;width: 56px").addClass("active");
                   });
-                  $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html("Select a payment method below" + " :<br><br>");
+                  $("#modal-payement .modal-content>form>div[align='center']:eq(0)").html(Vue.t("paiement-choice") + " :<br><br>");
                   $('#modal-payement').openModal();
                   $(".fixed-action-btn>a.btn-floating.btn-large").addClass('red').addClass('waves-effect').removeClass('grey').removeClass('disabled');
                   $(".fixed-action-btn>a.btn-floating.btn-large>div.preloader-wrapper.small").removeClass('active').css("top", "0px");
@@ -212,7 +212,7 @@
         $("#account-container>h5").append($(d).find("h1.home").text().replace(/Bonjour /g, '').replace(/Choisissez .*/g, ''));
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
         cache.get(store.config.account_urls.portemonnaie, 5 * 60).then(function (o) {
-           $("#portemonnaie>.collapsible-body").append('<p> ' + "Balance" + ' : <b>' + $(o.data).find(".dernier_solde").html() + '</b></p>');
+           $("#portemonnaie>.collapsible-body").append('<p> ' + Vue.t("Balance") + ' : <b>' + $(o.data).find(".dernier_solde").html() + '</b></p>');
            $("#portemonnaie>.collapsible-header").addClass("active");
            $('.collapsible').collapsible({
                accordion: true // A setting that changes the collapsible behavior to expandable instead of the default accordion style
