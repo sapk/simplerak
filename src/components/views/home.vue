@@ -91,19 +91,6 @@ export default {
             }, 500))
 
             $("#menu-container>.page#" + vue.today_id + ">h5").css("color", "#ef5350").css("font-weight", "bold") //TODO setup in day.vue
-
-            //TODO exploit Vue obj day
-            if (localStorage.expandallmenu && localStorage.expandallmenu === "true") {
-                $('#menu-container ul.collapsible').attr('data-collapsible', "expandable")
-                $('#menu-container .collapsible>li>.collapsible-header').addClass('active')
-            } else {
-                $('#menu-container ul.collapsible').attr('data-collapsible', "accordion")
-                if ((new Date()).getHours() < 13)
-                    $('#menu-container .collapsible>li:first-child>.collapsible-header').addClass('active')
-                else
-                    $('#menu-container .collapsible>li:last-child>.collapsible-header').addClass('active')
-            }
-            //$('#menu-container .collapsible').collapsible();//Done in obj
         });
     }
 }

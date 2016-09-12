@@ -1,6 +1,6 @@
 import cache from './cache'
 import {remove, parseData, parseMeal} from './tools'
-import config from '../config.dev.json';
+import config from '../config.json';
 //import Vue from 'vue'
 
 

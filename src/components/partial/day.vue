@@ -29,9 +29,9 @@
 <div class="page carousel-item" id="{{id}}">
   <div class="center date">{{date}}</div>
   <h5 class="center-align">{{ $t(dayofweek()) }}</h5>
-  <ul class="collapsible">
+  <ul class="collapsible" data-collapsible="{{collapsible}}">
     <li>
-      <div class="collapsible-header"><i class="material-icons">brightness_low</i> {{ $t("Lunch") }} </div>
+      <div class="collapsible-header {{lunch_active}}"><i class="material-icons">brightness_low</i> {{ $t("Lunch") }} </div>
       <div class="collapsible-body">
         <ul class="collection">
             <template v-for="meal in menu.lunch">
@@ -41,7 +41,7 @@
       </div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons">brightness_3</i> {{ $t("Dinner") }} </div>
+      <div class="collapsible-header {{dinner_active}}"><i class="material-icons">brightness_3</i> {{ $t("Dinner") }} </div>
       <div class="collapsible-body">
         <ul class="collection">
           <template v-for="meal in menu.dinner">
@@ -63,11 +63,10 @@ export default {
   components: {
     meal: meal
   },
-  data: ()=>{ return {/*
-    meals : {
-
-    }
-    */
+  data: ()=>{ return {
+    collapsible : (localStorage.expandallmenu === "true")?"expandable":"accordion",
+    lunch_active : (localStorage.expandallmenu === "true" || (new Date()).getHours() < 13)?"active":"",
+    dinner_active : (localStorage.expandallmenu === "true" || (new Date()).getHours() >= 13)?"active":""
   }},
   methods : {
     dayofweek : function(){
