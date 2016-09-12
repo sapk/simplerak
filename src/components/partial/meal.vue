@@ -9,7 +9,7 @@
     padding: 0;
 }
 #menu-container>.page .collapsible-body li>svg {
-    width: 49px;
+    width: 50px;
     height: 50px;
     margin: 0px 2px -38px 0;
     /*background: #ccc;*/
