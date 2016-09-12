@@ -1,10 +1,11 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 
 import App from './components/App.vue'
 
+import lang from './modules/lang'
 import router from './modules/router'
 
+lang.init();
 var main = Vue.extend({
   components: {
     app: App

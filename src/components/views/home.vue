@@ -17,7 +17,7 @@
 </div>
 <div id="menu-container" class="carousel carousel-slider" data-indicators="true">
     <template v-for="date in days">
-        <day :id="$index" :date="date" :expandAllMenu="expandAllMenu" :menu="list[date]"></day>
+        <day :id="$index" :date="date" :menu="list[date]"></day>
     </template>
 </div>
 
@@ -87,13 +87,12 @@ export default {
             vue.setToday();
 
             $("#menu-container").on("touchend mouseup mouseleave click", debounce(function(evt, id) {
-                console.log(vue.current());
                 App().headerConfig.activeTodayIcon = vue.current() == vue.today_id;
             }, 500))
 
             $("#menu-container>.page#" + vue.today_id + ">h5").css("color", "#ef5350").css("font-weight", "bold") //TODO setup in day.vue
 
-            //TODO exploit Vue
+            //TODO exploit Vue obj day
             if (localStorage.expandallmenu && localStorage.expandallmenu === "true") {
                 $('#menu-container ul.collapsible').attr('data-collapsible', "expandable")
                 $('#menu-container .collapsible>li>.collapsible-header').addClass('active')
@@ -104,7 +103,7 @@ export default {
                 else
                     $('#menu-container .collapsible>li:last-child>.collapsible-header').addClass('active')
             }
-            $('#menu-container .collapsible').collapsible();
+            //$('#menu-container .collapsible').collapsible();//Done in obj
         });
     }
 }

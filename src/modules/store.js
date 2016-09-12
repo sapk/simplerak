@@ -1,10 +1,53 @@
 import cache from './cache'
 import {remove, parseData, parseMeal} from './tools'
-import config from '../config.dev.json';
+import config from '../config.json';
+//import Vue from 'vue'
+
 
 if (typeof window.store === 'undefined') {
     window.store = {
       config: config,
+      meal : {
+        list : {},
+        parse : function(id,obj){
+//          console.log(obj)
+          //console.log(id,obj)
+          var dom = $(obj.data);
+          let meal = {
+            id : id,
+            name: "",
+            img : "",
+            type : "unknown",
+            contain :{
+              viande : "unknown",
+              porc   : "unknown",
+              gluten : "unknown",
+              alcool : "unknown"
+            }
+          }
+
+          meal.name = dom.find("article>.row h1").text().trim();
+          meal.img = dom.find(".fenetre img.thumbnail").attr("src");
+          meal.type = dom.find(".fenetre h4").text().split(" : ")[1];
+          dom.find(".fenetre .description>ul>li").each(function(index, el) {
+              var d = $(el).text().split(" : ");
+              meal.contain[d[0]] = d[1];
+          });
+          window.store.meal.list[id] = meal;
+          return meal;
+        },
+        get : function(id){
+          if(window.store.meal.list[id] == null){
+            return cache.get(window.store.config.source_plat+id, window.store.config.timeout, "html")
+            .then((obj)=>{return window.store.meal.parse(id,obj)})
+            .catch(function (req) {
+              console.log(req);
+            });
+          }else{
+            return Promise.resolve(window.store.meal.list[id]);
+          }
+        }
+      },
       menu : {
         list : {},
         format : function(obj){
@@ -47,7 +90,8 @@ if (typeof window.store === 'undefined') {
           return data;
         },
         update : function(){
-          return cache.get(window.store.config.source, window.store.config.timeout, window.store.config.source_format).then(window.store.menu.format)
+          return cache.get(window.store.config.source, window.store.config.timeout, window.store.config.source_format)
+          .then(window.store.menu.format)
             .catch(function (req) {
               console.log(req);
               //onError
@@ -60,13 +104,6 @@ if (typeof window.store === 'undefined') {
       }
     };
 }
-
-/* Load language */
-var language = localStorage.userLanguage || window.navigator.userLanguage || window.navigator.language || navigator.browserLanguage || navigator.systemLanguage || S.config.default_language;
-language = language.split("-")[0];
-if ($.inArray(language, ["en", "fr"]) > -1)
-    window.store.config.language = language;
-console.log(window.store.config.language);
 
 window.store.config.expandallmenu = localStorage.expandallmenu === "true";
 
