@@ -1,7 +1,7 @@
 <style>
     /* Offset for fixed menu */
     .app {
-      padding-left: 300px;
+      padding-left: 260px;
     }
     @media only screen and (max-width : 992px) {
       .app {
