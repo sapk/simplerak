@@ -66,11 +66,11 @@ body.theme-fip .nav-wrapper .brand-logo{
     width: 280px;
 }
 body.theme-fip .nav-wrapper .brand-logo:before {
-    content:url(../img/wing-left.png);
+    content:url(img/wing-left.png);
     float: left;
 }
 body.theme-fip .nav-wrapper .brand-logo:after {
-    content:url(../img/wing-right.png);
+    content:url(img/wing-right.png);
     float: right;
 }
 body.theme-fip .modal {
