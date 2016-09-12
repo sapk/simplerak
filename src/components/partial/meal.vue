@@ -1,15 +1,17 @@
 <style>
 #menu-container>.page .collapsible-body li {
   color: #000;
+  min-height: 64px;
+  padding: 2px 10px;
 }
 #menu-container>.page .collapsible-body li p {
     margin: 0;
     padding: 0;
 }
 #menu-container>.page .collapsible-body li>svg {
-    width: 62px;
-    height: 62px;
-    margin: 0px 2px -47px -67px;
+    width: 52px;
+    height: 52px;
+    margin: 0px 2px -38px 0;
     /*background: #ccc;*/
     background-size: cover;
 }
@@ -28,8 +30,8 @@
 
 #menu-container>.page .collapsible-body li>p>svg {
     float: right;
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     background-size: cover;
     margin: 14px 0 0 14px
 }
