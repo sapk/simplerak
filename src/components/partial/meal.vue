@@ -11,7 +11,7 @@
 #menu-container>.page .collapsible-body li>svg {
     width: 52px;
     height: 52px;
-    margin: 0px 2px -38px 0;
+    margin: 0px 2px -42px 0;
     /*background: #ccc;*/
     background-size: cover;
 }
