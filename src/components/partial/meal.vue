@@ -2,16 +2,16 @@
 #menu-container>.page .collapsible-body li {
   color: #000;
   min-height: 64px;
-  padding: 2px 10px;
+  padding: 4px 10px;
 }
 #menu-container>.page .collapsible-body li p {
     margin: 0;
     padding: 0;
 }
 #menu-container>.page .collapsible-body li>svg {
-    width: 52px;
-    height: 52px;
-    margin: 0px 2px -42px 0;
+    width: 49px;
+    height: 50px;
+    margin: 0px 2px -38px 0;
     /*background: #ccc;*/
     background-size: cover;
 }
@@ -33,7 +33,10 @@
     width: 20px;
     height: 20px;
     background-size: cover;
-    margin: 14px 0 0 14px
+    margin: 10px 0 0 14px
+}
+#menu-container>.page .collapsible-body .title {
+    font-size: 18px;
 }
 
 #menu-container>.page .collapsible-body li>p>svg[data-elm="gluten"] {
@@ -50,13 +53,12 @@
 }
 #menu-container>.page .collapsible-body li>p>svg[data-state="Oui"] {
   opacity: 1;
-  color: red;
 }
 #menu-container>.page .collapsible-body li>p>svg[data-state="Non"] {
-  opacity: 0.1;
+  opacity: 0.2;
 }
 #menu-container>.page .collapsible-body li>p>svg[data-state="Non renseignée"] {
-  opacity: 0.5;
+  opacity: 0;
 }
 </style>
 <template>

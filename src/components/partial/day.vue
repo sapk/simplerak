@@ -15,6 +15,8 @@
 #menu-container>.page .collapsible-header {
     font-weight: bold;
     white-space: nowrap;
+    font-size: 19px;
+    background: #EFEFEF;
 }
 /*
 #menu-container>.page .collapsible-body{
