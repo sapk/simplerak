@@ -17,6 +17,7 @@ before_install:
 before_script:
   - npm install --quiet
 script:
+  - npm run build
   - cordova build android --release
 after_success:
   - export PATH=$(find /usr/local/android-sdk/ -name zipalign -type f| head -1 | sed -e 's/\/zipalign//g'):$PATH
