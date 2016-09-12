@@ -22,6 +22,6 @@ export default {
       include: 'node_modules/**',
       sourceMap: false
     }*/),
-    //uglify()
+    uglify()
   ]
 }
