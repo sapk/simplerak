@@ -1,3 +1,5 @@
+import {debounce} from './tools'
+
 if (typeof window.cache === 'undefined') {
     window.cache = {
       data: {}
@@ -9,10 +11,35 @@ if (typeof window.cache === 'undefined') {
 }
 var cache = window.cache;
 
+if (typeof(Worker) !== "undefined") {
+  cache.promise = {};
+  cache.worker = new Worker("worker.js");
+  cache.worker.addEventListener('message', function(m) {
+    //console.log("Getting message from WebWorker",m.data);
+    let d = m.data;
+    if(d.cmd === "fetch"){
+      cache.store(d.url,d.data);
+      cache.promise[d.url].resolve( { data : d.data, from : "live"});
+    }
+  }, false);
+
+}
+
 cache.reset = function () {
-  console.log("Reseting cache ...");
+  //console.log("Reseting cache ...");
   cache.data = {};
   localStorage.cache = JSON.stringify(cache.data);
+};
+
+cache.backup = debounce(function () {
+  //console.log("Saving cache ...");
+  localStorage.cache = JSON.stringify(cache.data);
+},500);
+
+cache.store = function (id,data) {
+  //console.log("Storing obj cache ...",id);
+  cache.data[id] = {data: data, at: (new Date().getTime())};
+  cache.backup();
 };
 
 cache.get = function (url, duration, format) {
@@ -22,14 +49,35 @@ cache.get = function (url, duration, format) {
     return Promise.resolve({ data : cache.data[url].data, from : "cache"});
   } else {
     //We get from web
-    console.log("Getting " + url + " from web",format);
-    return $.get(url,{"u" : new Date().getTime()}, format).then(function (data,state,res) {
-      cache.data[url] = {data: res.responseText, at: (new Date().getTime())};
-      localStorage.cache = JSON.stringify(cache.data);
-      return { data : cache.data[url].data, from : "live"};
-    });
+    if(cache.worker == null){
+      //No WebWorker
+      console.log("Getting " + url + " from web old way",format);
+      return $.get(url,{"u" : new Date().getTime()}, format).then(function (data,state,res) {
+        cache.store(url,res.responseText);
+        return { data : res.responseText, from : "live"};
+      });
+    }else{
+      //console.log("Getting " + url + " from WebWorker");
+      //WebWorker
+      var rs,rj;
+      console.log("Getting " + url + " from web WebWorker way",format);
+      if(cache.promise[url] == null){ //Multiple request same url
+        cache.promise[url] = new Promise(function(resolve, reject) {
+          rs = resolve;
+          rj = reject;
+          cache.worker.postMessage({
+            cmd : "fetch",
+            url : url
+          });
+        });
+        cache.promise[url].resolve = rs;
+        cache.promise[url].reject = rj;
+      }
+      return cache.promise[url];
+    }
+    /*
+    */
   }
 };
-
 
 export default cache

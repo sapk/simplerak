@@ -63,7 +63,7 @@ import meal from './meal.vue'
 import store from '../../modules/store'
 
 export default {
-  props: ['id', 'date', 'menu', 'today_id', 'loading'],
+  props: ['id', 'date', 'menu', 'today_id'],
   components: {
     meal: meal
   },
@@ -83,27 +83,35 @@ export default {
   },
   ready: function(){
     var vue = this;
+    var pData = this.$parent._data;
+    //console.log(pData.loading)
+    //this.$parent.$options.data.someParentMethod(data)
+
     $('#'+this.id+'>.collapsible').collapsible();
     $(this.menu.lunch).each(function(i,meal){
-      vue.loading++;
+      pData.loading++;
+      //console.log("ask",pData.loading)
       store.meal.get(meal.id).then(function(mealFull){
         if (mealFull == null){
           console.log("Meal not found !",meal.id)
           return //Don't do anything (keep old one)
         }
-        vue.loading--;
+        pData.loading--;
+        //console.log("receive",pData.loading)
         vue.$set('menu.lunch['+i+']', mealFull)
       })
     });
 
     $(this.menu.dinner).each(function(i,meal){
-      vue.loading++;
+      pData.loading++;
+      //console.log("ask",pData.loading)
       store.meal.get(meal.id).then(function(mealFull){
         if (mealFull == null){
           console.log("Meal not found !",meal.id)
           return //Don't do anything (keep old one)
         }
-        vue.loading--;
+        pData.loading--;
+        //console.log("receive",pData.loading)
         vue.$set('menu.dinner['+i+']', mealFull)
       })
     });

@@ -17,7 +17,7 @@
 </div>
 <div id="menu-container" class="carousel carousel-slider" data-indicators="true">
     <template v-for="date in days">
-        <day :today_id="today_id" :id="$index" :date="date" :menu="list[date]" :loading.sync="loading"></day>
+        <day :today_id="today_id" :id="$index" :date="date" :menu="list[date]"></day>
     </template>
 </div>
 
@@ -55,13 +55,13 @@ export default {
                       full_width: true
               }).css('height', $(document).height() - 64);
               vue.setToday();
-
-              $("#menu-container").on("touchend mouseup mouseleave click", debounce(function(evt, id) {
-                  App().headerConfig.activeTodayIcon = vue.current() == vue.today_id;
-              }, 500))
+              $("#menu-container").on("touchend mouseup mouseleave click", vue.isToday);
               vue.loading--;
           });
         },
+        isToday: debounce(function() {
+          App().headerConfig.activeTodayIcon = this.current() == this.today_id;
+        }, 500),
         parse: function(data) {
             //TODO optimize
             var minDate = new Date();
