@@ -38,7 +38,7 @@ if (typeof window.store === 'undefined') {
         },
         get : function(id){
           if(window.store.meal.list[id] == null){
-            return cache.get(window.store.config.source_plat+id, window.store.config.timeout, "html")
+            return cache.get(window.store.config.source_plat+id, window.store.config.timeout_meal, "html")
             .then((obj)=>{return window.store.meal.parse(id,obj)})
             .catch(function (req) {
               console.log(req);

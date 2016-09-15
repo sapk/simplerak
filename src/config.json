@@ -4,6 +4,7 @@
   "source_format": "xml",
   "source_plat" : "http://services.telecom-bretagne.eu/rak/plat.php?id_plat=",
   "timeout": 172800,
+  "timeout_meal": 1728000,
   "account_urls" : {
     "base": "https://services.ard.fr/fr/espaces-clients/etablissements/enst/accueil.html?no_cache=1",
     "logout": "https://services.ard.fr/fr/espaces-clients/etablissements/enst/accueil.html?logintype=logout",

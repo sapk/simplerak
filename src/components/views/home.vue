@@ -88,7 +88,7 @@ export default {
     ready: function() {
         App().headerConfig.displayTodayIcon = true;
         App().headerConfig.onShowToday = this.setToday;
-        setTimeout(this.start,100);
+        setTimeout(this.start,250);
     }
 }
 

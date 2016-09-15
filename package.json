@@ -1,6 +1,6 @@
 {
   "name": "simplerak",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Simplement affiche le menu du rak du jour et des suivants.",
   "private": true,
   "scripts": {
