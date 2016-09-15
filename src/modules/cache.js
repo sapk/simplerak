@@ -42,14 +42,17 @@ cache.store = function (id,data) {
   cache.backup();
 };
 
-cache.get = function (url, duration, format) {
+cache.get = function (url, duration, format, useWebWorker) {
+  if(useWebWorker == null){
+    useWebWorker = true;
+  }
   if (typeof cache.data[url] !== 'undefined' && cache.data[url].at + duration * 1000 > (new Date().getTime())) {
     //We get from cache
     console.log("Getting " + url + " from cache",format);
     return Promise.resolve({ data : cache.data[url].data, from : "cache"});
   } else {
     //We get from web
-    if(cache.worker == null){
+    if(cache.worker == null || useWebWorker === false){
       //No WebWorker
       console.log("Getting " + url + " from web old way",format);
       return $.get(url,{"u" : new Date().getTime()}, format).then(function (data,state,res) {

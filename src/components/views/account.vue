@@ -100,8 +100,6 @@
   import cache from '../../modules/cache'
   import router from '../../modules/router'
   import { isLogged, getForm } from '../../modules/tools'
-  //TODO loading bar like menu
-  //TODO remove img balise in wbepage loaded to not background load them
 
   /* MD5 definition */ /* TODO use a lib in bower like crypto-js */
   /*
@@ -202,7 +200,7 @@
         //$(d).find("h1.home>span").remove();
         $("#account-container>h5").append($(d).find("h1.home").text().replace(/Bonjour /g, '').replace(/Choisissez .*/g, ''));
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
-        cache.get(store.config.account_urls.portemonnaie, 5 * 60).then(function (o) {
+        cache.get(store.config.account_urls.portemonnaie, 5 * 60,"html",false).then(function (o) {
            $("#portemonnaie>.collapsible-body").append('<p> ' + Vue.t("Balance") + ' : <b>' + $(o.data).find(".dernier_solde").html() + '</b></p>');
            $("#portemonnaie>.collapsible-header").addClass("active");
            $('.collapsible').collapsible({
@@ -210,7 +208,7 @@
            });
            window.setTimeout('$(".progress").hide();', 500);
         })
-        cache.get(store.config.account_urls.operations, 5 * 60).then(function (o) {
+        cache.get(store.config.account_urls.operations, 5 * 60,"html",false).then(function (o) {
             $("#operations>.collapsible-body").append("<table class='striped'>" + $(o.data).find("#tx_ardrecharge>table").html() + "</table>");
             $("#operations>.collapsible-body thead").remove();
             $("#operations>.collapsible-body tfoot").remove();
@@ -218,7 +216,7 @@
             $("#operations>.collapsible-body tbody tr td:first-child").remove();
         });
 
-        cache.get(store.config.account_urls.rechargements, 5 * 60).then(function (o) {
+        cache.get(store.config.account_urls.rechargements, 5 * 60,"html",false).then(function (o) {
             $("#rechargements>.collapsible-body").append("<table class='striped'>" + $(o.data).find("#tx_ardrecharge>table").html() + "</table>");
             $("#rechargements>.collapsible-body thead").remove();
             $("#rechargements>.collapsible-body tfoot").remove();
@@ -277,7 +275,7 @@
       },
       start: function () {
         var vue = this;      //On cache 5 minute histoire d'éviter trop d'appel à chaque ouverture de page
-        cache.get(store.config.account_urls.base, 5 * 60).then(function(obj){
+        cache.get(store.config.account_urls.base, 5 * 60,"html",false).then(function(obj){
            console.log(obj);
            if (isLogged(obj.data)) {
                vue.parse_page(obj.data);
