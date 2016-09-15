@@ -5,18 +5,6 @@
     overflow: hidden;
 }
 
-/* Fix for add btuton staying clickable */
-/* TODO
-#account-container  .fixed-action-btn>ul a.btn-floating[style$="opacity: 0;"],#account-container  .fixed-action-btn>ul a.btn-floating:not([style]) {
-    display: none;
-}
-*/
-/*
-#rechargements table.striped tbody tr:nth-child(odd) {
-    filter: brightness(0.97);
-    -webkit-filter: brightness(0.97);
-}
-*/
 #account-container #rechargements table.striped tbody tr:nth-child(odd).red {
     background-color: #ffcdd2 !important;
 }
@@ -27,6 +15,9 @@
 </style>
 
 <template>
+  <div class="progress" style="margin-top: 0;">
+      <div class="indeterminate"></div>
+  </div>
   <div id="account-container">
       <h5 class="center-align"></h5>
       <ul class="collapsible" data-collapsible="expandable"  style="display: none">

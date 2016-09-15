@@ -12,12 +12,12 @@
 
 <template>
 
-<div v-if="len == 0" class="progress" style="margin-top: 0;">
+<div v-if="loading>0" class="progress" style="margin-top: 0;">
     <div class="indeterminate"></div>
 </div>
 <div id="menu-container" class="carousel carousel-slider" data-indicators="true">
     <template v-for="date in days">
-        <day :id="$index" :date="date" :menu="list[date]"></day>
+        <day :today_id="today_id" :id="$index" :date="date" :menu="list[date]" :loading.sync="loading"></day>
     </template>
 </div>
 
@@ -39,13 +39,29 @@ export default {
             list: store.menu.list,
             today: (new Date()).toJSON().split("T")[0], //TODO use local not UTC
             today_id: -1,
-            expandAllMenu: store.config.expandallmenu
+            expandAllMenu: store.config.expandallmenu,
+            loading: 1
         }
     },
     components: {
         day: day,
     },
     methods: {
+        start: function() {
+          var vue = this;
+          store.menu.update().then(this.parse).then(function() {
+              //Init carrousel
+              $('#menu-container').carousel({
+                      full_width: true
+              }).css('height', $(document).height() - 64);
+              vue.setToday();
+
+              $("#menu-container").on("touchend mouseup mouseleave click", debounce(function(evt, id) {
+                  App().headerConfig.activeTodayIcon = vue.current() == vue.today_id;
+              }, 500))
+              vue.loading--;
+          });
+        },
         parse: function(data) {
             //TODO optimize
             var minDate = new Date();
@@ -69,29 +85,10 @@ export default {
             App().headerConfig.activeTodayIcon = true;
         }
     },
-    computed: {
-        len: function() {
-            return Object.keys(this.list).length;
-        }
-    },
     ready: function() {
-        var vue = this;
         App().headerConfig.displayTodayIcon = true;
-        App().headerConfig.onShowToday = vue.setToday;
-
-        store.menu.update().then(this.parse).then(function() {
-            //Init carrousel
-            $('#menu-container').carousel({
-                    full_width: true
-            }).css('height', $(document).height() - 64);
-            vue.setToday();
-
-            $("#menu-container").on("touchend mouseup mouseleave click", debounce(function(evt, id) {
-                App().headerConfig.activeTodayIcon = vue.current() == vue.today_id;
-            }, 500))
-
-            $("#menu-container>.page#" + vue.today_id + ">h5").css("color", "#ef5350").css("font-weight", "bold") //TODO setup in day.vue
-        });
+        App().headerConfig.onShowToday = this.setToday;
+        setTimeout(this.start,100);
     }
 }
 

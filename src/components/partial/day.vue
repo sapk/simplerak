@@ -12,6 +12,10 @@
     top: 85%;
     margin-bottom: -20px;
 }
+#menu-container>.page>h5.today {
+    color: #ef5350;
+    font-weight: bold;
+}
 #menu-container>.page .collapsible-header {
     font-weight: bold;
     white-space: nowrap;
@@ -28,7 +32,7 @@
 <template>
 <div class="page carousel-item" id="{{id}}">
   <div class="center date">{{date}}</div>
-  <h5 class="center-align">{{ $t(dayofweek()) }}</h5>
+  <h5 class="center-align {{state()}}" >{{ $t(dayofweek()) }}</h5>
   <ul class="collapsible" data-collapsible="{{collapsible}}">
     <li>
       <div class="collapsible-header {{lunch_active}}"><i class="material-icons">brightness_low</i> {{ $t("Lunch") }} </div>
@@ -59,7 +63,7 @@ import meal from './meal.vue'
 import store from '../../modules/store'
 
 export default {
-  props: ['id', 'date', 'menu'],
+  props: ['id', 'date', 'menu', 'today_id', 'loading'],
   components: {
     meal: meal
   },
@@ -69,6 +73,9 @@ export default {
     dinner_active : (localStorage.expandallmenu === "true" || (new Date()).getHours() >= 13)?"active":""
   }},
   methods : {
+    state : function(){
+      return this.today_id === this.id ? "today" : "";
+    },
     dayofweek : function(){
       days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
       return days[(new Date(this.date)).getDay()];
@@ -78,24 +85,26 @@ export default {
     var vue = this;
     $('#'+this.id+'>.collapsible').collapsible();
     $(this.menu.lunch).each(function(i,meal){
+      vue.loading++;
       store.meal.get(meal.id).then(function(mealFull){
         if (mealFull == null){
           console.log("Meal not found !",meal.id)
           return //Don't do anything (keep old one)
         }
+        vue.loading--;
         vue.$set('menu.lunch['+i+']', mealFull)
-        //console.log(meal.id,vue.menu.lunch[i].type,vue.menu.lunch[i]);
       })
     });
 
     $(this.menu.dinner).each(function(i,meal){
+      vue.loading++;
       store.meal.get(meal.id).then(function(mealFull){
         if (mealFull == null){
           console.log("Meal not found !",meal.id)
           return //Don't do anything (keep old one)
         }
+        vue.loading--;
         vue.$set('menu.dinner['+i+']', mealFull)
-        //console.log(meal.id,vue.menu.dinner[i].type,vue.menu.dinner[i]);
       })
     });
   }
