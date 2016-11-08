@@ -3,10 +3,10 @@ jdk:
   - oraclejdk8
 android:
   components:
-  - 1
-  - 2
-  - 3
-  - 32
+    - "1"
+    - "2"
+    - "3"
+    - "32"
   licenses:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
