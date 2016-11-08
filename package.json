@@ -4,7 +4,7 @@
   "description": "Simplement affiche le menu du rak du jour et des suivants.",
   "private": true,
   "scripts": {
-    "sign": "cp \"$APK-unsigned.apk\" \"$APK-signed.apk\" && zip -d \"$APK-signed.apk\" \"res/drawable-land-*\" \"res/drawable-port-*\" && jarsigner -verbose -sigalg SHA1withRSA -storepass \"$STOREPASS\" -keypass \"$KEYPASS\" -digestalg SHA1 -keystore \"$KEYSTORE\" \"$APK-signed.apk\" simplerak && zipalign -v 4 \"$APK-signed.apk\" \"$APK-signed-aligned.apk\" && jarsigner -verify -verbose -certs \"$APK-signed-aligned.apk\" ",
+    "sign": "cp \"$APK-unsigned.apk\" \"$APK-signed.apk\" && jarsigner -verbose -sigalg SHA1withRSA -storepass \"$STOREPASS\" -keypass \"$KEYPASS\" -digestalg SHA1 -keystore \"$KEYSTORE\" \"$APK-signed.apk\" simplerak && zipalign -v 4 \"$APK-signed.apk\" \"$APK-signed-aligned.apk\" && jarsigner -verify -verbose -certs \"$APK-signed-aligned.apk\" ",
     "install": "cordova platform add android browser && npm run install-lib",
     "install-lib": "rm -Rf www/lib/materialize-css www/lib/jquery.min.js && cp -R node_modules/materialize-css/dist/ www/lib/materialize-css/ && cp node_modules/jquery/dist/jquery.min.js www/lib/jquery.min.js",
     "build": "rollup -c",
