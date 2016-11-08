@@ -3,15 +3,15 @@ jdk:
   - oraclejdk8
 android:
   components:
-  - platform-tools
-  - build-tools
+  - platform-tools-25
+  - build-tools-25
+  - android-25
   - android-24
 sudo: false
 cache:
   directories:
   - node_modules
 before_install:
-  - jdk_switcher use oraclejdk8
   - nvm install 7 && nvm alias default 7 && nvm use 7
   - npm install --quiet -g npm cordova
   - openssl aes-256-cbc -k "$keystore_enc_password" -in simplerak.keystore.enc -out simplerak.keystore -d
