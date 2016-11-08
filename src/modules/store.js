@@ -57,10 +57,14 @@ if (typeof window.store === 'undefined') {
           var weeks = $(obj.data).find("item");
           $(weeks).each(function(id,week){
             let week_title = $(week).find("title").text()
+            console.log("Week Title : ",week_title);
             let date = (/Menu de la semaine .* \(du (.*) au (.*)\)/g).exec(week_title);
+            console.log("Date : ",date);
             var endOfWeek = parseData(date[2]);// new Date(Math.max.apply(null,[parseData(data[1]),parseData(data[2])]));
+            console.log("endOfWeek : ",endOfWeek);
             //console.log(week_title,endOfWeek);
             var days = $(week).html().split("<u>")
+            console.log("days : ",days);
             days.splice(0, 1);
             $(days).each(function(n,day){
               var date = new Date();
@@ -72,12 +76,21 @@ if (typeof window.store === 'undefined') {
               };
 
               var day_title = day.split("</u>")[0];
+              console.log("day_title : ",day_title);
               var menu = day.split("</u>")[1];
+              console.log("menu : ",menu);
 
               menu = remove(menu,["<!--[CDATA[<BR/-->]]&gt;","---]]&gt;","<!--[CDATA[","]]-->","]]&gt;","<STRONG-->",'TARGET="_blank"--']);
+              console.log("menu : ",menu);
               let tmp = (/\*\*\*Rampe\*\*\*\| Dejeuner \| (.*) \| \*\*\*Rampe\*\*\*\| Diner \| (.*) \| \*\*\*Cafeteria\*\*\*\| Dejeuner \| /g).exec(menu);
+              console.log("tmp : ",tmp);
+              if(tmp == null){ //No cafeteria maybe
+                tmp = (/\*\*\*Rampe\*\*\*\| Dejeuner \| (.*) \| \*\*\*Rampe\*\*\*\| Diner \| (.*) \| ((--- )|(<\/description>))/g).exec(menu);
+                console.log("tmp : ",tmp);
+              }
 
               var meals = tmp[1].split(" | ");
+              console.log("meals : ",meals);
               for (i = 0; i < meals.length; i++) {
                 data[date_id].lunch.push(parseMeal(meals[i]));
               }
@@ -85,6 +98,7 @@ if (typeof window.store === 'undefined') {
               for (i = 0; i < meals.length; i++) {
                 data[date_id].dinner.push(parseMeal(meals[i]));
               }
+              console.log("data : ",data);
             });
           })
           return data;

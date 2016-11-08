@@ -24,7 +24,9 @@ export function parseData (textDate) {
 }
 export function parseMeal (textMeal) {
   //<A HREF=http://services.telecom-bretagne.eu/rak/plat.php?id_plat=400 >Spaghettis bolognaise
+  console.log("parseMeal", "textMeal", textMeal);
   let tmp = (/^<A HREF=http:\/\/services\.telecom-bretagne\.eu\/rak\/plat\.php\?id_plat=(.*) >(.*)$/g).exec(textMeal);
+  console.log("parseMeal", "tmp", tmp);
   return {
     id : tmp[1],
     name : tmp[2]
