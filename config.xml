@@ -10,9 +10,9 @@
         Antoine GIRARD
     </author>
 
-    <icon src="www/img/logo.png"/>
+    <icon src="www/img/logo.png" />
 
-    <content src="index.html"/>
+    <content src="index.html" />
     <!--
     <plugin name="de.appplant.cordova.plugin.local-notification"/>
     <gap:plugin name="de.appplant.cordova.plugin.local-notification"/>

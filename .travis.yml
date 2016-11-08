@@ -23,6 +23,9 @@ before_script:
   - npm install --quiet
 script:
   - npm run build
+  - cordova prepare android
+  - rm -Rf platforms/android/res/drawable-* platforms/android/res/mipmap-*
+  - mkdir -p platforms/android/res/mipmap-mdpi-v4 && cp www/img/logo.png platforms/android/res/mipmap-mdpi-v4/icon.png
   - cordova build android --release
 after_success:
   - export PATH=$(find /usr/local/android-sdk/ -name zipalign -type f| head -1 | sed -e 's/\/zipalign//g'):$PATH
