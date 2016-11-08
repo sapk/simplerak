@@ -3,10 +3,14 @@ jdk:
   - oraclejdk8
 android:
   components:
-  - platform-tools-25
-  - build-tools-25
-  - android-25
-  - android-24
+  - 1
+  - 2
+  - 3
+  - 32
+  licenses:
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
 sudo: false
 cache:
   directories:
