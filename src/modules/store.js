@@ -1,50 +1,79 @@
 import cache from './cache'
 import {remove, parseData, parseMeal} from './tools'
 import config from '../config.json';
+import meals from '../meals.json';
 //import Vue from 'vue'
-
 
 if (typeof window.store === 'undefined') {
     window.store = {
       config: config,
       meal : {
-        list : {},
+        list : meals, //Import preloaded
         parse : function(id,obj){
-//          console.log(obj)
-          //console.log(id,obj)
+          var typeId = {
+            "unknown" : 0,
+            "Non indiqué" : 0,
+            "Plat principal" : 1,
+            "Accompagnement" : 2,
+            "Entrée" : 3,
+            "Entrée chaude" : 4,
+            "Dessert" : 5,
+            "Dessert chaud" : 6,
+            "Sandwich" : 7,
+            "Cafeteria" : 8
+          };
+          var containId = {
+            viande : 0,
+            porc   : 1,
+            gluten : 2,
+            alcool : 3
+          };
+          var containStateId = {
+            "unknown" : 0,
+            "Non renseigné" : 0,
+            "Non renseignée" : 0,
+            "Oui" : 1,
+            "Non" : 2
+          };
+
           var dom = $(obj.data);
           let meal = {
             id : id,
             name: "",
             img : "",
-            type : "unknown",
-            contain :{
-              viande : "unknown",
-              porc   : "unknown",
-              gluten : "unknown",
-              alcool : "unknown"
-            }
+            type : 0,
+            contain : [0,0,0,0]
           }
-
           meal.name = dom.find("article>.row h1").text().trim();
           meal.img = dom.find(".fenetre img.thumbnail").attr("src");
-          meal.type = dom.find(".fenetre h4").text().split(" : ")[1];
+          meal.type = typeId[dom.find(".fenetre h4").text().split(" : ")[1]];
           dom.find(".fenetre .description>ul>li").each(function(index, el) {
               var d = $(el).text().split(" : ");
-              meal.contain[d[0]] = d[1];
+              //meal.contain[d[0]] = d[1];
+              meal.contain[containId[d[0]]] = containStateId[d[1]];
           });
           window.store.meal.list[id] = meal;
           return meal;
         },
         get : function(id){
-          if(window.store.meal.list[id] == null){
+          if(window.store.meal.list[id] == null){ //This is a backup kept but meals should be preloaded in meals.json
             return cache.get(window.store.config.source_plat+id, window.store.config.timeout_meal, "html")
             .then((obj)=>{return window.store.meal.parse(id,obj)})
             .catch(function (req) {
               console.log(req);
             });
           }else{
-            return Promise.resolve(window.store.meal.list[id]);
+            let m = window.store.meal.list[id];
+            let type = ["Non indiqué","Plat principal","Accompagnement","Entrée","Entrée chaude","Dessert","Dessert chaud","Sandwich","Cafeteria"]; //Translate Id
+            let state = ["Non renseignée","Oui","Non"]; //Translate Id
+            m.type = type[m.type];
+            m.contain = {
+              viande : state[m.contain[0]],
+              porc   : state[m.contain[1]],
+              gluten : state[m.contain[2]],
+              alcool : state[m.contain[3]]
+            }
+            return Promise.resolve(m);
           }
         }
       },

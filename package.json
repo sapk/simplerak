@@ -7,6 +7,7 @@
     "sign": "cp \"$APK-unsigned.apk\" \"$APK-signed.apk\" && jarsigner -verbose -sigalg SHA1withRSA -storepass \"$STOREPASS\" -keypass \"$KEYPASS\" -digestalg SHA1 -keystore \"$KEYSTORE\" \"$APK-signed.apk\" simplerak && zipalign -v 4 \"$APK-signed.apk\" \"$APK-signed-aligned.apk\" && jarsigner -verify -verbose -certs \"$APK-signed-aligned.apk\" ",
     "install": "cordova platform add android browser && npm run install-lib",
     "install-lib": "rm -Rf www/lib/materialize-css www/lib/jquery.min.js && cp -R node_modules/materialize-css/dist/ www/lib/materialize-css/ && cp node_modules/jquery/dist/jquery.min.js www/lib/jquery.min.js",
+    "update-meals": "node script/update-meals.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "browser": "cordova run browser",
