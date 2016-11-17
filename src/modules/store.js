@@ -65,7 +65,7 @@ if (typeof window.store === 'undefined') {
           }else{
             let m = window.store.meal.list[id];
             let type = ["Non indiqué","Plat principal","Accompagnement","Entrée","Entrée chaude","Dessert","Dessert chaud","Sandwich","Cafeteria"]; //Translate Id
-            let state = ["Non renseignée","Oui","Non"]; //Translate Id
+            let state = ["Non renseigné","Oui","Non"]; //Translate Id
             m.type = type[m.t];
             m.contain = {
               viande : state[m.c[0]],

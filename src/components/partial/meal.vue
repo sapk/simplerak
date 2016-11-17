@@ -57,7 +57,7 @@
 #menu-container>.page .collapsible-body li>p>svg[data-state="Non"] {
   opacity: 0.2;
 }
-#menu-container>.page .collapsible-body li>p>svg[data-state="Non renseignée"], #menu-container>.page .collapsible-body li>p>svg[data-state="Non renseigné"], #menu-container>.page .collapsible-body li>p>svg[data-state="unknown"] {
+#menu-container>.page .collapsible-body li>p>svg[data-state="Non renseigné"] {
   opacity: 0;
 }
 </style>
