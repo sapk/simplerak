@@ -41,19 +41,19 @@ if (typeof window.store === 'undefined') {
             id : id,
             name: "",
             img : "",
-            type : 0,
-            contain : [0,0,0,0]
+            t : 0,
+            c : [0,0,0,0]
           }
           meal.name = dom.find("article>.row h1").text().trim();
           meal.img = dom.find(".fenetre img.thumbnail").attr("src");
-          meal.type = typeId[dom.find(".fenetre h4").text().split(" : ")[1]];
+          meal.t = typeId[dom.find(".fenetre h4").text().split(" : ")[1]];
           dom.find(".fenetre .description>ul>li").each(function(index, el) {
               var d = $(el).text().split(" : ");
               //meal.contain[d[0]] = d[1];
-              meal.contain[containId[d[0]]] = containStateId[d[1]];
+              meal.c[containId[d[0]]] = containStateId[d[1]];
           });
           window.store.meal.list[id] = meal;
-          return meal;
+          return window.store.meal.get(id); //Add presentation
         },
         get : function(id){
           if(window.store.meal.list[id] == null){ //This is a backup kept but meals should be preloaded in meals.json
@@ -66,12 +66,12 @@ if (typeof window.store === 'undefined') {
             let m = window.store.meal.list[id];
             let type = ["Non indiqué","Plat principal","Accompagnement","Entrée","Entrée chaude","Dessert","Dessert chaud","Sandwich","Cafeteria"]; //Translate Id
             let state = ["Non renseignée","Oui","Non"]; //Translate Id
-            m.type = type[m.type];
+            m.type = type[m.t];
             m.contain = {
-              viande : state[m.contain[0]],
-              porc   : state[m.contain[1]],
-              gluten : state[m.contain[2]],
-              alcool : state[m.contain[3]]
+              viande : state[m.c[0]],
+              porc   : state[m.c[1]],
+              gluten : state[m.c[2]],
+              alcool : state[m.c[3]]
             }
             return Promise.resolve(m);
           }

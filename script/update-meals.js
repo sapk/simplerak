@@ -59,15 +59,15 @@ function parseMeal(id,body){
     id : id,
     name: "",
     img : "",
-    type : 0,
-    contain : [0,0,0,0]
+    t : 0,
+    c : [0,0,0,0]
   }
 
   meal.name = $("article>.row h1").text().trim();
   meal.img = $(".fenetre img.thumbnail").attr("src");
-  meal.type = typeId[$(".fenetre h4").text().split(" : ")[1]]; //TODO detect missing type
-  if (meal.type == null) {
-    console.log("type",$(".fenetre h4").text().split(" : ")[1],meal.type);
+  meal.t = typeId[$(".fenetre h4").text().split(" : ")[1]]; //TODO detect missing type
+  if (meal.t == null) {
+    console.log("type",$(".fenetre h4").text().split(" : ")[1],meal.t);
   }
   $(".fenetre .description>ul>li").each(function(index, el) {
       //TODO check
@@ -75,7 +75,7 @@ function parseMeal(id,body){
       if (containId[d[0]] == null || containStateId[d[1]] == null) {
         console.log("contain",d[0],d[1]);
       }
-      meal.contain[containId[d[0]]] = containStateId[d[1]];
+      meal.c[containId[d[0]]] = containStateId[d[1]];
   });
   return meal;
 };

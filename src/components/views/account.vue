@@ -80,7 +80,7 @@
                   </div>
               </div>
           </a>
-          <ul>
+          <ul style="display:none;">
               <li><a v-on:click="rechargeOf(100)" class="btn-floating yellow darken-1">100</a></li>
               <li><a v-on:click="rechargeOf(70)" class="btn-floating green">70</a></li>
               <li><a v-on:click="rechargeOf(50)" class="btn-floating blue">50</a></li>
