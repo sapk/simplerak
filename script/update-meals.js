@@ -5,6 +5,7 @@ var url = 'http://services.telecom-bretagne.eu/rak/plat.php?id_plat=';
 var output = "src/meals.json";
 var meals = {};
 
+
 function parse(id) {
     console.log("Getting : ",id);
     request(url+id, function (error, response, body) {
@@ -80,4 +81,7 @@ function parseMeal(id,body){
   return meal;
 };
 
-parse(1);
+//parse(1);
+var content = fs.readFileSync(output);
+meals = JSON.parse(content);
+parse(parseInt(Object.keys(meals)[Object.keys(meals).length-1])+1); //Start from last id

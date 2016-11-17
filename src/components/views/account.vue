@@ -36,7 +36,7 @@
       </ul>
 
       <div class="fixed-action-btn" style="bottom: 45px; right: 24px;display: none;">
-          <a class="btn-floating btn-large red  waves-effect waves-light ">
+          <a class="btn-floating btn-large red  waves-effect waves-light">
               <i class="large material-icons">add</i>
               <div class="preloader-wrapper small">
                   <div class="spinner-layer spinner-blue">
@@ -80,7 +80,7 @@
                   </div>
               </div>
           </a>
-          <ul style="display:none;">
+          <ul>
               <li><a v-on:click="rechargeOf(100)" class="btn-floating yellow darken-1">100</a></li>
               <li><a v-on:click="rechargeOf(70)" class="btn-floating green">70</a></li>
               <li><a v-on:click="rechargeOf(50)" class="btn-floating blue">50</a></li>
@@ -194,10 +194,9 @@
           localStorage.removeItem('user');
       },
       parse_page: function (d) {
-        //TODO check if we are connected
         $('#account-container>.collapsible').show();
-        $('#account-container>.fixed-action-btn').show();
-        //$(d).find("h1.home>span").remove();
+        //Disabled since payement don't work any more $('#account-container>.fixed-action-btn').show(); //TODO write code for paiement
+
         $("#account-container>h5").append($(d).find("h1.home").text().replace(/Bonjour /g, '').replace(/Choisissez .*/g, ''));
         //On cache le porte monnaie mais on accepte que 5 min ici car cela permet qu'il soi dispo pour les notifications
         cache.get(store.config.account_urls.portemonnaie, 5 * 60,"html",false).then(function (o) {
