@@ -27,7 +27,7 @@
 }
 */
 
-@media only screen and (min-width : 680px) { /* Display in 2 columns */
+@media only screen and (min-width : 480px) { /* Display in 2 columns */
   #menu-container>.page ul.collection{
     columns: 2;
     -webkit-columns: 2;
@@ -40,6 +40,22 @@
   }
   #menu-container>.page .collapsible-body li>svg {
       margin: 0px -50px -38px 0 !important; /* Allow display of text over img */
+  }
+
+}
+@media only screen and (max-width : 680px) and (min-width : 580px) {
+  #menu-container>.page .collapsible-body .title {
+    font-size: 16px !important;
+  }
+}
+@media only screen and (max-width : 580px) and (min-width : 520px) {
+  #menu-container>.page .collapsible-body .title {
+    font-size: 14px !important;
+  }
+}
+@media only screen and (max-width : 520px) and (min-width : 480px) {
+  #menu-container>.page .collapsible-body .title {
+    font-size: 12px !important;
   }
 }
 </style>
