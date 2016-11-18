@@ -5,7 +5,6 @@
     width: 100%;
     overflow-y: auto;
 }
-
 #menu-container>.page>.date {
     color: #BBB;
     position: relative;
@@ -27,6 +26,22 @@
     padding: 1.5rem 0 0.5rem 0;
 }
 */
+
+@media only screen and (min-width : 680px) { /* Display in 2 columns */
+  #menu-container>.page ul.collection{
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
+  }
+  #menu-container>.page .collapsible-body li {
+    margin-right: -6px;
+    margin-left: -7px;
+    border-right: 1px solid #e0e0e0;
+  }
+  #menu-container>.page .collapsible-body li>svg {
+      margin: 0px -50px -38px 0 !important; /* Allow display of text over img */
+  }
+}
 </style>
 
 <template>

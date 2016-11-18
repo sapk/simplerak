@@ -65,7 +65,7 @@
   <li id="{{meal.id}}" data-type="{{meal.type}}" class="collection-item avatar">
     <svg></svg>
     <span class="title right">{{meal.name}}</span>
-    <p> <svg v-for="(elm ,state) in meal.contain" data-elm="{{elm}}" data-state="{{state}}"></svg>
+    <p><svg v-for="(elm ,state) in meal.contain" data-elm="{{elm}}" data-state="{{state}}"></svg></p>
   </li>
 </template>
 

@@ -50,31 +50,34 @@ export default {
         start: function() {
           var vue = this;
           store.menu.update().then(this.parse).then(function() {
-              //Init carrousel
-              $('#menu-container').carousel({
-                      full_width: true
-              }).css('height', $(document).height() - 64);
+            Vue.nextTick(function () { //Wait reload of vue
+              //Init carousel
+              let carousel = $("#menu-container");
+              //console.log(carousel,carousel.html());
+              carousel.carousel({full_width: true});
+              carousel.css('height', $(document).height() - 64);
               vue.setToday();
-              $("#menu-container").on("touchend mouseup mouseleave click", vue.isToday);
+              carousel.on("touchend mouseup mouseleave click", vue.isToday);
               vue.loading--;
+            });
           });
         },
         isToday: debounce(function() {
           App().headerConfig.activeTodayIcon = this.current() == this.today_id;
         }, 500),
         parse: function(data) {
-            //TODO optimize
             var minDate = new Date();
             var maxDate = new Date();
             minDate.setDate(minDate.getDate() - 3);
             maxDate.setDate(maxDate.getDate() + 14);
             //Set list to nearby date
             this.$set('list', data);
-            this.$set('days', Object.keys(data).sort().filter(function(day) {
+            this.$set('days', Object.keys(data).sort()/*.filter(function(day) {
                 var date = new Date(day);
                 return (minDate < date && date < maxDate)
-            }));
+            })*/);
             this.today_id = this.days.indexOf(this.today);
+            //console.log(data,this.days,this.list,this);
             return true;
         },
         current: function() {
