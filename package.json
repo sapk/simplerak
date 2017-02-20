@@ -1,12 +1,12 @@
 {
   "name": "simplerak",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Simplement affiche le menu du rak du jour et des suivants.",
   "private": true,
   "scripts": {
     "sign": "cp \"$APK-unsigned.apk\" \"$APK-signed.apk\" && jarsigner -verbose -sigalg SHA1withRSA -storepass \"$STOREPASS\" -keypass \"$KEYPASS\" -digestalg SHA1 -keystore \"$KEYSTORE\" \"$APK-signed.apk\" simplerak && zipalign -v 4 \"$APK-signed.apk\" \"$APK-signed-aligned.apk\" && jarsigner -verify -verbose -certs \"$APK-signed-aligned.apk\" ",
     "install": "cordova platform add android browser && npm run install-lib",
-    "install-lib": "rm -Rf www/lib/materialize-css www/lib/jquery.min.js && cp -R node_modules/materialize-css/dist/ www/lib/materialize-css/ && cp node_modules/jquery/dist/jquery.min.js www/lib/jquery.min.js",
+    "install-lib": "rm -Rf www/lib/jquery.min.js && cp node_modules/jquery/dist/jquery.min.js www/lib/jquery.min.js",
     "update-meals": "node script/update-meals.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -21,6 +21,7 @@
   },
   "keywords": [
     "rak",
+    "imt atlantique",
     "telecom bretagne",
     "tb"
   ],
@@ -37,22 +38,22 @@
   },
   "homepage": "https://github.com/sapk/simplerak#readme",
   "dependencies": {
-    "jquery": "^3.1.0",
-    "materialize-css": "^0.97.7",
-    "vue": "^1.0.26",
-    "vue-i18n": "^4.4.1",
-    "vue-router": "^0.7.13"
+    "jquery": "^3.1.1",
+    "vue": "^2.1.10",
+    "vue-material": "^3.1.0",
+    "vue-i18n": "^5.0.2",
+    "vue-router": "^2.2.1"
   },
   "devDependencies": {
-    "cordova": "^6.3.1",
-    "rollup": "^0.34.13",
-    "rollup-plugin-buble": "^0.13.0",
-    "rollup-plugin-commonjs": "^4.1.0",
-    "rollup-plugin-json": "^2.0.1",
+    "cordova": "^6.5.0",
+    "rollup": "^0.41.4",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-json": "^2.1.0",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^1.0.1",
-    "rollup-plugin-vue": "2.1.0",
-    "rollup-watch": "^2.5.0"
+    "rollup-plugin-vue": "^2.2.20",
+    "rollup-watch": "^3.2.2"
   }
 }
