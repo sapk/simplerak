@@ -40,7 +40,7 @@
   "dependencies": {
     "jquery": "^3.1.1",
     "vue": "^2.1.10",
-    "vue-material": "^3.1.0",
+    "vue-material": "^0.7.1",
     "vue-i18n": "^5.0.2",
     "vue-router": "^2.2.1"
   },
