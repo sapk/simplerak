@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 
 import { debounce }from '../../modules/tools'
 import store from '../../modules/store'

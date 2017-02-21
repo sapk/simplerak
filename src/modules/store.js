@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 import cache from './cache'
 import {remove, parseData, parseMeal} from './tools'
 import config from '../config.json';

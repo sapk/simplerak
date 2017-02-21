@@ -12,26 +12,14 @@ import {App} from './tools'
 window.Vue = Vue;
 lang.init(Vue);
 Vue.use(VueRouter)
-window.router = new VueRouter();
-
-window.router.map({
-    '/home': {
-        component: home
-    },
-    '/account': {
-        component: account
-    },
-    '/settings': {
-        component: settings
-    }
+window.router = new VueRouter({
+  routes: [
+    { path: '/', redirect: '/home' },
+    { path: '/home', component: home },
+    { path: '/account', component: account },
+    { path: '/settings', component: settings }
+  ]
 });
-window.router.redirect({ //TODO test with .alias
-  // redirect any navigation to / to /home
-  '/': '/home',
-
-  // redirect any not-found route to home
-  //'*': '/home'
-})
 
 window.router.beforeEach(function (transition) {
   //console.log(transition,router);
@@ -44,8 +32,9 @@ window.router.beforeEach(function (transition) {
   transition.next()
   //TODO reset initial state of hederConfig ?
 })
-
+/*
 window.router.init = function (component,elm) {
-  router.start(Vue.extend(component), elm);
+  window.router.start(Vue.extend(component), elm);
 };
+*/
 export default window.router;

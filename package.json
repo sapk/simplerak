@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "sign": "cp \"$APK-unsigned.apk\" \"$APK-signed.apk\" && jarsigner -verbose -sigalg SHA1withRSA -storepass \"$STOREPASS\" -keypass \"$KEYPASS\" -digestalg SHA1 -keystore \"$KEYSTORE\" \"$APK-signed.apk\" simplerak && zipalign -v 4 \"$APK-signed.apk\" \"$APK-signed-aligned.apk\" && jarsigner -verify -verbose -certs \"$APK-signed-aligned.apk\" ",
-    "install": "cordova platform add android browser && npm run install-lib",
-    "install-lib": "rm -Rf www/lib/jquery.min.js && cp node_modules/jquery/dist/jquery.min.js www/lib/jquery.min.js",
+    "install": "cordova platform add android browser",
     "update-meals": "node script/update-meals.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
@@ -38,9 +37,10 @@
   },
   "homepage": "https://github.com/sapk/simplerak#readme",
   "dependencies": {
+    "jquery": "^3.1.1",
     "vue": "^2.1.10",
-    "vue-material": "^0.7.1",
     "vue-i18n": "^5.0.2",
+    "vue-material": "^0.7.1",
     "vue-router": "^2.2.1"
   },
   "devDependencies": {

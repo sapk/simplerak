@@ -2,11 +2,9 @@
 
 import App from './components/App.vue'
 
-import router from './modules/router'
-
-router.init({
+new Vue({
+  el: 'body',
   components: {
-    app: App
+    'app': App
   }
-}, 'body');
-//router.start(main, 'body');
+})
