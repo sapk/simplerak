@@ -1,8 +1,8 @@
 {
   "language": "en",
-  "source": "dev/menus.xml",
+  "source": "https://services.telecom-bretagne.eu/rak/rss/menus.xml",
   "source_format": "xml",
-  "source_plat" : "http://services.telecom-bretagne.eu/rak/plat.php?id_plat=",
+  "source_plat" : "https://services.telecom-bretagne.eu/rak/plat.php?id_plat=",
   "timeout": 172800,
   "timeout_meal": 1728000,
   "account_urls" : {
