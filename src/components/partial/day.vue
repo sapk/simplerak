@@ -90,6 +90,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 import meal from './meal.vue'
 import store from '../../modules/store'
 

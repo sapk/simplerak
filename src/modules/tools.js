@@ -1,3 +1,4 @@
+import $ from 'jquery'
 
 export function debounce (fnct,time) {
   var r = null;

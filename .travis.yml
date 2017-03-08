@@ -3,10 +3,11 @@ jdk:
   - oraclejdk8
 android:
   components:
-    - "1"
-    - "2"
-    - "3"
-    - "32"
+    - tools # to get the new `repository-11.xml`
+    - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
+    - platform-tools
+    - build-tools-25
+    - android-25
   licenses:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'

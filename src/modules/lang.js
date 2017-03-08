@@ -1,4 +1,5 @@
 import VueI18n from 'vue-i18n'
+import $ from 'jquery'
 
 import store from './store'
 

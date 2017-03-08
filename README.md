@@ -1,4 +1,6 @@
-# simplerak
+# simplerak [![License](https://img.shields.io/badge/license-WTFPL-green.svg)](https://github.com/sapk/simplerak/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/sapk/simplerak.svg)](https://github.com/sapk/simplerak/releases) [![Travis master](https://api.travis-ci.org/sapk/simplerak.svg?branch=master)](https://travis-ci.org/sapk/simplerak) [![codecov](https://codecov.io/gh/sapk/simplerak/branch/master/graph/badge.svg)](https://codecov.io/gh/sapk/simplerak)
+
 Simply display the RAK menu of the current day and the followings.
 
 

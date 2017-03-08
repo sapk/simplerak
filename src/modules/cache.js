@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 import {debounce} from './tools'
 
 if (typeof window.cache === 'undefined') {

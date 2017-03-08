@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import $ from 'jquery'
+
 export default {
   ready: function(){
     $(".button-collapse[data-activates='menu']").sideNav({

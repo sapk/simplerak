@@ -96,6 +96,8 @@
 
 
 <script>
+  import $ from 'jquery'
+
   import store from '../../modules/store'
   import cache from '../../modules/cache'
   import router from '../../modules/router'

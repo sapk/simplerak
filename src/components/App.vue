@@ -104,7 +104,13 @@ body.theme-fip table.striped tbody tr:nth-child(odd) {
 </template>
 
 <script>
+import $ from 'jquery'
+import router from '../modules/router'
+
 import header from './header.vue'
+//import 'vue-material/dist/vue-material.css'
+//Vue.use(VueMaterial) //Global method
+//Vue.use(VueMaterial.MdCore) //Required to boot vue material
 
 export default {
   data : () => { return {
@@ -119,9 +125,13 @@ export default {
     menu: header,
   },
   created: function(){
-    if (localStorage.theme)
+    if (localStorage.theme){
       console.log("Loading theme :",localStorage.theme)
-      $("body").addClass("theme-" + localStorage.theme);
+      $("body").addClass("theme-" + localStorage.theme)
+    }
+    const app = new Vue({
+      router
+    }).$mount('app')
   }
 }
 </script>

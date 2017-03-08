@@ -60,6 +60,8 @@
 </template>
 
 <script>
+  import $ from 'jquery'
+
   import cache from '../../modules/cache'
   import store from '../../modules/store'
   import { isLogged, getForm } from '../../modules/tools'
