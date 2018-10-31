@@ -3,10 +3,15 @@ jdk:
   - oraclejdk8
 android:
   components:
-    - "1"
-    - "2"
-    - "3"
-    - "32"
+    - tools
+    - platform-tools
+    - tools
+    # The BuildTools version used by your project
+    - build-tools-26.0.2
+    # The SDK version used to compile your project
+    - android-26
+    - add-on
+    - extra
   licenses:
     - 'android-sdk-license-.+'
     - 'google-gdk-license-.+'
